@@ -5,7 +5,9 @@
   <ul class="nav nav-sidebar">
     <li><a href="<?=base_url()?>processos">Processos</a></li>
     <li><a href="<?=base_url()?>pessoas">Pessoas</a></li>
-    <li><a href="<?=base_url()?>prazos">Prazos</a></li>
+  </ul>
+  <ul class="nav nav-sidebar">
+    <li><a href="<?=base_url()?>eventosnovo">Novo Evento</a></li>
   </ul>
   <ul class="nav nav-sidebar">
     <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
