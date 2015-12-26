@@ -45,14 +45,19 @@
       <a class="navbar-brand" href="<?=base_url()?>">OS Juris</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Procurar...">
+      </form>
       <ul class="nav navbar-nav navbar-right">
+        <li><a href="<?=base_url()?>dashboard">Dashboard</a></li>
+        <li><a href="<?=base_url()?>processos">Processos</a></li>
+        <li><a href="<?=base_url()?>pessoas">Pessoas</a></li>
+        <li><a href="<?=base_url()?>eventosnovo">Novo Evento</a></li>
+        <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
         <li><a href="#">Configurações</a></li>
         <li><a href="<?=base_url()?>perfil">Perfil</a></li>
         <li><a href="#">Ajuda</a></li>
       </ul>
-      <form class="navbar-form navbar-right">
-        <input type="text" class="form-control" placeholder="Procurar...">
-      </form>
     </div>
   </div>
 </nav>

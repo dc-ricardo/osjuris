@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
       <!-- <h1 class="page-header">Pessoas <a class="glyphicon glyphicon-plus" href="<?=base_url()?>pessoas/novo"></a></h1> -->
       <h1 class="page-header">Pessoas <a class="btn btn-default" href="<?=base_url()?>pessoas/novo">Nova</a></h1>
 
