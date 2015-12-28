@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Pessoas extends CI_Controller {
+class Pessoas extends MY_Controller {
 
 public function index()	{
 	$this->load->view('includes/vheader');

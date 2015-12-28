@@ -56,6 +56,7 @@
         <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
         <li><a href="#">Configurações</a></li>
         <li><a href="<?=base_url()?>perfil">Perfil</a></li>
+        <li><a href="<?=base_url()?>logon/logout">Sair</a></li>
         <li><a href="#">Ajuda</a></li>
       </ul>
     </div>

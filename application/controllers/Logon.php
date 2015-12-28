@@ -7,4 +7,9 @@ public function index()	{
 	$this->load->view('vlogon');
 }
 
+function logout() {
+	$this->session->sess_destroy();
+	redirect('logon', 'auto');
+}
+
 }
