@@ -23,17 +23,18 @@ public function insere() {
 	$this->form_validation->set_rules('nome_razao','Nome/Razão Social','required');
 
   // define o valor para o tipo da pessoa Física = 1 ou Jurídica = 2
-	$tipo_retornado = $this->input->post('tipo');
-  if ($tipo_retornado = 'Física') {
-		$tipo = 1;
-	}	else {
-		$tipo = 2;
-	}
+	// $tipo_retornado = $this->input->post('tipo');
+  // if ($tipo_retornado = 'Física') {
+	// 	$tipo = 1;
+	// }	else {
+	// 	$tipo = 2;
+	// }
 
   if ($this->form_validation->run() == TRUE) {
 	  $data = array(
 				'codigo' => $this->input->post('codigo'),
-				'tipo' => $tipo,
+				// 'tipo' => $tipo,
+				'tipo' => $this->input->post('tipo'),
 				'cpf_cnpj' => $this->input->post('cpf_cnpj'),
 				'rg_ie' => $this->input->post('rg_ie'),
 				'nome_razao' => $this->input->post('nome_razao'),
@@ -55,7 +56,9 @@ public function insere() {
 		// print_r(array_values($data));
 	}
 	else {
-		echo 'hi!';
+		$this->load->view('includes/vheader');
+		$this->load->view('vpessoas_novo');
+		$this->load->view('includes/vfooter');
 	}
 }
 
