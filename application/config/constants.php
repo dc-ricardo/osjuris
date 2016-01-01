@@ -88,3 +88,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 Constantes do projeto
 */
 define('CSALT', 'nF3Jf8'); // salt para o hash md5
+define('PTIPO_FISICA', '0');
+define('PTIPO_JURIDICA', '1');
+define('PTIPO_ADVOGADO', '2');
+define('PESSOAS_TIPO', serialize(array('Física', 'Jurídica', 'Advogado')));

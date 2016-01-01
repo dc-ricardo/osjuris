@@ -4,8 +4,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pessoas extends MY_Controller {
 
 public function index()	{
+	$this->load->model('mpessoas');
+	$data['pessoas'] = $this->mpessoas->seleciona();
+
 	$this->load->view('includes/vheader');
-	$this->load->view('vpessoas');
+	$this->load->view('vpessoas', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -22,18 +25,9 @@ public function insere() {
 	$this->form_validation->set_rules('cpf_cnpj','CPF/CNPJ','required');
 	$this->form_validation->set_rules('nome_razao','Nome/Razão Social','required');
 
-  // define o valor para o tipo da pessoa Física = 1 ou Jurídica = 2
-	// $tipo_retornado = $this->input->post('tipo');
-  // if ($tipo_retornado = 'Física') {
-	// 	$tipo = 1;
-	// }	else {
-	// 	$tipo = 2;
-	// }
-
   if ($this->form_validation->run() == TRUE) {
 	  $data = array(
 				'codigo' => $this->input->post('codigo'),
-				// 'tipo' => $tipo,
 				'tipo' => $this->input->post('tipo'),
 				'cpf_cnpj' => $this->input->post('cpf_cnpj'),
 				'rg_ie' => $this->input->post('rg_ie'),
@@ -53,13 +47,21 @@ public function insere() {
 
 		$this->load->model('mpessoas');
 	  $this->mpessoas->insere($data);
-		// print_r(array_values($data));
 	}
 	else {
 		$this->load->view('includes/vheader');
 		$this->load->view('vpessoas_novo');
 		$this->load->view('includes/vfooter');
 	}
+}
+
+public function consulta($id) {
+	$this->load->model('mpessoas');
+	$data['pessoa'] = $this->mpessoas->consulta($id);
+
+	$this->load->view('includes/vheader');
+	$this->load->view('vpessoas_consulta', $data);
+	$this->load->view('includes/vfooter');
 }
 
 }

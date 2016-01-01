@@ -5,7 +5,11 @@
 
       <form class="form-group" action="<?=base_url()?>pessoas/insere" method="post">
 
-        <?=validation_errors();?>
+        <?php if (validation_errors() == TRUE) {
+          echo '<div class="alert alert-danger" role="alert">';
+          echo validation_errors();
+          echo '</div>';
+        }?>
 
         <div class="row">
           <div class="col-md-3">
@@ -21,8 +25,11 @@
             <div class="form-group">
               <label for="tipo">Tipo</label>
               <select class="form-control" id="tipo" name="tipo">
-                <option value="1" <?=set_select('tipo', '1')?>>Física</option>
-                <option value="2" <?=set_select('tipo', '2')?>>Jurídica</option>
+                <?php $tipos = unserialize(PESSOAS_TIPO);?>
+                <h4><?=$tipos[$pessoa[0]->tipo]?></h4>
+                <option value="<?=PTIPO_FISICA?>" <?=set_select('tipo', '<?=PTIPO_FISICA?>')?>><?=$tipos[PTIPO_FISICA]?></option>
+                <option value="<?=PTIPO_JURIDICA?>" <?=set_select('tipo', '<?=PTIPO_JURIDICA?>')?>><?=$tipos[PTIPO_JURIDICA]?></option>
+                <option value="<?=PTIPO_ADVOGADO?>" <?=set_select('tipo', '<?=PTIPO_ADVOGADO?>')?>><?=$tipos[PTIPO_ADVOGADO]?></option>
               </select>
             </div>
           </div>
