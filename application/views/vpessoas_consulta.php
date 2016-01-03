@@ -6,10 +6,15 @@
       <h1 class="page-header">Pessoa
         <div class="btn-group pull-right" role="group">
           <a class="btn btn-primary" href="<?=base_url()?>pessoas/novo" role="button">Novo</a>
-          <a class="btn btn-primary" href="<?=base_url()?>pessoas/novo" role="button">Editar</a>
+          <a class="btn btn-primary" href="<?=base_url('pessoas/edita/'.$pessoa[0]->id_pessoas);?>" role="button">Editar</a>
           <a class="btn btn-primary" href="<?=base_url()?>pessoas/novo" role="button">Processos</a>
         </div>
       </h1>
+
+      <div class="form-group">
+        <h5>Nome/Razão Social</h5>
+        <h4><?=$pessoa[0]->nome_razao;?></h4>
+      </div>
 
       <div class="row">
         <div class="col-md-3">
@@ -29,11 +34,6 @@
           <h5>RG/Inscrição</h5>
           <h4><?=$pessoa[0]->rg_ie;?></h4>
         </div>
-      </div>
-
-      <div class="form-group">
-        <h5>Nome/Razão Social</h5>
-        <h4><?=$pessoa[0]->nome_razao;?></h4>
       </div>
 
       <div class="row">

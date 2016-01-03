@@ -1,6 +1,10 @@
 <?php
 class Mpessoas extends CI_Model {
 
+public function __construct() {
+  parent::__construct();
+}
+
 function insere($registro) {
   $this->db->insert('pessoas', $registro);
 }
@@ -19,6 +23,11 @@ function consulta($id) {
   $this->db->where('id_pessoas', $id);
   $query = $this->db->get();
   return $query->result();
+}
+
+function atualiza($id, $data) {
+  $this->db->where('id_pessoas', $id);
+  $this->db->update('pessoas', $data);
 }
 
 }

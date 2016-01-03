@@ -1,6 +1,10 @@
 <?php
 Class Musuario extends CI_Model {
 
+public function __construct() {
+  parent::__construct();
+}
+
 function login($email, $senha) {
   $this->db->select('id_usuarios, email, senha');
   $this->db->from('usuarios');

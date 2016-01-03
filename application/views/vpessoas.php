@@ -34,7 +34,7 @@
                     <td><?= $pessoa->cpf_cnpj; ?></td>
                     <td>
                       <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/consulta/'.$pessoa->id_pessoas)?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="#">Editar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/edita/'.$pessoa->id_pessoas)?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="#">Processos</a>
                     </td>
                   </tr>
