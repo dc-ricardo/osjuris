@@ -8,7 +8,7 @@ public function __construct() {
 
   $logado = $this->session->userdata('logged_in');
   if ($logado == FALSE) {
-    redirect('logon', 'auto');
+    redirect('logon');
   }
 }
 

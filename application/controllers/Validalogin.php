@@ -20,7 +20,7 @@ public function index()	{
 
 function check_database($senha) {
   $email = $this->input->post('email');
-
+  $this->load->model('musuario');
   $result = $this->musuario->login($email, $senha);
 
   if ($result) {
@@ -28,7 +28,9 @@ function check_database($senha) {
     foreach ($result as $row) {
       $sess_array = array(
         'id_usuarios' => $row->id_usuarios,
-        'email'       => $row->email
+        'email' => $row->email,
+        'nome' => $row->nome,
+        'nivel' => $row->nivel
       );
       $this->session->set_userdata('logged_in', $sess_array);
     }

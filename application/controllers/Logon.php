@@ -9,7 +9,7 @@ public function index()	{
 
 function logout() {
 	$this->session->sess_destroy();
-	redirect('logon', 'auto');
+	redirect('logon');
 }
 
 }
