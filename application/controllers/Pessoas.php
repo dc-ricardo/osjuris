@@ -141,20 +141,30 @@ function regras($operacao) {
 }
 
 public function insere() {
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules($this->regras('insercao'));
+	if ($this->input->post('submit') == 'gravar') {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules($this->regras('insercao'));
 
-  if ($this->form_validation->run() == TRUE) {
-	  $data = $this->vpostados();
+	  if ($this->form_validation->run() == TRUE) {
+		  $data = $this->vpostados();
 
-		$this->load->model('mpessoas');
-	  $this->mpessoas->insere($data);
-		redirect('/pessoas');
-	}
-	else {
-		$this->load->view('includes/vheader');
-		$this->load->view('vpessoas_novo');
-		$this->load->view('includes/vfooter');
+			$this->load->model('mpessoas');
+		  $this->mpessoas->insere($data);
+			redirect('/pessoas');
+		} else {
+			$this->load->view('includes/vheader');
+			$this->load->view('vpessoas_novo');
+			$this->load->view('includes/vfooter');
+		}
+	} else {
+		if ($this->input->post('submit') == 'gerar') {
+			$this->load->model('mpessoas');
+			// $data['pessoa'] = $this->mpessoas->consulta($id);
+			$data['codigogerado'] = $this->mpessoas->geracodigo();
+			$this->load->view('includes/vheader');
+	  	$this->load->view('vpessoas_novo', $data);
+			$this->load->view('includes/vfooter');
+		}
 	}
 }
 
@@ -177,18 +187,45 @@ public function edita($id) {
 }
 
 public function atualiza($id) {
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules($this->regras('alteracao'));
+	if ($this->input->post('submit') == 'gravar') {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules($this->regras('alteracao'));
 
-  if ($this->form_validation->run() == TRUE) {
-	  $data = $this->vpostados();
-		$this->load->model('mpessoas');
-		$this->mpessoas->atualiza($id, $data);
-		redirect('/pessoas/consulta/'.$id);
-	}
-	else {
-		$this->edita($id);
+		if ($this->form_validation->run() == TRUE) {
+			$data = $this->vpostados();
+			$this->load->model('mpessoas');
+			$this->mpessoas->atualiza($id, $data);
+			redirect('/pessoas/consulta/'.$id);
+		} else {
+			$this->edita($id);
+		}
+	} else {
+		if ($this->input->post('submit') == 'gerar') {
+			$this->load->model('mpessoas');
+			$data['pessoa'] = $this->mpessoas->consulta($id);
+			$data['codigogerado'] = $this->mpessoas->geracodigo();
+			$this->load->view('includes/vheader');
+	  	$this->load->view('vpessoas_edita', $data);
+			$this->load->view('includes/vfooter');
+		}
 	}
 }
+
+// public function geracodigo($id, $operacao) {
+// 	$this->load->model('mpessoas');
+// 	if ($operacao = 'alteracao') {
+// 		$data['pessoa'] = $this->mpessoas->consulta($id);
+// 	}
+// 	$data['codigogerado'] = $this->mpessoas->geracodigo();
+//
+// 	$this->load->view('includes/vheader');
+// 	if ($operacao = 'alteracao') {
+// 		$this->load->view('vpessoas_edita', $data);
+// 	} else {
+// 		$this->load->view('vpessoas_novo', $data);
+// 	}
+// 	$this->load->view('includes/vfooter');
+//
+// }
 
 }

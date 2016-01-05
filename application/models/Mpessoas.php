@@ -30,4 +30,29 @@ function atualiza($id, $data) {
   $this->db->update('pessoas', $data);
 }
 
+// verifica se o codigo gerado nao existe no banco de dados
+function codigogeradoexistente($data) {
+  $this->db->select('codigo');
+  $this->db->from('pessoas');
+  $codigo = $data[0]->codigo;
+  $this->db->where('codigo', $codigo);
+  $query = $this->db->get();
+  return $query->num_rows();
+}
+
+function sorteiacodigo() {
+  $this->db->select('trunc(random()*(999999-100000)+100000) as codigo;');
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function geracodigo() {
+  $consulta = 1;
+  while ($consulta == 1) {
+    $codigo = $this->sorteiacodigo();
+    $consulta = $this->codigogeradoexistente($codigo);
+  }
+  return $codigo;
+}
+
 }
