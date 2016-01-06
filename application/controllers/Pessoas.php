@@ -121,23 +121,65 @@ function regras($operacao) {
 		array(
 			'field' => 'nome_razao',
 			'label' => 'Nome/Razão Social',
-			'rules' => 'required|max_length[80]|trim'
+			'rules' => 'required|max_length[80]|trim|callback_validachavenome'
 		),
 		array(
 			'field' => 'codigo',
 			'label' => 'Código',
-			'rules' => 'required|exact_length[6]'
+			'rules' => 'required|exact_length[6]|callback_validachavecodigo'
 		),
 		array(
 			'field' => 'cpf_cnpj',
 			'label' => 'CPF/CNPJ',
-			'rules' => 'required|max_length[20]|alpha_numeric'
+			'rules' => 'required|max_length[20]|alpha_numeric|callback_validachavecpf'
 		)
 	);
 
 	$vrules = array_merge($vrules['padrao'], $vrules[$operacao]);
 
 	return $vrules;
+}
+
+public function validachavenome($pvalor) {
+	$this->load->model('mpessoas');
+
+  $id = $this->uri->segment(3);
+	$data = $this->mpessoas->consultachavenome($id, $pvalor);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachavenome', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	} else {
+		return TRUE;
+	}
+}
+
+public function validachavecodigo($pvalor) {
+	$this->load->model('mpessoas');
+
+  $id = $this->uri->segment(3);
+	$data = $this->mpessoas->consultachavecodigo($id, $pvalor);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachavecodigo', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	} else {
+		return TRUE;
+	}
+}
+
+public function validachavecpf($pvalor) {
+	$this->load->model('mpessoas');
+
+  $id = $this->uri->segment(3);
+	$data = $this->mpessoas->consultachavecpf($id, $pvalor);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachavecpf', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	} else {
+		return TRUE;
+	}
 }
 
 public function insere() {
@@ -159,7 +201,6 @@ public function insere() {
 	} else {
 		if ($this->input->post('submit') == 'gerar') {
 			$this->load->model('mpessoas');
-			// $data['pessoa'] = $this->mpessoas->consulta($id);
 			$data['codigogerado'] = $this->mpessoas->geracodigo();
 			$this->load->view('includes/vheader');
 	  	$this->load->view('vpessoas_novo', $data);
@@ -210,22 +251,5 @@ public function atualiza($id) {
 		}
 	}
 }
-
-// public function geracodigo($id, $operacao) {
-// 	$this->load->model('mpessoas');
-// 	if ($operacao = 'alteracao') {
-// 		$data['pessoa'] = $this->mpessoas->consulta($id);
-// 	}
-// 	$data['codigogerado'] = $this->mpessoas->geracodigo();
-//
-// 	$this->load->view('includes/vheader');
-// 	if ($operacao = 'alteracao') {
-// 		$this->load->view('vpessoas_edita', $data);
-// 	} else {
-// 		$this->load->view('vpessoas_novo', $data);
-// 	}
-// 	$this->load->view('includes/vfooter');
-//
-// }
 
 }

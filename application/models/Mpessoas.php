@@ -55,4 +55,34 @@ function geracodigo() {
   return $codigo;
 }
 
+// procura uma pessoa com o mesmo nome de outro id
+function consultachavenome($id, $nome) {
+  $this->db->select('id_pessoas');
+  $this->db->from('pessoas');
+  $this->db->where('nome_razao =', $nome);
+  $this->db->where('id_pessoas !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+// procura uma pessoa com o mesmo codigo de outro id
+function consultachavecodigo($id, $codigo) {
+  $this->db->select('id_pessoas');
+  $this->db->from('pessoas');
+  $this->db->where('codigo =', $codigo);
+  $this->db->where('id_pessoas !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+// procura uma pessoa com o mesmo cpf de outro id
+function consultachavecpf($id, $cpf) {
+  $this->db->select('id_pessoas');
+  $this->db->from('pessoas');
+  $this->db->where('cpf_cnpj =', $cpf);
+  $this->db->where('id_pessoas !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
 }
