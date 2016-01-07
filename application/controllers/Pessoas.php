@@ -70,12 +70,12 @@ function regras($operacao) {
 		array(
 			'field' => 'estado',
 			'label' => 'Estado',
-			'rules' => 'max_length[2]|trim'
+			'rules' => 'alpha|max_length[2]|trim'
 		),
 		array(
 			'field' => 'cep',
 			'label' => 'CEP',
-			'rules' => 'max_length[8]|trim'
+			'rules' => 'integer|max_length[8]|trim'
 		),
 		array(
 			'field' => 'telefone',
@@ -90,7 +90,7 @@ function regras($operacao) {
 		array(
 			'field' => 'email',
 			'label' => 'E-mail',
-			'rules' => 'max_length[60]|trim'
+			'rules' => 'valid_email|max_length[60]|trim'
 		),
 		array(
 			'field' => 'numero',
@@ -108,12 +108,12 @@ function regras($operacao) {
 		array(
 			'field' => 'codigo',
 			'label' => 'Código',
-			'rules' => 'required|is_unique[pessoas.codigo]|exact_length[6]'
+			'rules' => 'required|integer|is_unique[pessoas.codigo]|exact_length[6]'
 		),
 		array(
 			'field' => 'cpf_cnpj',
 			'label' => 'CPF/CNPJ',
-			'rules' => 'required|is_unique[pessoas.cpf_cnpj]|max_length[20]|alpha_numeric'
+			'rules' => 'required|is_unique[pessoas.cpf_cnpj]|max_length[20]|integer'
 		)
 	);
 
@@ -126,12 +126,12 @@ function regras($operacao) {
 		array(
 			'field' => 'codigo',
 			'label' => 'Código',
-			'rules' => 'required|exact_length[6]|callback_validachavecodigo'
+			'rules' => 'required|integer|exact_length[6]|callback_validachavecodigo'
 		),
 		array(
 			'field' => 'cpf_cnpj',
 			'label' => 'CPF/CNPJ',
-			'rules' => 'required|max_length[20]|alpha_numeric|callback_validachavecpf'
+			'rules' => 'required|max_length[20]|integer|callback_validachavecpf'
 		)
 	);
 
@@ -149,7 +149,8 @@ public function validachavenome($pvalor) {
 	if (!empty($data)) {
 		$this->form_validation->set_message('validachavenome', 'O campo {field} deve conter um valor único.');
 		return FALSE;
-	} else {
+	}
+	else {
 		return TRUE;
 	}
 }
@@ -163,7 +164,8 @@ public function validachavecodigo($pvalor) {
 	if (!empty($data)) {
 		$this->form_validation->set_message('validachavecodigo', 'O campo {field} deve conter um valor único.');
 		return FALSE;
-	} else {
+	}
+	else {
 		return TRUE;
 	}
 }
@@ -177,9 +179,21 @@ public function validachavecpf($pvalor) {
 	if (!empty($data)) {
 		$this->form_validation->set_message('validachavecpf', 'O campo {field} deve conter um valor único.');
 		return FALSE;
-	} else {
+	}
+	else {
 		return TRUE;
 	}
+}
+
+// retorna vetor com valores do endereço
+// ex: Array ( [resultado] => 1 [resultado_txt] => sucesso - cep completo [uf] =>
+//   SP [cidade] => São Paulo [bairro] => Vila Mariana [tipo_logradouro] => Rua [logradouro] => Acarapé )
+public function buscacep($cep) {
+	if (strstr($cep, '_') || strlen($cep) < 8 )	{
+		$cep = '0';
+	}
+	$this->load->helper('cepcorreios');
+	return json_decode(buscar_endereco($cep), TRUE);
 }
 
 public function insere() {
@@ -193,18 +207,30 @@ public function insere() {
 			$this->load->model('mpessoas');
 		  $this->mpessoas->insere($data);
 			redirect('/pessoas');
-		} else {
+		}
+		else {
 			$this->load->view('includes/vheader');
 			$this->load->view('vpessoas_novo');
 			$this->load->view('includes/vfooter');
 		}
-	} else {
+	}
+	else {
 		if ($this->input->post('submit') == 'gerar') {
-			$this->load->model('mpessoas');
-			$data['codigogerado'] = $this->mpessoas->geracodigo();
-			$this->load->view('includes/vheader');
-	  	$this->load->view('vpessoas_novo', $data);
-			$this->load->view('includes/vfooter');
+				$this->load->model('mpessoas');
+				$data['codigogerado'] = $this->mpessoas->geracodigo();
+				$this->load->view('includes/vheader');
+		  	$this->load->view('vpessoas_novo', $data);
+				$this->load->view('includes/vfooter');
+		}
+		else {
+			if ($this->input->post('submit') == 'buscarcep') {
+				$cep = $this->input->post('cep');
+				$endereco = $this->buscacep($cep);
+  			$data['ceplocalizado'] = $endereco;
+				$this->load->view('includes/vheader');
+	  		$this->load->view('vpessoas_novo', $data);
+				$this->load->view('includes/vfooter');
+			}
 		}
 	}
 }
@@ -237,17 +263,34 @@ public function atualiza($id) {
 			$this->load->model('mpessoas');
 			$this->mpessoas->atualiza($id, $data);
 			redirect('/pessoas/consulta/'.$id);
-		} else {
+		}
+		else {
 			$this->edita($id);
 		}
-	} else {
+	}
+	else {
 		if ($this->input->post('submit') == 'gerar') {
 			$this->load->model('mpessoas');
 			$data['pessoa'] = $this->mpessoas->consulta($id);
 			$data['codigogerado'] = $this->mpessoas->geracodigo();
+
 			$this->load->view('includes/vheader');
 	  	$this->load->view('vpessoas_edita', $data);
 			$this->load->view('includes/vfooter');
+		}
+		else {
+			if ($this->input->post('submit') == 'buscarcep') {
+				$this->load->model('mpessoas');
+				$data['pessoa'] = $this->mpessoas->consulta($id);
+
+				$cep = $this->input->post('cep');
+				$endereco = $this->buscacep($cep);
+				$data['ceplocalizado'] = $endereco;
+
+				$this->load->view('includes/vheader');
+				$this->load->view('vpessoas_edita', $data);
+				$this->load->view('includes/vfooter');
+			}
 		}
 	}
 }

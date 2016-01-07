@@ -37,6 +37,10 @@
       </div>
 
       <div class="row">
+        <div class="col-md-2">
+          <h5 class="text-muted">CEP</h5>
+          <h4><?=$pessoa[0]->cep;?></h4>
+        </div>
         <div class="col-md-6">
           <h5 class="text-muted">Endereço</h5>
           <h4><?=$pessoa[0]->endereco;?></h4>
@@ -49,24 +53,20 @@
           <h5 class="text-muted">Complemento</h5>
           <h4><?=$pessoa[0]->complemento;?></h4>
         </div>
+      </div>
+
+      <div class="row">
         <div class="col-md-3">
           <h5 class="text-muted">Bairro</h5>
           <h4><?=$pessoa[0]->bairro;?></h4>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-6">
           <h5 class="text-muted">Cidade</h5>
           <h4><?=$pessoa[0]->cidade;?></h4>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-3">
           <h5 class="text-muted">Estado</h5>
           <h4><?=$pessoa[0]->estado;?>
-        </div>
-        <div class="col-md-4">
-          <h5 class="text-muted">CEP</h5>
-          <h4><?=$pessoa[0]->cep;?></h4>
         </div>
       </div>
 

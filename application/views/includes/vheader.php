@@ -38,7 +38,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?=base_url()?>">OS Juris CE</a>
+        <a class="navbar-brand" href="<?=base_url()?>">OS Juris CE <?=OSJ_VERSAO?></a>
         <p class="navbar-text">Logado como <?=$this->session->userdata['logged_in']['nome'];?></p>
       </div>
 
@@ -48,7 +48,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              <span class="caret"></span>    
+              <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
               <li><a href="<?=base_url()?>perfil">Perfil</a></li>

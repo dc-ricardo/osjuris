@@ -92,3 +92,4 @@ define('PTIPO_FISICA', '0');
 define('PTIPO_JURIDICA', '1');
 define('PTIPO_ADVOGADO', '2');
 define('PESSOAS_TIPO', serialize(array('Física', 'Jurídica', 'Advogado')));
+define('OSJ_VERSAO', '0.1.0');

@@ -14,26 +14,38 @@
         ?>
 
         <?php
-          if (isset($codigogerado)) {
-            $vdc['codigo'] = $codigogerado[0]->codigo;
-          } else {
-            $vdc['codigo'] = set_value('codigo');
-          }
           $vdc['nome_razao'] = set_value('nome_razao');
           $vdc['tipo'] = set_value('tipo');
           $vdc['cpf_cnpj'] = set_value('cpf_cnpj');
           $vdc['rg_ie'] = set_value('rg_ie');
-          $vdc['endereco'] = set_value('endereco');
           $vdc['numero'] = set_value('numero', 0);
           $vdc['complemento'] = set_value('complemento');
-          $vdc['bairro'] = set_value('bairro');
-          $vdc['cidade'] = set_value('cidade');
-          $vdc['estado'] = set_value('estado');
           $vdc['cep'] = set_value('cep');
           $vdc['telefone'] = set_value('telefone');
           $vdc['celular'] = set_value('celular');
           $vdc['email'] = set_value('email');
           $vdc['observacoes'] = set_value('observacoes');
+
+          if (isset($codigogerado)) {
+            $vdc['codigo'] = $codigogerado[0]->codigo;
+          }
+          else {
+            $vdc['codigo'] = set_value('codigo');
+          }
+
+          if (isset($ceplocalizado)) {
+            $vdc['endereco'] = $ceplocalizado['tipo_logradouro'].' '.$ceplocalizado['logradouro'];
+            $vdc['bairro'] = $ceplocalizado['bairro'];
+            $vdc['cidade'] = $ceplocalizado['cidade'];
+            $vdc['estado'] = $ceplocalizado['uf'];
+          }
+          else {
+            $vdc['endereco'] = set_value('endereco');
+            $vdc['bairro'] = set_value('bairro');
+            $vdc['cidade'] = set_value('cidade');
+            $vdc['estado'] = set_value('estado');
+          }
+
         ?>
 
         <div class="form-group">
@@ -47,7 +59,9 @@
             <div class="input-group">
               <input type="text" class="form-control" id="codigo" name="codigo" value="<?=$vdc['codigo'];?>">
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-default" name="submit" value="gerar">Gerar</button>
+                <button type="submit" class="btn btn-default" name="submit" value="gerar">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
               </span>
             </div>
           </div>
@@ -78,6 +92,17 @@
         </div>
 
         <div class="row">
+          <div class="col-md-3">
+            <label for="cep">CEP</label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="cep" name="cep" value="<?=$vdc['cep'];?>">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" name="submit" value="buscarcep">
+                  <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
+          </div>
           <div class="col-md-6">
             <div class="form-group">
               <label for="endereco">Endereço</label>
@@ -96,34 +121,25 @@
               <input type="text" class="form-control" id="complemento" name="complemento" value="<?=$vdc['complemento'];?>">
             </div>
           </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-3">
             <div class="form-group">
               <label for="bairro">Bairro</label>
               <input type="text" class="form-control" id="bairro" name="bairro" value="<?=$vdc['bairro'];?>">
             </div>
           </div>
-        </div>
-
-        <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="cidade">Cidade</label>
               <input type="text" class="form-control" id="cidade" name="cidade" value="<?=$vdc['cidade'];?>">
             </div>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <div class="form-group">
               <label for="estado">Estado</label>
               <input type="text" class="form-control" id="estado" name="estado" value="<?=$vdc['estado'];?>">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <label for="cep">CEP</label>
-            <div class="input-group">
-              <input type="text" class="form-control" id="cep" name="cep" value="<?=$vdc['cep'];?>">
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default">Buscar</button>
-              </span>
             </div>
           </div>
         </div>
