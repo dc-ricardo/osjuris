@@ -1,44 +1,82 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
-      <h1 class="page-header">Localizações <a class="btn btn-default" href="<?=base_url()?>localizacoes/novo">Nova</a></h1>
 
-      <!-- <h2 class="sub-header">Últimos eventos</h2> -->
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Descrição</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>amet</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>Integer</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>libero</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>dapibus</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>Nulla</td>
-            </tr>
-          </tbody>
-        </table>
+      <h1 class="page-header">Localizações</h1>
+
+      <?php
+        if (isset($editar)) {
+          $vdc['descricao'] = $editar[0]->descricao;
+          $focoins = '';
+          $focoedt = 'autofocus';
+          $id = $editar[0]->id_localizacoes;
+        }
+        else {
+          $vdc['descricao'] = '';
+          $focoins = 'autofocus';
+          $focoedt = '';
+          $id = '';
+        }
+      ?>
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <div class="panel panel-default">
+            <div class="panel-body">
+
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <?php foreach($localizacoes as $localizacao): ?>
+                    <tr>
+                      <td><?= $localizacao->descricao;?></td>
+                      <td>
+                        <a class="glyphicon glyphicon-edit" aria-hidden="true"
+                          href="<?=base_url('localizacoes/edita/'.$localizacao->id_localizacoes)?>"></a>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
+                </table>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+
+          <form class="form-group" action="<?=base_url('localizacoes/grava/'.$id);?>" method="post">
+
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Nova</h3>
+              </div>
+
+              <div class="panel-body">
+                <input type="text" class="form-control" id="nlocalizacao" name="nlocalizacao" <?=$focoins;?>>
+              </div>
+            </div>
+
+            <div class="panel panel-default">
+
+              <div class="panel-heading">
+                <h3 class="panel-title">Editar</h3>
+              </div>
+
+              <div class="panel-body">
+                <input type="text" class="form-control" id="elocalizacao"
+                  name="elocalizacao" value="<?=$vdc['descricao'];?>" <?=$focoedt;?>>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="submit">Gravar</button>
+
+          </form>
+
+        </div>
+
       </div>
     </div>
   </div>

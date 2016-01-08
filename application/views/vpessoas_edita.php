@@ -64,7 +64,7 @@
 
         <div class="form-group">
           <label for="nome_razao">Nome/Razão Social</label>
-          <input type="text" class="form-control" id="nome_razao" name="nome_razao" value="<?=$vdc['nome_razao'];?>">
+          <input type="text" class="form-control" id="nome_razao" name="nome_razao" value="<?=$vdc['nome_razao'];?>" autofocus>
         </div>
 
         <div class="row">
