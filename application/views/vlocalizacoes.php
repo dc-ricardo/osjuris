@@ -4,21 +4,6 @@
 
       <h1 class="page-header">Localizações</h1>
 
-      <?php
-        if (isset($editar)) {
-          $vdc['descricao'] = $editar[0]->descricao;
-          $focoins = '';
-          $focoedt = 'autofocus';
-          $id = $editar[0]->id_localizacoes;
-        }
-        else {
-          $vdc['descricao'] = '';
-          $focoins = 'autofocus';
-          $focoedt = '';
-          $id = '';
-        }
-      ?>
-
       <div class="row">
 
         <div class="col-md-6">
@@ -46,7 +31,15 @@
 
         <div class="col-md-6">
 
-          <form class="form-group" action="<?=base_url('localizacoes/grava/'.$id);?>" method="post">
+          <form class="form-group" action="<?=base_url('localizacoes/insere');?>" method="post">
+
+            <?php
+              if (validation_errors() == TRUE) {
+                echo '<div class="alert alert-danger" role="alert">';
+                echo validation_errors();
+                echo '</div>';
+              }
+            ?>
 
             <div class="panel panel-default">
 
@@ -55,23 +48,16 @@
               </div>
 
               <div class="panel-body">
-                <input type="text" class="form-control" id="nlocalizacao" name="nlocalizacao" <?=$focoins;?>>
+                <div class="input-group">
+                  <input type="text" class="form-control" id="descricao" name="descricao" autofocus>
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" name="submit">
+                      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
               </div>
             </div>
-
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <h3 class="panel-title">Editar</h3>
-              </div>
-
-              <div class="panel-body">
-                <input type="text" class="form-control" id="elocalizacao"
-                  name="elocalizacao" value="<?=$vdc['descricao'];?>" <?=$focoedt;?>>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary" name="submit">Gravar</button>
 
           </form>
 

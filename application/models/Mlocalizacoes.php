@@ -31,4 +31,14 @@ function consulta($id) {
   return $query->result();
 }
 
+// procura uma localizacao com a mesma descrição em outro id
+function consultachavedescricao($id, $descricao) {
+  $this->db->select('id_localizacoes');
+  $this->db->from('localizacoes');
+  $this->db->where('descricao =', $descricao);
+  $this->db->where('id_localizacoes !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
 }
