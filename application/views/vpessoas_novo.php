@@ -71,9 +71,9 @@
               <select class="form-control" id="tipo" name="tipo">
                 <?php $tipos = unserialize(PESSOAS_TIPO);?>
                 <h4><?=$tipos[$pessoa[0]->tipo]?></h4>
-                <option value="<?=PTIPO_FISICA?>" <?=set_select('tipo', '<?=PTIPO_FISICA?>')?> <?=$vdc['tipo']==PTIPO_FISICA?'selected':'';?>><?=$tipos[PTIPO_FISICA]?></option>
-                <option value="<?=PTIPO_JURIDICA?>" <?=set_select('tipo', '<?=PTIPO_JURIDICA?>')?> <?=$vdc['tipo']==PTIPO_JURIDICA?'selected':'';?>><?=$tipos[PTIPO_JURIDICA]?></option>
-                <option value="<?=PTIPO_ADVOGADO?>" <?=set_select('tipo', '<?=PTIPO_ADVOGADO?>')?> <?=$vdc['tipo']==PTIPO_ADVOGADO?'selected':'';?>><?=$tipos[PTIPO_ADVOGADO]?></option>
+                <option value="<?=CTIPOFISICA?>" <?=set_select('tipo', '<?=CTIPOFISICA?>')?> <?=$vdc['tipo']==CTIPOFISICA?'selected':'';?>><?=$tipos[CTIPOFISICA]?></option>
+                <option value="<?=CTIPOJURIDICA?>" <?=set_select('tipo', '<?=CTIPOJURIDICA?>')?> <?=$vdc['tipo']==CTIPOJURIDICA?'selected':'';?>><?=$tipos[CTIPOJURIDICA]?></option>
+                <option value="<?=CTIPOADVOGADO?>" <?=set_select('tipo', '<?=CTIPOADVOGADO?>')?> <?=$vdc['tipo']==CTIPOADVOGADO?'selected':'';?>><?=$tipos[CTIPOADVOGADO]?></option>
               </select>
             </div>
           </div>

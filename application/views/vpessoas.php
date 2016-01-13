@@ -10,10 +10,12 @@
 
       <div class="row">
         <div class="col-md-2">
-          <h5><a href="#">Cadastradas <span class="badge">100</span></a></h5>
-          <h5><a href="#">Sem Processo <span class="badge">50</span></a></h5>
-          <h5><a href="#">Com Processo <span class="badge">50</span></a></h5>
-          <h5><a href="#">Advogados <span class="badge">4</span></a></h5>
+          <h5><a href="<?=base_url('pessoas/consultacadastradas');?>">Cadastradas <span class="badge"><?=$cadastradas;?></span></a></h5>
+          <h5><a href="#">Sem Processo <span class="badge">0</span></a></h5>
+          <h5><a href="#">Réus <span class="badge">0</span></a></h5>
+          <h5><a href="#">Autores <span class="badge">0</span></a></h5>
+          <h5><a href="#">Interessados <span class="badge">0</span></a></h5>
+          <h5><a href="<?=base_url('pessoas/consultaadvogados');?>">Advogados <span class="badge"><?=$advogados;?></span></a></h5>
         </div>
         <div class="col-md-10">
           <div class="table-responsive">
@@ -42,6 +44,9 @@
               </tbody>
             </table>
           </div>
+
+          <nav><?=$paginacao?></nav>
+
         </div>
       </div>
 
