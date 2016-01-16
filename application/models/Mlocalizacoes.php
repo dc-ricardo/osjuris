@@ -9,10 +9,11 @@ function insere($registro) {
   $this->db->insert('localizacoes', $registro);
 }
 
-function seleciona() {
+function seleciona($campo, $ordem) {
   $this->db->select('id_localizacoes, descricao');
   $this->db->from('localizacoes');
-  $this->db->order_by('id_localizacoes', 'DESC');
+  $this->db->order_by($campo, $ordem);
+  // $this->db->order_by('id_localizacoes', 'DESC');
   $query = $this->db->get();
   return $query->result();
 }

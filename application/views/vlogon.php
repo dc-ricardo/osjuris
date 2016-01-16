@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="<?= base_url();?>assets/img/favicon.ico">
 
-  <title>OS Juris</title>
+  <title>OSJuris</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +37,7 @@
 		<div class="col-md-4">
 
 			<div class="panel panel-primary">
-				<div class="panel-heading">OS Juris - Logon</div>
+				<div class="panel-heading">OSJuris - Logon</div>
 				<div class="panel-body">
 
 					<form class="form-group" method="post" action="<?=base_url()?>validalogin">

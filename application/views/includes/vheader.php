@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <link rel="icon" href="<?= base_url();?>assets/img/favicon.ico">
 
-  <title>OS Juris</title>
+  <title>OSJuris</title>
 
   <!-- Bootstrap core CSS -->
   <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +38,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?=base_url()?>">OS Juris CE <?=COSJVERSAO?></a>
+        <a class="navbar-brand" href="<?=base_url()?>">OSJuris CE <?=COSJVERSAO?></a>
       </div>
 
       <div id="navbar" class="navbar-collapse collapse">

@@ -5,7 +5,7 @@ class Localizacoes extends MY_Controller {
 
 public function index()	{
 	$this->load->model('mlocalizacoes');
-	$data['localizacoes'] = $this->mlocalizacoes->seleciona();
+	$data['localizacoes'] = $this->mlocalizacoes->seleciona('id_localizacoes', 'DESC');
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vlocalizacoes', $data);
@@ -23,7 +23,7 @@ public function insere() {
 		$this->mlocalizacoes->insere($data);
 	}
 
-	$data['localizacoes'] = $this->mlocalizacoes->seleciona();
+	$data['localizacoes'] = $this->mlocalizacoes->seleciona('id_localizacoes', 'DESC');
 	$this->load->view('includes/vheader');
 	$this->load->view('vlocalizacoes', $data);
 	$this->load->view('includes/vfooter');
