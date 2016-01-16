@@ -21,34 +21,32 @@
                 <tr>
                   <th>N. Processo</th>
                   <th>N. Interno</th>
-                  <th>Cliente</th>
-                  <th>Advogado</th>
-                  <th>Comandos</th>
+                  <th>Data de Abertura</th>
+                  <th>Localização</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <!-- <?php foreach($processos as $row): ?>
+                <?php foreach($processos as $row): ?>
                   <tr>
                     <td><?=$row->numero_processo;?></td>
                     <td><?=$row->numero_interno;?></td>
-                    <td><?=$row->cliente;?></td>
-                    <td><?=$row->advogado;?></td>
+                    <td><?=nice_date($row->data_abertura, 'd/m/Y');?></td>
+                    <td><?=$row->localizacao;?></td>
 
                     <td>
-                      <a class="btn btn-default btn-xs" href="#">Consultar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/consulta/'.$row->id_processos);?>">Consultar</a>
                       <a class="btn btn-default btn-xs" href="#">Editar</a>
                       <a class="btn btn-default btn-xs" href="#">Partes</a>
-                      <a class="btn btn-default btn-xs" href="#">Advogados</a>
-                      <a class="btn btn-default btn-xs" href="#">Interessados</a>
-                    </td> -->
+                    </td>
 
                     <!-- <td>
                       <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/consulta/'.$pessoa->id_pessoas)?>">Consultar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/edita/'.$pessoa->id_pessoas)?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="#">Processos</a>
                     </td> -->
-                  <!-- </tr> -->
-                <!-- <?php endforeach; ?> -->
+                  </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>

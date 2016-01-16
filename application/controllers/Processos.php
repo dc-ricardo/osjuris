@@ -4,8 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Processos extends MY_Controller {
 
 public function index()	{
+	$this->load->model('mprocessos');
+	$data['processos'] = $this->mprocessos->seleciona();
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessos');
+	$this->load->view('vprocessos', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -98,6 +100,14 @@ public function insere() {
 	else {
 		$this->novo();
 	}
+}
+
+public function consulta($id) {
+	$this->load->model('mprocessos');
+	$data['processo'] = $this->mprocessos->consulta($id);
+	$this->load->view('includes/vheader');
+	$this->load->view('vprocessos_consulta', $data);
+	$this->load->view('includes/vfooter');
 }
 
 }
