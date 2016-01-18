@@ -36,15 +36,10 @@
 
                     <td>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/consulta/'.$row->id_processos);?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="#">Editar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="#">Partes</a>
                     </td>
 
-                    <!-- <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/consulta/'.$pessoa->id_pessoas)?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/edita/'.$pessoa->id_pessoas)?>">Editar</a>
-                      <a class="btn btn-default btn-xs" href="#">Processos</a>
-                    </td> -->
                   </tr>
                 <?php endforeach; ?>
               </tbody>

@@ -83,8 +83,7 @@
             <div class="form-group">
               <label for="tipo">Tipo</label>
               <select class="form-control" id="tipo" name="tipo">
-                <?php $tipos = unserialize(PESSOAS_TIPO);?>
-                <h4><?=$tipos[$pessoa[0]->tipo]?></h4>
+                <?php $tipos = unserialize(CPESSOASTIPO);?>
                 <option value="<?=CTIPOFISICA?>" <?=set_select('tipo', '<?=CTIPOFISICA?>')?> <?=$vdc['tipo']==CTIPOFISICA?'selected':'';?>><?=$tipos[CTIPOFISICA]?></option>
                 <option value="<?=CTIPOJURIDICA?>" <?=set_select('tipo', '<?=CTIPOJURIDICA?>')?> <?=$vdc['tipo']==CTIPOJURIDICA?'selected':'';?>><?=$tipos[CTIPOJURIDICA]?></option>
                 <option value="<?=CTIPOADVOGADO?>" <?=set_select('tipo', '<?=CTIPOADVOGADO?>')?> <?=$vdc['tipo']==CTIPOADVOGADO?'selected':'';?>><?=$tipos[CTIPOADVOGADO]?></option>

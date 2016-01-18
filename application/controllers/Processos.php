@@ -11,12 +11,15 @@ public function index()	{
 	$this->load->view('includes/vfooter');
 }
 
-public function novo() {
-
+function lelocalizacoes() {
 	// captura localizações em ordem alfabética crescente para escolha no combobox
 	$this->load->model('mlocalizacoes');
-	$data['localizacoes'] = $this->mlocalizacoes->seleciona('descricao', 'ASC');
+	$data = $this->mlocalizacoes->seleciona('descricao', 'ASC');
+  return $data;
+}
 
+public function novo() {
+	$data['localizacoes'] = $this->lelocalizacoes();
 	$this->load->view('includes/vheader');
 	$this->load->view('vprocessos_novo', $data);
 	$this->load->view('includes/vfooter');
@@ -44,6 +47,36 @@ function validadata($pdata) {
 	}
 
   return $dvalida;
+}
+
+function validachavenprocesso($pvalor) {
+	$this->load->model('mprocessos');
+
+  $id = $this->uri->segment(3);
+	$data = $this->mprocessos->consultachavenprocesso($id, $pvalor);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachavenprocesso', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	}
+	else {
+		return TRUE;
+	}
+}
+
+function validachaveninterno($pvalor) {
+	$this->load->model('mprocessos');
+
+  $id = $this->uri->segment(3);
+	$data = $this->mprocessos->consultachaveninterno($id, $pvalor);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachaveninterno', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	}
+	else {
+		return TRUE;
+	}
 }
 
 function regras($operacao) {
@@ -108,6 +141,30 @@ public function consulta($id) {
 	$this->load->view('includes/vheader');
 	$this->load->view('vprocessos_consulta', $data);
 	$this->load->view('includes/vfooter');
+}
+
+public function edita($id) {
+	$this->load->model('mprocessos');
+	$data['processo'] = $this->mprocessos->consulta($id);
+	$data['localizacoes'] = $this->lelocalizacoes();
+	$this->load->view('includes/vheader');
+	$this->load->view('vprocessos_edita', $data);
+	$this->load->view('includes/vfooter');
+}
+
+public function altera($id) {
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regras('alteracao'));
+
+  if ($this->form_validation->run() == TRUE) {
+		$data = $this->vpostados();
+		$this->load->model('mprocessos');
+	  $this->mprocessos->atualiza($id, $data);
+		redirect('/processos');
+	}
+	else {
+		$this->edita($id);
+	}
 }
 
 }

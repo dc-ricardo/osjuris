@@ -14,7 +14,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <h5 class="text-muted">Número do Processo</label>
-            <h4><?=$processo[0]->numero_interno;?></h4>
+            <h4><?=$processo[0]->numero_processo;?></h4>
           </div>
         </div>
       </div>
