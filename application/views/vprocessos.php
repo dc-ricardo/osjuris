@@ -37,7 +37,7 @@
                     <td>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/consulta/'.$row->id_processos);?>">Consultar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">Editar</a>
-                      <a class="btn btn-default btn-xs" href="#">Partes</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes');?>">Partes</a>
                     </td>
 
                   </tr>

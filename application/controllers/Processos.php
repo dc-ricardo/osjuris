@@ -167,4 +167,10 @@ public function altera($id) {
 	}
 }
 
+public function partes() {
+	$this->load->view('includes/vheader');
+	$this->load->view('vprocessospartes');
+	$this->load->view('includes/vfooter');
+}
+
 }
