@@ -52,4 +52,62 @@ function consultachaveninterno($id, $ninterno) {
   return $query->result();
 }
 
+function localizapessoa($pessoa, $tipo) {
+  if ($tipo == CPARTEADVOGADO) {
+    $this->db->select('id_pessoas')->from('pessoas')
+      ->group_start()
+        ->where('codigo', $pessoa)
+        ->or_where('cpf_cnpj', $pessoa)
+        ->or_like('lower(nome_razao)', strtolower($pessoa))
+      ->group_end()
+      ->where('tipo', CPARTEADVOGADO);
+  }
+  else {
+    $this->db->select('id_pessoas');
+    $this->db->from('pessoas');
+    $this->db->where('codigo =', $pessoa);
+    $this->db->or_where('cpf_cnpj =', $pessoa);
+    $this->db->or_like('lower(nome_razao)', strtolower($pessoa));
+  }
+
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function insereparte($processo, $tipo, $parte) {
+  $data = array(
+    'id_processos' => (int)$processo,
+    'id_pessoas' => (int)$parte,
+    'tipo_parte' => (int)$tipo
+  );
+  $this->db->insert('processospartes', $data);
+}
+
+function consultapartes($id, $tparte) {
+  $this->db->select('processospartes.*, pessoas.nome_razao');
+  $this->db->from('processospartes');
+  $this->db->join('pessoas', 'processospartes.id_pessoas = pessoas.id_pessoas');
+  $this->db->where('processospartes.id_processos =', $id);
+  $this->db->where('processospartes.tipo_parte =', $tparte);
+  $this->db->order_by('pessoas.nome_razao', 'ASC');
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function pessoanoprocesso($processo, $pessoa, $tipoparte) {
+  $this->db->select('processospartes.id_processospartes, pessoas.nome_razao');
+  $this->db->from('processospartes');
+  $this->db->join('pessoas', 'processospartes.id_pessoas = pessoas.id_pessoas');
+  $this->db->where('id_processos', $processo);
+  $this->db->where('processospartes.id_pessoas', $pessoa);
+  $this->db->where('processospartes.tipo_parte', $tipoparte);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function removeparte($idparte) {
+  $this->db->where('id_processospartes', $idparte);
+  $this->db->delete('processospartes');
+}
+
 }

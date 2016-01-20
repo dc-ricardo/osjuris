@@ -167,10 +167,101 @@ public function altera($id) {
 	}
 }
 
-public function partes() {
+public function partes($id) {
+	$this->load->model('mprocessos');
+	$data['processo'] = $this->mprocessos->consulta($id);
+	$data['autores'] = $this->mprocessos->consultapartes($id, CPARTEAUTOR);
+	$data['reus'] = $this->mprocessos->consultapartes($id, CPARTEREU);
+	$data['advogados'] = $this->mprocessos->consultapartes($id, CPARTEADVOGADO);
+	$data['interessados'] = $this->mprocessos->consultapartes($id, CPARTEINTERESSADO);
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessospartes');
+	$this->load->view('vprocessospartes', $data);
 	$this->load->view('includes/vfooter');
+}
+
+function idparte($parte, $tipo) {
+	$this->load->model('mprocessos');
+	$id = $this->mprocessos->localizapessoa($parte, $tipo);
+	return $id;
+}
+
+function validapessoa() {
+	if ($this->input->post('submit') == 'autor') {
+		$nparte = $this->input->post('autor');
+		$tparte = CPARTEAUTOR;
+	}
+	if ($this->input->post('submit') == 'reu') {
+		$nparte = $this->input->post('reu');
+		$tparte = CPARTEREU;
+	}
+	if ($this->input->post('submit') == 'advogado') {
+		$nparte = $this->input->post('advogado');
+		$tparte = CPARTEADVOGADO;
+	}
+	if ($this->input->post('submit') == 'interessado') {
+		$nparte = $this->input->post('interessado');
+		$tparte = CPARTEINTERESSADO;
+	}
+
+	$idpessoa = $this->idparte($nparte, $tparte);
+
+	if (!empty($idpessoa)) {
+		// verifica se pessoa já é autor
+		$this->load->model('mprocessos');
+		$idprocesso = $this->uri->segment(3);
+		$janoprocesso = $this->mprocessos->pessoanoprocesso($idprocesso, $idpessoa[0]->id_pessoas, $tparte);
+		if (!empty($janoprocesso)) {
+			$this->form_validation->set_message('validapessoa',
+			  'Pessoa já definida como essa Parte nesse Processo: '.$janoprocesso[0]->nome_razao);
+			return FALSE;
+		}
+		return TRUE;
+	}
+	else {
+		$this->form_validation->set_message('validapessoa', 'Pessoa não localizada: '.$nparte);
+		return FALSE;
+	}
+}
+
+public function insereparte($id) {
+	if ($this->input->post('submit') == 'autor') {
+		$titulo = 'Autor';
+		$tipo = 'autor';
+		$cparte = CPARTEAUTOR;
+	}
+	if ($this->input->post('submit') == 'reu') {
+		$titulo = 'Réu';
+		$tipo = 'reu';
+		$cparte = CPARTEREU;
+	}
+	if ($this->input->post('submit') == 'advogado') {
+		$titulo = 'Advogado';
+		$tipo = 'advogado';
+		$cparte = CPARTEADVOGADO;
+	}
+	if ($this->input->post('submit') == 'interessado') {
+		$titulo = 'Interessado';
+		$tipo = 'interessado';
+		$cparte = CPARTEINTERESSADO;
+	}
+
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules($tipo, $titulo,
+	  'required|trim|max_length[80]|callback_validapessoa');
+	if ($this->form_validation->run() == TRUE) {
+		$this->load->model('mprocessos');
+		$parte = $this->input->post($tipo);
+		$idparte = $this->idparte($parte, $cparte);
+		$this->mprocessos->insereparte($id, $cparte, $idparte[0]->id_pessoas);
+	}
+
+	$this->partes($id);
+}
+
+public function removeparte($idprocesso, $idparte) {
+	$this->load->model('mprocessos');
+	$this->mprocessos->removeparte($idparte);
+	$this->partes($idprocesso);
 }
 
 }

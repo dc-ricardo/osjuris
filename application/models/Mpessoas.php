@@ -10,13 +10,9 @@ function insere($registro) {
 }
 
 function seleciona($categoria, $maximo, $inicio) {
-
-  switch ($categoria) {
-    case 'advogados': {
-      $condcol = 'tipo =';
-      $condval = CTIPOADVOGADO;
-    }
-
+  if ($categoria == 'advogados') {
+    $condcol = 'tipo =';
+    $condval = CTIPOADVOGADO;
   }
 
   $this->db->select('id_pessoas, nome_razao, codigo, cpf_cnpj');
