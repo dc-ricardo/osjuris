@@ -92,7 +92,7 @@ define('CTIPOFISICA', '0');
 define('CTIPOJURIDICA', '1');
 define('CTIPOADVOGADO', '2');
 define('CPESSOASTIPO', serialize(array('Física', 'Jurídica', 'Advogado')));
-define('COSJVERSAO', '0.1.0');
+define('COSJVERSAO', '0.2.0');
 define('CPARTEAUTOR', '0');
 define('CPARTEREU', '1');
 define('CPARTEADVOGADO', '2');

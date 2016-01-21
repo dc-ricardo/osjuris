@@ -5,7 +5,7 @@ class Eventosnovo extends MY_Controller {
 
 public function index()	{
 	$this->load->view('includes/vheader');
-	$this->load->view('veventos_novo');
+	$this->load->view('veventosnovo');
 	$this->load->view('includes/vfooter');
 }
 

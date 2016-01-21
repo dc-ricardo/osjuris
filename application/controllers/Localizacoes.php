@@ -35,7 +35,7 @@ public function edita($id) {
 	$data['localizacao'] = $this->mlocalizacoes->consulta($id);
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vlocalizacoes_edita', $data);
+	$this->load->view('vlocalizacoesedita', $data);
 	$this->load->view('includes/vfooter');
 }
 

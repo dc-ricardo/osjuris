@@ -21,7 +21,7 @@ function lelocalizacoes() {
 public function novo() {
 	$data['localizacoes'] = $this->lelocalizacoes();
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessos_novo', $data);
+	$this->load->view('vprocessosnovo', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -139,7 +139,7 @@ public function consulta($id) {
 	$this->load->model('mprocessos');
 	$data['processo'] = $this->mprocessos->consulta($id);
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessos_consulta', $data);
+	$this->load->view('vprocessosconsulta', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -148,7 +148,7 @@ public function edita($id) {
 	$data['processo'] = $this->mprocessos->consulta($id);
 	$data['localizacoes'] = $this->lelocalizacoes();
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessos_edita', $data);
+	$this->load->view('vprocessosedita', $data);
 	$this->load->view('includes/vfooter');
 }
 

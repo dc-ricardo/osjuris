@@ -15,7 +15,7 @@
                 <table class="table table-hover">
                   <?php foreach($localizacoes as $localizacao): ?>
                     <tr>
-                      <td><?= $localizacao->descricao;?></td>
+                      <td width="100%"><?= $localizacao->descricao;?></td>
                       <td>
                         <a class="glyphicon glyphicon-edit" aria-hidden="true"
                           href="<?=base_url('localizacoes/edita/'.$localizacao->id_localizacoes)?>"></a>

@@ -56,7 +56,7 @@ public function consultapaginada($categoria) {
 
 public function novo() {
 	$this->load->view('includes/vheader');
-	$this->load->view('vpessoas_novo');
+	$this->load->view('vpessoasnovo');
 	$this->load->view('includes/vfooter');
 }
 
@@ -252,7 +252,7 @@ public function insere() {
 		}
 		else {
 			$this->load->view('includes/vheader');
-			$this->load->view('vpessoas_novo');
+			$this->load->view('vpessoasnovo');
 			$this->load->view('includes/vfooter');
 		}
 	}
@@ -261,7 +261,7 @@ public function insere() {
 				$this->load->model('mpessoas');
 				$data['codigogerado'] = $this->mpessoas->geracodigo();
 				$this->load->view('includes/vheader');
-		  	$this->load->view('vpessoas_novo', $data);
+		  	$this->load->view('vpessoasnovo', $data);
 				$this->load->view('includes/vfooter');
 		}
 		else {
@@ -270,7 +270,7 @@ public function insere() {
 				$endereco = $this->buscacep($cep);
   			$data['ceplocalizado'] = $endereco;
 				$this->load->view('includes/vheader');
-	  		$this->load->view('vpessoas_novo', $data);
+	  		$this->load->view('vpessoasnovo', $data);
 				$this->load->view('includes/vfooter');
 			}
 		}
@@ -282,7 +282,7 @@ public function consulta($id) {
 	$data['pessoa'] = $this->mpessoas->consulta($id);
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vpessoas_consulta', $data);
+	$this->load->view('vpessoasconsulta', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -291,7 +291,7 @@ public function edita($id) {
 	$data['pessoa'] = $this->mpessoas->consulta($id);
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vpessoas_edita', $data);
+	$this->load->view('vpessoasedita', $data);
 	$this->load->view('includes/vfooter');
 }
 
@@ -317,7 +317,7 @@ public function atualiza($id) {
 			$data['codigogerado'] = $this->mpessoas->geracodigo();
 
 			$this->load->view('includes/vheader');
-	  	$this->load->view('vpessoas_edita', $data);
+	  	$this->load->view('vpessoasedita', $data);
 			$this->load->view('includes/vfooter');
 		}
 		else {
@@ -330,7 +330,7 @@ public function atualiza($id) {
 				$data['ceplocalizado'] = $endereco;
 
 				$this->load->view('includes/vheader');
-				$this->load->view('vpessoas_edita', $data);
+				$this->load->view('vpessoasedita', $data);
 				$this->load->view('includes/vfooter');
 			}
 		}
