@@ -139,6 +139,10 @@ public function insere() {
 public function consulta($id) {
 	$this->load->model('mprocessos');
 	$data['processo'] = $this->mprocessos->consulta($id);
+	$data['autores'] = $this->mprocessos->consultapartes($id, CPARTEAUTOR);
+	$data['reus'] = $this->mprocessos->consultapartes($id, CPARTEREU);
+	$data['advogados'] = $this->mprocessos->consultapartes($id, CPARTEADVOGADO);
+	$data['interessados'] = $this->mprocessos->consultapartes($id, CPARTEINTERESSADO);
 	$this->load->view('includes/vheader');
 	$this->load->view('vprocessosconsulta', $data);
 	$this->load->view('includes/vfooter');

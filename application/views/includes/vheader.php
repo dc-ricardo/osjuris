@@ -50,6 +50,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
               <?=$this->session->userdata['logged_in']['nome'];?>
               <span class="caret"></span>
             </a>
@@ -68,7 +69,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              Tabelas
+              <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Tabelas
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
@@ -78,10 +79,10 @@
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="<?=base_url()?>dashboard">Dashboard</a></li>
-          <li><a href="#">Perquisar</a></li>
-          <li><a href="<?=base_url()?>processos">Processos</a></li>
-          <li><a href="<?=base_url()?>pessoas">Pessoas</a></li>
+          <li><a href="<?=base_url()?>dashboard"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
+          <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisar</a></li>
+          <li><a href="<?=base_url()?>processos"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
+          <li><a href="<?=base_url()?>pessoas"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
           <li><a href="<?=base_url()?>eventosnovo">Novo Evento</a></li>
         </ul>
 
