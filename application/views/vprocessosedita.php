@@ -10,6 +10,7 @@
           $vdc['numero_interno'] = $processo[0]->numero_interno;
           $vdc['data_abertura'] = $processo[0]->data_abertura;
           $vdc['localizacao'] = $processo[0]->id_localizacoes;
+          $vdc['descricao'] = $processo[0]->descricao;
 
           if (validation_errors() == TRUE) {
             echo '<div class="row">';
@@ -24,6 +25,7 @@
             $vdc['numero_processo'] = set_value('numero_processo');
             $vdc['numero_interno'] = set_value('numero_interno');
             $vdc['localizacao'] = set_value('localizacao');
+            $vdc['descricao'] = set_value('descricao');
 
           }
         ?>
@@ -36,8 +38,6 @@
                 value="<?=$vdc['numero_processo'];?>">
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="numero_interno">Número Interno</label>
@@ -46,6 +46,7 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -54,8 +55,6 @@
                 value="<?=nice_date($vdc['data_abertura'], 'd/m/Y');?>">
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="localizacao">Localização</label>
@@ -68,6 +67,15 @@
                 }
               ?>
               </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="descricaos">Descrição</label>
+              <textarea class="form-control" id="descricao" name="descricao"><?=$vdc['descricao'];?></textarea>
             </div>
           </div>
         </div>

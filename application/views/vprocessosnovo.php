@@ -26,8 +26,6 @@
                 value="<?=set_value('numero_processo');?>">
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="numero_interno">Número Interno</label>
@@ -36,6 +34,7 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
@@ -44,8 +43,6 @@
                 value="<?=set_value('data_abertura');?>">
             </div>
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="localizacao">Localização</label>
@@ -58,6 +55,15 @@
                 }
               ?>
               </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="descricaos">Descrição</label>
+              <textarea class="form-control" id="descricao" name="descricao"><?=set_value('descricao');?></textarea>
             </div>
           </div>
         </div>

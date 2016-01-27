@@ -30,7 +30,8 @@ function vpostados() {
 		'numero_processo' => $this->input->post('numero_processo'),
 		'numero_interno' => $this->input->post('numero_interno'),
 		'data_abertura' => $this->input->post('data_abertura'),
-		'id_localizacoes' => $this->input->post('localizacao')
+		'id_localizacoes' => $this->input->post('localizacao'),
+		'descricao' => $this->input->post('descricao')
 	);
 	return $data;
 }

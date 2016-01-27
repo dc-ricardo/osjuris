@@ -17,9 +17,6 @@
             <h4><?=$processo[0]->numero_processo;?></h4>
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-4">
           <div class="form-group">
             <h5 class="text-muted">Número Interno</label>
@@ -35,13 +32,19 @@
             <h4><?=nice_date($processo[0]->data_abertura, 'd/m/Y');?></h4>
           </div>
         </div>
-      </div>
-
-      <div class="row">
         <div class="col-md-4">
           <div class="form-group">
             <h5 class="text-muted">Localização</h5>
             <h4><?=$processo[0]->localizacao;?></h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <div class="form-group">
+            <h5 class="text-muted">Descrição</h5>
+            <h4><?= nl2br($processo[0]->descricao); ?></h4>
           </div>
         </div>
       </div>
