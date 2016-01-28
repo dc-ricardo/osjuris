@@ -74,7 +74,7 @@
         <div class="row">
           <div class="col-md-8">
             <div class="form-group">
-              <label for="descricaos">Descrição</label>
+              <label for="descricao">Descrição</label>
               <textarea class="form-control" id="descricao" name="descricao"><?=$vdc['descricao'];?></textarea>
             </div>
           </div>

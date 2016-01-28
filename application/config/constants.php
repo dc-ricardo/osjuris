@@ -88,12 +88,19 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 Constantes do projeto
 */
 define('CSALT', 'nF3Jf8'); // salt para o hash md5
+
 define('CTIPOFISICA', '0');
 define('CTIPOJURIDICA', '1');
 define('CTIPOADVOGADO', '2');
 define('CPESSOASTIPO', serialize(array('Física', 'Jurídica', 'Advogado')));
+
 define('COSJVERSAO', '0.2.0');
+
 define('CPARTEAUTOR', '0');
 define('CPARTEREU', '1');
 define('CPARTEADVOGADO', '2');
 define('CPARTEINTERESSADO', '3');
+
+define('CINTERESSEPUBLICO', '0');
+define('CINTERESSEPRIVADO', '1');
+define('CINTERESSE', serialize(array('Público', 'Privado')));

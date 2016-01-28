@@ -9,11 +9,13 @@
       </h1>
 
       <div class="row">
+
         <div class="col-md-2">
           <h5><a href="#">Abertos <span class="badge">0</span></a></h5>
           <h5><a href="#">Ativos <span class="badge">0</span></a></h5>
           <h5><a href="#">Encerrados <span class="badge">0</span></a></h5>
         </div>
+
         <div class="col-md-10">
           <div class="table-responsive">
             <table class="table table-striped">
@@ -38,6 +40,9 @@
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/consulta/'.$row->id_processos);?>">Consultar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Partes</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">Andamentos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Prazos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Apensos</a>
                     </td>
 
                   </tr>
