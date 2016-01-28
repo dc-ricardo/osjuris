@@ -54,7 +54,7 @@
 
                     <td style="white-space:nowrap">
                       <a class="btn btn-default btn-xs"
-                        href="<?=base_url('andamentos/edita/'.$row->id_andamentos);?>">Editar</a>
+                        href="<?=base_url('andamentos/edita/'.$row->id_processos.'/'.$row->id_andamentos);?>">Editar</a>
                       <a class="btn btn-default btn-xs"
                         href="<?=base_url('andamentos/exclui/'.$row->id_andamentos);?>"
                         onclick="return confirm('Confirma exclusão desse Andamento?')">Excluir</a>

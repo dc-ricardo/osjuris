@@ -23,4 +23,17 @@ function remove($id) {
   $this->db->delete('andamentos');
 }
 
+function consulta($id) {
+  $this->db->select('andamentos.*');
+  $this->db->from('andamentos');
+  $this->db->where('id_andamentos =', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function altera($id, $registro) {
+  $this->db->where('id_andamentos', $id);
+  $this->db->update('andamentos', $registro);
+}
+
 }

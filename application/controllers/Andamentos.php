@@ -78,14 +78,36 @@ public function insere($idprocesso) {
 	}
 }
 
-public function edita() {
-
+public function edita($idprocesso, $idandamento) {
+  $this->load->model('mprocessos');
+  $data['processo'] = $this->mprocessos->consulta($idprocesso);
+  $this->load->model('mandamentos');
+  $data['andamento'] = $this->mandamentos->consulta($idandamento);
+	$this->load->view('includes/vheader');
+	$this->load->view('vandamentosedita', $data);
+	$this->load->view('includes/vfooter');
 }
 
 public function exclui($idandamento) {
   $this->load->model('mandamentos');
 	$this->mandamentos->remove($idandamento);
 	// $this->partes($idprocesso);
+}
+
+public function altera($idprocesso, $idandamento) {
+  $this->load->library('form_validation');
+  $this->form_validation->set_rules($this->regras());
+
+  if ($this->form_validation->run() == TRUE) {
+    $data = $this->vpostados($idprocesso);
+    $this->load->model('mandamentos');
+    $this->mandamentos->altera($idandamento, $data);
+
+		redirect('/andamentos/consulta/'.$idprocesso);
+	}
+	else {
+		$this->edita($idprocesso, $idandamento);
+	}
 }
 
 }
