@@ -175,7 +175,7 @@ public function partes($id) {
 	$data['advogados'] = $this->mprocessos->consultapartes($id, CPARTEADVOGADO);
 	$data['interessados'] = $this->mprocessos->consultapartes($id, CPARTEINTERESSADO);
 	$this->load->view('includes/vheader');
-	$this->load->view('vprocessospartes', $data);
+	$this->load->view('vpartes', $data);
 	$this->load->view('includes/vfooter');
 }
 

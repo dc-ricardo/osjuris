@@ -30,6 +30,42 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: andamentos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE andamentos (
+    id_andamentos integer NOT NULL,
+    id_processos integer NOT NULL,
+    data_andamento date NOT NULL,
+    descricao text NOT NULL,
+    interesse smallint NOT NULL
+);
+
+
+ALTER TABLE andamentos OWNER TO postgres;
+
+--
+-- Name: andamentos_id_andamentos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE andamentos_id_andamentos_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE andamentos_id_andamentos_seq OWNER TO postgres;
+
+--
+-- Name: andamentos_id_andamentos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE andamentos_id_andamentos_seq OWNED BY andamentos.id_andamentos;
+
+
+--
 -- Name: localizacoes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -61,6 +97,20 @@ ALTER TABLE localizacoes_id_localizacoes_seq OWNER TO postgres;
 
 ALTER SEQUENCE localizacoes_id_localizacoes_seq OWNED BY localizacoes.id_localizacoes;
 
+
+--
+-- Name: partes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE partes (
+    id_partes integer NOT NULL,
+    id_processos integer NOT NULL,
+    id_pessoas integer NOT NULL,
+    tipo_parte smallint NOT NULL
+);
+
+
+ALTER TABLE partes OWNER TO postgres;
 
 --
 -- Name: pessoas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -111,6 +161,41 @@ ALTER SEQUENCE pessoas_id_pessoas_seq OWNED BY pessoas.id_pessoas;
 
 
 --
+-- Name: prazos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE prazos (
+    id_prazos integer NOT NULL,
+    id_processos integer NOT NULL,
+    data_prazo date NOT NULL,
+    descricao text NOT NULL
+);
+
+
+ALTER TABLE prazos OWNER TO postgres;
+
+--
+-- Name: prazos_id_prazos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE prazos_id_prazos_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE prazos_id_prazos_seq OWNER TO postgres;
+
+--
+-- Name: prazos_id_prazos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE prazos_id_prazos_seq OWNED BY prazos.id_prazos;
+
+
+--
 -- Name: processos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -119,7 +204,8 @@ CREATE TABLE processos (
     numero_processo character varying(80) NOT NULL,
     numero_interno character varying(80) NOT NULL,
     data_abertura date NOT NULL,
-    id_localizacoes integer NOT NULL
+    id_localizacoes integer NOT NULL,
+    descricao text
 );
 
 
@@ -147,20 +233,6 @@ ALTER SEQUENCE processos_id_processos_seq OWNED BY processos.id_processos;
 
 
 --
--- Name: processospartes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE processospartes (
-    id_processospartes integer NOT NULL,
-    id_processos integer NOT NULL,
-    id_pessoas integer NOT NULL,
-    tipo_parte smallint NOT NULL
-);
-
-
-ALTER TABLE processospartes OWNER TO postgres;
-
---
 -- Name: processospartes_id_processospartes_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -178,7 +250,7 @@ ALTER TABLE processospartes_id_processospartes_seq OWNER TO postgres;
 -- Name: processospartes_id_processospartes_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE processospartes_id_processospartes_seq OWNED BY processospartes.id_processospartes;
+ALTER SEQUENCE processospartes_id_processospartes_seq OWNED BY partes.id_partes;
 
 
 --
@@ -218,10 +290,24 @@ ALTER SEQUENCE usuarios_id_usuarios_seq OWNED BY usuarios.id_usuarios;
 
 
 --
+-- Name: id_andamentos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY andamentos ALTER COLUMN id_andamentos SET DEFAULT nextval('andamentos_id_andamentos_seq'::regclass);
+
+
+--
 -- Name: id_localizacoes; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY localizacoes ALTER COLUMN id_localizacoes SET DEFAULT nextval('localizacoes_id_localizacoes_seq'::regclass);
+
+
+--
+-- Name: id_partes; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY partes ALTER COLUMN id_partes SET DEFAULT nextval('processospartes_id_processospartes_seq'::regclass);
 
 
 --
@@ -232,6 +318,13 @@ ALTER TABLE ONLY pessoas ALTER COLUMN id_pessoas SET DEFAULT nextval('pessoas_id
 
 
 --
+-- Name: id_prazos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY prazos ALTER COLUMN id_prazos SET DEFAULT nextval('prazos_id_prazos_seq'::regclass);
+
+
+--
 -- Name: id_processos; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -239,17 +332,18 @@ ALTER TABLE ONLY processos ALTER COLUMN id_processos SET DEFAULT nextval('proces
 
 
 --
--- Name: id_processospartes; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY processospartes ALTER COLUMN id_processospartes SET DEFAULT nextval('processospartes_id_processospartes_seq'::regclass);
-
-
---
 -- Name: id_usuarios; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY usuarios ALTER COLUMN id_usuarios SET DEFAULT nextval('usuarios_id_usuarios_seq'::regclass);
+
+
+--
+-- Name: andamentos_id_andamentos; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY andamentos
+    ADD CONSTRAINT andamentos_id_andamentos PRIMARY KEY (id_andamentos);
 
 
 --
@@ -320,7 +414,7 @@ ALTER TABLE ONLY processos
 -- Name: processospartes_id_processos_id_pessoas_tipo_parte; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY processospartes
+ALTER TABLE ONLY partes
     ADD CONSTRAINT processospartes_id_processos_id_pessoas_tipo_parte UNIQUE (id_processos, id_pessoas, tipo_parte);
 
 
@@ -328,8 +422,8 @@ ALTER TABLE ONLY processospartes
 -- Name: processospartes_id_processospartes; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
-ALTER TABLE ONLY processospartes
-    ADD CONSTRAINT processospartes_id_processospartes PRIMARY KEY (id_processospartes);
+ALTER TABLE ONLY partes
+    ADD CONSTRAINT processospartes_id_processospartes PRIMARY KEY (id_partes);
 
 
 --
@@ -356,10 +450,26 @@ CREATE INDEX pessoas_nome_razao ON pessoas USING btree (nome_razao);
 
 
 --
+-- Name: andamentos_id_processos_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY andamentos
+    ADD CONSTRAINT andamentos_id_processos_fkey FOREIGN KEY (id_processos) REFERENCES processos(id_processos) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: processos_id_localizacoes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY processos
+    ADD CONSTRAINT processos_id_localizacoes_fkey FOREIGN KEY (id_localizacoes) REFERENCES localizacoes(id_localizacoes) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
 -- Name: processospartes_id_pessoas_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY processospartes
+ALTER TABLE ONLY partes
     ADD CONSTRAINT processospartes_id_pessoas_fkey FOREIGN KEY (id_pessoas) REFERENCES pessoas(id_pessoas) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 
@@ -367,7 +477,7 @@ ALTER TABLE ONLY processospartes
 -- Name: processospartes_id_processos_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY processospartes
+ALTER TABLE ONLY partes
     ADD CONSTRAINT processospartes_id_processos_fkey FOREIGN KEY (id_processos) REFERENCES processos(id_processos) ON UPDATE CASCADE ON DELETE CASCADE;
 
 
@@ -380,6 +490,26 @@ REVOKE ALL ON SCHEMA public FROM postgres;
 GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 GRANT USAGE ON SCHEMA public TO osjuris;
+
+
+--
+-- Name: andamentos; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE andamentos FROM PUBLIC;
+REVOKE ALL ON TABLE andamentos FROM postgres;
+GRANT ALL ON TABLE andamentos TO postgres;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE andamentos TO osjuris;
+
+
+--
+-- Name: andamentos_id_andamentos_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE andamentos_id_andamentos_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE andamentos_id_andamentos_seq FROM postgres;
+GRANT ALL ON SEQUENCE andamentos_id_andamentos_seq TO postgres;
+GRANT SELECT,UPDATE ON SEQUENCE andamentos_id_andamentos_seq TO osjuris;
 
 
 --
@@ -403,6 +533,16 @@ GRANT SELECT,UPDATE ON SEQUENCE localizacoes_id_localizacoes_seq TO osjuris;
 
 
 --
+-- Name: partes; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE partes FROM PUBLIC;
+REVOKE ALL ON TABLE partes FROM postgres;
+GRANT ALL ON TABLE partes TO postgres;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE partes TO osjuris;
+
+
+--
 -- Name: pessoas; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -423,6 +563,26 @@ GRANT SELECT,UPDATE ON SEQUENCE pessoas_id_pessoas_seq TO osjuris;
 
 
 --
+-- Name: prazos; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE prazos FROM PUBLIC;
+REVOKE ALL ON TABLE prazos FROM postgres;
+GRANT ALL ON TABLE prazos TO postgres;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE prazos TO osjuris;
+
+
+--
+-- Name: prazos_id_prazos_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE prazos_id_prazos_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE prazos_id_prazos_seq FROM postgres;
+GRANT ALL ON SEQUENCE prazos_id_prazos_seq TO postgres;
+GRANT SELECT,UPDATE ON SEQUENCE prazos_id_prazos_seq TO osjuris;
+
+
+--
 -- Name: processos; Type: ACL; Schema: public; Owner: postgres
 --
 
@@ -440,16 +600,6 @@ REVOKE ALL ON SEQUENCE processos_id_processos_seq FROM PUBLIC;
 REVOKE ALL ON SEQUENCE processos_id_processos_seq FROM postgres;
 GRANT ALL ON SEQUENCE processos_id_processos_seq TO postgres;
 GRANT SELECT,UPDATE ON SEQUENCE processos_id_processos_seq TO osjuris;
-
-
---
--- Name: processospartes; Type: ACL; Schema: public; Owner: postgres
---
-
-REVOKE ALL ON TABLE processospartes FROM PUBLIC;
-REVOKE ALL ON TABLE processospartes FROM postgres;
-GRANT ALL ON TABLE processospartes TO postgres;
-GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE processospartes TO osjuris;
 
 
 --

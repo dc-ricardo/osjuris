@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
+    <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
       <h1 class="page-header">Processos
         <div class="btn-group pull-right" role="group">
@@ -41,8 +41,8 @@
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Partes</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">Andamentos</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Prazos</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Apensos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('prazos/consulta/'.$row->id_processos);?>">Prazos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consulta/'.$row->id_processos);?>">Apensos</a>
                     </td>
 
                   </tr>

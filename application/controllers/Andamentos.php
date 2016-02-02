@@ -88,10 +88,11 @@ public function edita($idprocesso, $idandamento) {
 	$this->load->view('includes/vfooter');
 }
 
-public function exclui($idandamento) {
+public function exclui($idprocesso, $idandamento) {
   $this->load->model('mandamentos');
 	$this->mandamentos->remove($idandamento);
-	// $this->partes($idprocesso);
+  
+  redirect('/andamentos/consulta/'.$idprocesso);
 }
 
 public function altera($idprocesso, $idandamento) {

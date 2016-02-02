@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm-9 col-sm-offset-0 col-md-12 col-md-offset-0 main">
+    <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
       <h1 class="page-header">Partes do Processo</h1>
 
       <div class="row">
@@ -56,7 +56,7 @@
                         <td>
                           <a class="glyphicon glyphicon-trash" aria-hidden="true"
                             href="<?=base_url('processos/removeparte/'.$processo[0]->id_processos.'/'
-                              .$autor->id_processospartes)?>"></a>
+                              .$autor->id_partes)?>"></a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -91,7 +91,7 @@
                         <td>
                           <a class="glyphicon glyphicon-trash" aria-hidden="true"
                             href="<?=base_url('processos/removeparte/'.$processo[0]->id_processos.'/'
-                              .$reu->id_processospartes)?>"></a>
+                              .$reu->id_partes)?>"></a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -125,7 +125,7 @@
                         <td>
                           <a class="glyphicon glyphicon-trash" aria-hidden="true"
                             href="<?=base_url('processos/removeparte/'.$processo[0]->id_processos.'/'
-                              .$advogado->id_processospartes)?>"></a>
+                              .$advogado->id_partes)?>"></a>
                         </td>
                       </tr>
                     <?php endforeach; ?>
@@ -159,7 +159,7 @@
                         <td>
                           <a class="glyphicon glyphicon-trash" aria-hidden="true"
                             href="<?=base_url('processos/removeparte/'.$processo[0]->id_processos.'/'
-                              .$interessado->id_processospartes)?>"></a>
+                              .$interessado->id_partes)?>"></a>
                         </td>
                       </tr>
                     <?php endforeach; ?>

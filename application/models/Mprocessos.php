@@ -80,34 +80,34 @@ function insereparte($processo, $tipo, $parte) {
     'id_pessoas' => (int)$parte,
     'tipo_parte' => (int)$tipo
   );
-  $this->db->insert('processospartes', $data);
+  $this->db->insert('partes', $data);
 }
 
 function consultapartes($id, $tparte) {
-  $this->db->select('processospartes.*, pessoas.nome_razao');
-  $this->db->from('processospartes');
-  $this->db->join('pessoas', 'processospartes.id_pessoas = pessoas.id_pessoas');
-  $this->db->where('processospartes.id_processos =', $id);
-  $this->db->where('processospartes.tipo_parte =', $tparte);
+  $this->db->select('partes.*, pessoas.nome_razao');
+  $this->db->from('partes');
+  $this->db->join('pessoas', 'partes.id_pessoas = pessoas.id_pessoas');
+  $this->db->where('partes.id_processos =', $id);
+  $this->db->where('partes.tipo_parte =', $tparte);
   $this->db->order_by('pessoas.nome_razao', 'ASC');
   $query = $this->db->get();
   return $query->result();
 }
 
 function pessoanoprocesso($processo, $pessoa, $tipoparte) {
-  $this->db->select('processospartes.id_processospartes, pessoas.nome_razao');
-  $this->db->from('processospartes');
-  $this->db->join('pessoas', 'processospartes.id_pessoas = pessoas.id_pessoas');
+  $this->db->select('partes.id_partes, pessoas.nome_razao');
+  $this->db->from('partes');
+  $this->db->join('pessoas', 'partes.id_pessoas = pessoas.id_pessoas');
   $this->db->where('id_processos', $processo);
-  $this->db->where('processospartes.id_pessoas', $pessoa);
-  $this->db->where('processospartes.tipo_parte', $tipoparte);
+  $this->db->where('partes.id_pessoas', $pessoa);
+  $this->db->where('partes.tipo_parte', $tipoparte);
   $query = $this->db->get();
   return $query->result();
 }
 
 function removeparte($idparte) {
-  $this->db->where('id_processospartes', $idparte);
-  $this->db->delete('processospartes');
+  $this->db->where('id_partes', $idparte);
+  $this->db->delete('partes');
 }
 
 }
