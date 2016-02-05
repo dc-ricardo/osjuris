@@ -66,6 +66,78 @@ ALTER SEQUENCE andamentos_id_andamentos_seq OWNED BY andamentos.id_andamentos;
 
 
 --
+-- Name: apensos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE apensos (
+    id_apensos integer NOT NULL,
+    id_processos integer NOT NULL,
+    numero_apenso character varying(80) NOT NULL,
+    data_apenso date NOT NULL,
+    descricao text NOT NULL,
+    id_localizacoes integer NOT NULL
+);
+
+
+ALTER TABLE apensos OWNER TO postgres;
+
+--
+-- Name: apensos_id_apensos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE apensos_id_apensos_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE apensos_id_apensos_seq OWNER TO postgres;
+
+--
+-- Name: apensos_id_apensos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE apensos_id_apensos_seq OWNED BY apensos.id_apensos;
+
+
+--
+-- Name: apensosand; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE apensosand (
+    id_apensosand integer NOT NULL,
+    id_apensos integer NOT NULL,
+    data_andamento date NOT NULL,
+    descricao text NOT NULL
+);
+
+
+ALTER TABLE apensosand OWNER TO postgres;
+
+--
+-- Name: apensosand_id_apensosand_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE apensosand_id_apensosand_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE apensosand_id_apensosand_seq OWNER TO postgres;
+
+--
+-- Name: apensosand_id_apensosand_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE apensosand_id_apensosand_seq OWNED BY apensosand.id_apensosand;
+
+
+--
 -- Name: localizacoes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -297,6 +369,20 @@ ALTER TABLE ONLY andamentos ALTER COLUMN id_andamentos SET DEFAULT nextval('anda
 
 
 --
+-- Name: id_apensos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY apensos ALTER COLUMN id_apensos SET DEFAULT nextval('apensos_id_apensos_seq'::regclass);
+
+
+--
+-- Name: id_apensosand; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY apensosand ALTER COLUMN id_apensosand SET DEFAULT nextval('apensosand_id_apensosand_seq'::regclass);
+
+
+--
 -- Name: id_localizacoes; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -344,6 +430,22 @@ ALTER TABLE ONLY usuarios ALTER COLUMN id_usuarios SET DEFAULT nextval('usuarios
 
 ALTER TABLE ONLY andamentos
     ADD CONSTRAINT andamentos_id_andamentos PRIMARY KEY (id_andamentos);
+
+
+--
+-- Name: apensos_id_apensos; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY apensos
+    ADD CONSTRAINT apensos_id_apensos PRIMARY KEY (id_apensos);
+
+
+--
+-- Name: apensosand_id_apensosand; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY apensosand
+    ADD CONSTRAINT apensosand_id_apensosand PRIMARY KEY (id_apensosand);
 
 
 --
@@ -458,6 +560,30 @@ ALTER TABLE ONLY andamentos
 
 
 --
+-- Name: apensos_id_localizacoes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY apensos
+    ADD CONSTRAINT apensos_id_localizacoes_fkey FOREIGN KEY (id_localizacoes) REFERENCES localizacoes(id_localizacoes) ON UPDATE CASCADE ON DELETE RESTRICT;
+
+
+--
+-- Name: apensos_id_processos_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY apensos
+    ADD CONSTRAINT apensos_id_processos_fkey FOREIGN KEY (id_processos) REFERENCES processos(id_processos) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
+-- Name: apensosand_id_apensos_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY apensosand
+    ADD CONSTRAINT apensosand_id_apensos_fkey FOREIGN KEY (id_apensos) REFERENCES apensos(id_apensos) ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+--
 -- Name: processos_id_localizacoes_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -510,6 +636,46 @@ REVOKE ALL ON SEQUENCE andamentos_id_andamentos_seq FROM PUBLIC;
 REVOKE ALL ON SEQUENCE andamentos_id_andamentos_seq FROM postgres;
 GRANT ALL ON SEQUENCE andamentos_id_andamentos_seq TO postgres;
 GRANT SELECT,UPDATE ON SEQUENCE andamentos_id_andamentos_seq TO osjuris;
+
+
+--
+-- Name: apensos; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE apensos FROM PUBLIC;
+REVOKE ALL ON TABLE apensos FROM postgres;
+GRANT ALL ON TABLE apensos TO postgres;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE apensos TO osjuris;
+
+
+--
+-- Name: apensos_id_apensos_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE apensos_id_apensos_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE apensos_id_apensos_seq FROM postgres;
+GRANT ALL ON SEQUENCE apensos_id_apensos_seq TO postgres;
+GRANT SELECT,UPDATE ON SEQUENCE apensos_id_apensos_seq TO osjuris;
+
+
+--
+-- Name: apensosand; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON TABLE apensosand FROM PUBLIC;
+REVOKE ALL ON TABLE apensosand FROM postgres;
+GRANT ALL ON TABLE apensosand TO postgres;
+GRANT SELECT,INSERT,REFERENCES,DELETE,TRIGGER,UPDATE ON TABLE apensosand TO osjuris;
+
+
+--
+-- Name: apensosand_id_apensosand_seq; Type: ACL; Schema: public; Owner: postgres
+--
+
+REVOKE ALL ON SEQUENCE apensosand_id_apensosand_seq FROM PUBLIC;
+REVOKE ALL ON SEQUENCE apensosand_id_apensosand_seq FROM postgres;
+GRANT ALL ON SEQUENCE apensosand_id_apensosand_seq TO postgres;
+GRANT SELECT,UPDATE ON SEQUENCE apensosand_id_apensosand_seq TO osjuris;
 
 
 --

@@ -8,8 +8,8 @@
           <a class="btn btn-primary" href="<?=base_url('processos/edita/'.$processo[0]->id_processos);?>" role="button">Editar</a>
           <a class="btn btn-primary" href="<?=base_url('processos/partes/'.$processo[0]->id_processos);?>" role="button">Partes</a>
           <a class="btn btn-primary" href="<?=base_url('andamentos/consulta/'.$processo[0]->id_processos);?>" role="button">Andamentos</a>
-          <a class="btn btn-primary" href="<?=base_url('processos/prazos/'.$processo[0]->id_processos);?>" role="button">Prazos</a>
-          <a class="btn btn-primary" href="<?=base_url('processos/apensos/'.$processo[0]->id_processos);?>" role="button">Apensos</a>
+          <a class="btn btn-primary" href="<?=base_url('prazos/consulta/'.$processo[0]->id_processos);?>" role="button">Prazos</a>
+          <a class="btn btn-primary" href="<?=base_url('apensos/consulta/'.$processo[0]->id_processos);?>" role="button">Apensos</a>
         </div>
       </h1>
 
