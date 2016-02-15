@@ -62,7 +62,7 @@ function validadata($pdata) {
 function validachavenapenso($pvalor) {
 	$this->load->model('mapensos');
 
-  $id = $this->uri->segment(3);
+  $id = $this->uri->segment(4);
 	$data = $this->mapensos->consultachavenapenso($id, $pvalor);
 
 	if (!empty($data)) {
@@ -118,6 +118,166 @@ public function insere($idprocesso) {
 	else {
 		$this->novo($idprocesso);
 	}
+}
+
+public function edita($idprocesso, $idapenso) {
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+  $dataview['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['localizacoes'] = $this->lelocalizacoes();
+  $this->load->model('mapensos');
+  $dataview['apenso'] = $this->mapensos->consulta($idapenso);
+
+	$this->load->view('includes/vheader');
+	$this->load->view('vapensosedita', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+public function altera($idprocesso, $idapenso) {
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regras('alteracao'));
+
+  if ($this->form_validation->run() == TRUE) {
+		$data = $this->vpostados($idprocesso);
+		$this->load->model('mapensos');
+	  $this->mapensos->altera($idapenso, $data);
+		redirect('/apensos/consulta/'.$idprocesso);
+	}
+	else {
+		$this->edita($idprocesso, $idapenso);
+	}
+}
+
+public function consultaap($idprocesso, $idapenso) {
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+  $dataview['processo'] = $this->mprocessos->consulta($idprocesso);
+
+  $this->load->model('mapensos');
+  $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
+  $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
+  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+
+  $this->load->view('includes/vheader');
+	$this->load->view('vapensosconsulta', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+public function andamentos($idprocesso, $idapenso) {
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+  $dataview['processo'] = $this->mprocessos->consulta($idprocesso);
+
+  $this->load->model('mapensos');
+  $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
+  $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
+  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['andamentos'] = $this->mapensos->andamentos($idapenso);
+
+  $this->load->view('includes/vheader');
+	$this->load->view('vapensosandamentos', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+public function novoandamento($idprocesso, $idapenso) {
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+  $dataview['processo'] = $this->mprocessos->consulta($idprocesso);
+
+  $this->load->model('mapensos');
+  $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
+  $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
+  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+
+  $this->load->view('includes/vheader');
+	$this->load->view('vapensosnovoandamento', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+function vpostadosandamento($idapenso) {
+	$data =	array(
+		'id_apensos' => $idapenso,
+		'data_andamento' => $this->input->post('data_andamento'),
+		'descricao' => $this->input->post('descricao'),
+		'interesse' => $this->input->post('interesse')
+	);
+	return $data;
+}
+
+function regrasandamento() {
+  $vrules = array(
+		array(
+			'field' => 'data_andamento',
+			'label' => 'Data',
+			'rules' => 'required|callback_validadata'
+		),
+		array(
+			'field' => 'descricao',
+			'label' => 'Descrição',
+			'rules' => 'required'
+		)
+	);
+	return $vrules;
+}
+
+public function insereandamento($idprocesso, $idapenso) {
+  $this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regrasandamento());
+
+  if ($this->form_validation->run() == TRUE) {
+	  $data = $this->vpostadosandamento($idapenso);
+
+		$this->load->model('mapensos');
+	  $this->mapensos->insereandamento($data);
+		redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
+	}
+	else {
+		$this->novoandamento($idprocesso, $idapenso);
+	}
+}
+
+public function editaandamento($idprocesso, $idapenso, $idandamento) {
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+  $dataview['processo'] = $this->mprocessos->consulta($idprocesso);
+
+  $this->load->model('mapensos');
+  $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
+  $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
+  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['andamento'] = $this->mapensos->consultaandamento($idandamento);
+
+  $this->load->view('includes/vheader');
+	$this->load->view('vapensoseditaandamento', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+public function alteraandamento($idprocesso, $idapenso, $idandamento) {
+  $this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regrasandamento());
+
+  if ($this->form_validation->run() == TRUE) {
+	  $data = $this->vpostadosandamento($idapenso);
+
+		$this->load->model('mapensos');
+	  $this->mapensos->alteraandamento($idandamento, $data);
+		redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
+	}
+	else {
+		$this->editaandamento($idprocesso, $idapenso, $idandamento);
+	}
+}
+
+public function excluiandamento($idprocesso, $idapenso, $idandamento) {
+  $this->load->model('mapensos');
+  $this->mapensos->excluiandamento($idandamento);
+  redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
 }
 
 }

@@ -25,8 +25,9 @@ function remove($id) {
 }
 
 function consulta($id) {
-  $this->db->select('apensos.*');
+  $this->db->select('apensos.*, localizacoes.descricao localizacao');
   $this->db->from('apensos');
+  $this->db->join('localizacoes', 'apensos.id_localizacoes = localizacoes.id_localizacoes');
   $this->db->where('id_apensos =', $id);
   $query = $this->db->get();
   return $query->result();
@@ -35,6 +36,47 @@ function consulta($id) {
 function altera($id, $registro) {
   $this->db->where('id_apensos', $id);
   $this->db->update('apensos', $registro);
+}
+
+// procura um número de apenso com o mesmo número em outro id
+function consultachavenapenso($id, $ninterno) {
+  $this->db->select('id_apensos');
+  $this->db->from('apensos');
+  $this->db->where('numero_apenso =', $ninterno);
+  $this->db->where('id_apensos !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function andamentos($id) {
+  $this->db->select('apensosand.*');
+  $this->db->from('apensosand');
+  $this->db->where('id_apensos =', $id);
+  $this->db->order_by('data_andamento, id_apensosand', 'DESC');
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function insereandamento($registro) {
+  $this->db->insert('apensosand', $registro);
+}
+
+function consultaandamento($id) {
+  $this->db->select('apensosand.*');
+  $this->db->from('apensosand');
+  $this->db->where('id_apensosand =', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function alteraandamento($id, $registro) {
+  $this->db->where('id_apensosand', $id);
+  $this->db->update('apensosand', $registro);
+}
+
+function excluiandamento($id) {
+  $this->db->where('id_apensosand =', $id);
+  $this->db->delete('apensosand');
 }
 
 }

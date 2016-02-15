@@ -110,7 +110,8 @@ CREATE TABLE apensosand (
     id_apensosand integer NOT NULL,
     id_apensos integer NOT NULL,
     data_andamento date NOT NULL,
-    descricao text NOT NULL
+    descricao text NOT NULL,
+    interesse smallint NOT NULL
 );
 
 

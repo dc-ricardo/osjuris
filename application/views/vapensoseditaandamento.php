@@ -2,25 +2,12 @@
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
-      <h1 class="page-header">Edição do Andamento</h1>
+      <h1 class="page-header">Edita Andamento do Apenso</h1>
 
-      <div class="row">
-        <div class="col-md-12">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Dados do Processo</h3>
-            </div>
-            <div class="panel-body">
-              <?=$processo[0]->numero_processo;?> |
-              <?=$processo[0]->numero_interno;?> |
-              <?=nice_date($processo[0]->data_abertura, 'd/m/Y');?> |
-              <?=$processo[0]->localizacao;?>
-            </div>
-          </div>
-        </div>
-      </div>
+      <?=$dadosdoprocesso;?>
+      <?=$dadosdoapenso;?>
 
-      <form class="form-group" action="<?=base_url('andamentos/altera/'.$andamento[0]->id_processos.'/'.$andamento[0]->id_andamentos);?>" method="post">
+      <form class="form-group" action="<?=base_url('apensos/alteraandamento/'.$apenso[0]->id_processos.'/'.$apenso[0]->id_apensos.'/'.$andamento[0]->id_apensosand);?>" method="post">
 
         <?php
           if (validation_errors() == TRUE) {

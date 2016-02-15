@@ -1,16 +1,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
-      <h1 class="page-header">Edição do Processo</h1>
-      <form class="form-group" action="<?=base_url('processos/altera/'.$processo[0]->id_processos);?>" method="post">
+      <h1 class="page-header">Edição do Apenso</h1>
+
+      <?=$dadosdoprocesso;?>
+
+      <form class="form-group" action="<?=base_url('apensos/altera/'.$apenso[0]->id_processos.'/'.$apenso[0]->id_apensos);?>" method="post">
 
         <?php
           // valor dos campos do banco
-          $vdc['numero_processo'] = $processo[0]->numero_processo;
-          $vdc['numero_interno'] = $processo[0]->numero_interno;
-          $vdc['data_abertura'] = $processo[0]->data_abertura;
-          $vdc['localizacao'] = $processo[0]->id_localizacoes;
-          $vdc['descricao'] = $processo[0]->descricao;
+          $vdc['numero_apenso'] = $apenso[0]->numero_apenso;
+          $vdc['data_apenso'] = $apenso[0]->data_apenso;
+          $vdc['localizacao'] = $apenso[0]->id_localizacoes;
+          $vdc['descricao'] = $apenso[0]->descricao;
 
           if (validation_errors() == TRUE) {
             echo '<div class="row">';
@@ -22,38 +24,29 @@
             echo '</div>';
 
             // mantém valos dos campos editados em caso de erro de validação
-            $vdc['numero_processo'] = set_value('numero_processo');
-            $vdc['numero_interno'] = set_value('numero_interno');
+            $vdc['numero_apenso'] = set_value('numero_processo');
+            $vdc['data_apenso'] = set_value('numero_interno');
             $vdc['localizacao'] = set_value('localizacao');
             $vdc['descricao'] = set_value('descricao');
-
           }
         ?>
 
         <div class="row">
           <div class="col-md-4">
             <div class="form-group">
-              <label for="numero_processo">Número do Processo</label>
-              <input type="text" class="form-control" id="numero_processo" name="numero_processo" autofocus
-                value="<?=$vdc['numero_processo'];?>">
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="numero_interno">Número Interno</label>
-              <input type="text" class="form-control" id="numero_interno" name="numero_interno"
-                value="<?=$vdc['numero_interno'];?>">
+              <label for="numero_apenso">Número do Apenso</label>
+              <input type="text" class="form-control" id="numero_apenso" name="numero_apenso" autofocus
+                value="<?=$vdc['numero_apenso'];?>">
             </div>
           </div>
         </div>
 
         <div class="row">
-
           <div class="col-md-4">
             <div class="form-group">
-              <label for="data_abertura">Data (dd/mm/aaaa)</label>
-                <input type="text" class="form-control" id="data_abertura" name="data_abertura"
-                  value="<?=nice_date($vdc['data_abertura'], 'd/m/Y');?>">
+              <label for="data_apenso">Data (dd/mm/aaaa)</label>
+              <input type="text" class="form-control" id="data_apenso" name="data_apenso"
+                value="<?=nice_date($vdc['data_apenso'], 'd/m/Y');?>">
             </div>
           </div>
 

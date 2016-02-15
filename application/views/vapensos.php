@@ -37,9 +37,9 @@
                     <td><?=$row->localizacao;?></td>
 
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consulta/'.$row->id_processos);?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/edita/'.$row->id_processos);?>">Editar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/andamentos/'.$row->id_processos);?>">Andamentos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consultaap/'.$row->id_processos.'/'.$row->id_apensos);?>">Consultar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/edita/'.$row->id_processos.'/'.$row->id_apensos);?>">Editar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/andamentos/'.$row->id_processos.'/'.$row->id_apensos);?>">Andamentos</a>
                     </td>
 
                   </tr>

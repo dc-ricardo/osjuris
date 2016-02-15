@@ -24,7 +24,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label for="data_prazo">Data (dd/mm/aaaa)</label>
-              <input type="date" class="form-control" id="data_prazo" name="data_prazo"
+              <input type="text" class="form-control" id="data_prazo" name="data_prazo"
                 value="<?=set_value('data_prazo');?>">
             </div>
           </div>
