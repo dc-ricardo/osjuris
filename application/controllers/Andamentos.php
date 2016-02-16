@@ -7,22 +7,25 @@ public function index()	{
 }
 
 public function consulta($idprocesso)	{
-  $this->load->model('mandamentos');
-	$data['andamentos'] = $this->mandamentos->seleciona($idprocesso);
-
   $this->load->model('mprocessos');
-  $data['processo'] = $this->mprocessos->consulta($idprocesso);
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
+  $this->load->model('mandamentos');
+	$dataview['andamentos'] = $this->mandamentos->seleciona($idprocesso);
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vandamentos', $data);
+	$this->load->view('vandamentos', $dataview);
 	$this->load->view('includes/vfooter');
 }
 
 public function novo($idprocesso) {
   $this->load->model('mprocessos');
-  $data['processo'] = $this->mprocessos->consulta($idprocesso);
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
 	$this->load->view('includes/vheader');
-	$this->load->view('vandamentosnovo', $data);
+	$this->load->view('vandamentosnovo', $dataview);
 	$this->load->view('includes/vfooter');
 }
 
@@ -80,18 +83,21 @@ public function insere($idprocesso) {
 
 public function edita($idprocesso, $idandamento) {
   $this->load->model('mprocessos');
-  $data['processo'] = $this->mprocessos->consulta($idprocesso);
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
   $this->load->model('mandamentos');
-  $data['andamento'] = $this->mandamentos->consulta($idandamento);
+  $dataview['andamento'] = $this->mandamentos->consulta($idandamento);
+
 	$this->load->view('includes/vheader');
-	$this->load->view('vandamentosedita', $data);
+	$this->load->view('vandamentosedita', $dataview);
 	$this->load->view('includes/vfooter');
 }
 
 public function exclui($idprocesso, $idandamento) {
   $this->load->model('mandamentos');
 	$this->mandamentos->remove($idandamento);
-  
+
   redirect('/andamentos/consulta/'.$idprocesso);
 }
 

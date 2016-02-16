@@ -169,13 +169,17 @@ public function altera($id) {
 
 public function partes($id) {
 	$this->load->model('mprocessos');
-	$data['processo'] = $this->mprocessos->consulta($id);
-	$data['autores'] = $this->mprocessos->consultapartes($id, CPARTEAUTOR);
-	$data['reus'] = $this->mprocessos->consultapartes($id, CPARTEREU);
-	$data['advogados'] = $this->mprocessos->consultapartes($id, CPARTEADVOGADO);
-	$data['interessados'] = $this->mprocessos->consultapartes($id, CPARTEINTERESSADO);
+  $datainclude['processo'] = $this->mprocessos->consulta($id);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
+	$dataview['processo'] = $this->mprocessos->consulta($id);
+	$dataview['autores'] = $this->mprocessos->consultapartes($id, CPARTEAUTOR);
+	$dataview['reus'] = $this->mprocessos->consultapartes($id, CPARTEREU);
+	$dataview['advogados'] = $this->mprocessos->consultapartes($id, CPARTEADVOGADO);
+	$dataview['interessados'] = $this->mprocessos->consultapartes($id, CPARTEINTERESSADO);
+
 	$this->load->view('includes/vheader');
-	$this->load->view('vpartes', $data);
+	$this->load->view('vpartes', $dataview);
 	$this->load->view('includes/vfooter');
 }
 

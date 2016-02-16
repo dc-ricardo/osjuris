@@ -7,14 +7,15 @@ public function index()	{
 }
 
 public function consulta($idprocesso)	{
-  $this->load->model('mprazos');
-	$data['prazos'] = $this->mprazos->seleciona($idprocesso);
-
   $this->load->model('mprocessos');
-  $data['processo'] = $this->mprocessos->consulta($idprocesso);
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
+  $this->load->model('mprazos');
+	$dataview['prazos'] = $this->mprazos->seleciona($idprocesso);
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vprazos', $data);
+	$this->load->view('vprazos', $dataview);
 	$this->load->view('includes/vfooter');
 }
 
@@ -22,6 +23,7 @@ public function novo($idprocesso) {
   $this->load->model('mprocessos');
   $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
   $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
 	$this->load->view('includes/vheader');
 	$this->load->view('vprazosnovo', $dataview);
 	$this->load->view('includes/vfooter');
@@ -90,8 +92,10 @@ public function edita($idprocesso, $idprazo) {
   $this->load->model('mprocessos');
   $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
   $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
   $this->load->model('mprazos');
   $dataview['prazo'] = $this->mprazos->consulta($idprazo);
+
 	$this->load->view('includes/vheader');
 	$this->load->view('vprazosedita', $dataview);
 	$this->load->view('includes/vfooter');
