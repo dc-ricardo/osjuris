@@ -36,18 +36,32 @@
     <div class="container-fluid">
 
       <div class="navbar-header">
+        <a class="navbar-brand" href="<?=base_url()?>">OSJuris CE <?=COSJVERSAO?></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Ativar navegação</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="<?=base_url()?>">OSJuris CE <?=COSJVERSAO?></a>
       </div>
 
       <div id="navbar" class="navbar-collapse collapse">
 
         <ul class="nav navbar-nav navbar-right">
+
+          <li><a href="<?=base_url()?>dashboard"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
+          <li><a href="<?=base_url()?>processos"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
+          <li><a href="<?=base_url()?>pessoas"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle"
+              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Tabelas
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
+            </ul>
+          </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -63,30 +77,8 @@
               <li><a href="#">Ajuda</a></li>
             </ul>
           </li>
-        </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle"
-              data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="glyphicon glyphicon-th" aria-hidden="true"></span> Tabelas
-              <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
-            </ul>
-          </li>
         </ul>
-
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="<?=base_url()?>dashboard"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pesquisar</a></li>
-          <li><a href="<?=base_url()?>processos"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
-          <li><a href="<?=base_url()?>pessoas"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
-        </ul>
-
       </div>
-
     </div>
-
   </nav>
