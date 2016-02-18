@@ -9,17 +9,29 @@ function insere($registro) {
   $this->db->insert('pessoas', $registro);
 }
 
-function seleciona($categoria, $maximo, $inicio) {
+function seleciona($categoria, $maximo, $inicio, $conteudo) {
+  $this->db->select('id_pessoas, nome_razao, codigo, cpf_cnpj');
+
+  // filtra por categoria
   if ($categoria == 'advogados') {
     $condcol = 'tipo =';
     $condval = CTIPOADVOGADO;
   }
-
-  $this->db->select('id_pessoas, nome_razao, codigo, cpf_cnpj');
   if ($categoria != 'cadastradas') {
     $this->db->where($condcol, $condval);
   }
+
+  // filtra conteúdo
+  if ($conteudo <> '') {
+    $this->db->like('lower(nome_razao)', strtolower($conteudo));
+    $this->db->or_like('lower(codigo)', strtolower($conteudo));
+    $this->db->or_like('lower(cpf_cnpj)', strtolower($conteudo));
+  }
+
+  // ordenação
   $this->db->order_by('id_pessoas', 'DESC');
+
+  // obtém registros
   $query = $this->db->get('pessoas', $maximo, $inicio);
   return $query->result();
 }
@@ -102,6 +114,14 @@ function contaadvogados() {
 function contacadastradas() {
   $total = $this->db->count_all('pessoas');
   return $total;
+}
+
+function localiza($conteudo) {
+  $this->db->select('*');
+  $this->db->from('pessoas');
+  $this->db->like('nome_razao', $conteudo);
+  $query = $this->db->get();
+  return $query->result();
 }
 
 }

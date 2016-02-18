@@ -4,18 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pessoas extends MY_Controller {
 
 public function index()	{
-	$this->consultapaginada('cadastradas');
+	$this->consultapaginada('cadastradas', '');
 }
 
 public function consultacadastradas() {
-	$this->consultapaginada('cadastradas');
+	$this->consultapaginada('cadastradas', '');
 }
 
 public function consultaadvogados() {
-	$this->consultapaginada('advogados');
+	$this->consultapaginada('advogados', '');
 }
 
-public function consultapaginada($categoria) {
+public function consultapaginada($categoria, $conteudo) {
 	// select
 	$this->load->model('mpessoas');
 	$data['cadastradas'] = $this->mpessoas->contacadastradas();
@@ -48,7 +48,8 @@ public function consultapaginada($categoria) {
 	$this->pagination->initialize($config);
 	$data['paginacao'] = $this->pagination->create_links();
 
-	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $totalrec, $inicio);
+	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $totalrec, $inicio, $conteudo);
+
 	$this->load->view('includes/vheader');
 	$this->load->view('vpessoas', $data);
 	$this->load->view('includes/vfooter');
@@ -335,6 +336,11 @@ public function atualiza($id) {
 			}
 		}
 	}
+}
+
+public function localiza() {
+  $conteudo = $this->input->post('conteudo');
+	$this->consultapaginada('cadastradas', $conteudo);
 }
 
 }
