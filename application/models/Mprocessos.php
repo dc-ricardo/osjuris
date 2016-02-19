@@ -9,10 +9,17 @@ function insere($registro) {
   $this->db->insert('processos', $registro);
 }
 
-function seleciona() {
+function seleciona($conteudo) {
   $this->db->select('processos.*, localizacoes.descricao localizacao');
   $this->db->from('processos');
   $this->db->join('localizacoes', 'processos.id_localizacoes = localizacoes.id_localizacoes');
+
+  // filtra conteúdo
+  if ($conteudo <> '') {
+    $this->db->like('lower(numero_processo)', strtolower($conteudo));
+    $this->db->or_like('lower(numero_interno)', strtolower($conteudo));
+  }
+
   $this->db->order_by('id_processos', 'DESC');
   $query = $this->db->get();
   return $query->result();

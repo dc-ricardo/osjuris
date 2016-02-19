@@ -39,7 +39,7 @@ function vpostados($idprocesso) {
 }
 
 function validadata($pdata) {
-  $dvalida = $this->libosjuris->validadata($pdata);
+  $dvalida = $this->libosjuris->fvalidadata($pdata);
   $this->load->library('form_validation');
   if (!$dvalida) {
     $this->form_validation->set_message('validadata', 'Data inválida.');

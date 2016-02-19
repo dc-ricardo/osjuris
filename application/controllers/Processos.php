@@ -4,8 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Processos extends MY_Controller {
 
 public function index()	{
+	$this->consultapaginada('todos', '');
+}
+
+public function consultapaginada($categoria, $conteudo) {
 	$this->load->model('mprocessos');
-	$data['processos'] = $this->mprocessos->seleciona();
+	$data['processos'] = $this->mprocessos->seleciona($conteudo);
 	$this->load->view('includes/vheader');
 	$this->load->view('vprocessos', $data);
 	$this->load->view('includes/vfooter');
@@ -37,7 +41,7 @@ function vpostados() {
 }
 
 function validadata($pdata) {
-  $dvalida = $this->libosjuris->validadata($pdata);
+  $dvalida = $this->libosjuris->fvalidadata($pdata);
   if (!$dvalida) {
     $this->load->library('form_validation');
     $this->form_validation->set_message('validadata', 'Data inválida.');
@@ -266,6 +270,11 @@ public function removeparte($idprocesso, $idparte) {
 	$this->load->model('mprocessos');
 	$this->mprocessos->removeparte($idparte);
 	$this->partes($idprocesso);
+}
+
+public function localiza() {
+  $conteudo = $this->input->post('conteudo');
+	$this->consultapaginada('todos', $conteudo);
 }
 
 }

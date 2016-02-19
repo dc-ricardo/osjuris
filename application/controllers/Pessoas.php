@@ -21,34 +21,16 @@ public function consultapaginada($categoria, $conteudo) {
 	$data['cadastradas'] = $this->mpessoas->contacadastradas();
 	$data['advogados'] = $this->mpessoas->contaadvogados();
 
-	$totalrec = $data[$categoria];
-
-	// paginação
+  // paginação
 	$this->load->library('pagination');
 	$inicio = ($this->uri->segment("3") != '') ? $this->uri->segment("3") : 0;
-
-	$config['base_url'] = base_url('pessoas/consulta'.$categoria);
-	$config['total_rows'] = $totalrec;
-	$config['per_page'] = 4;
-	$config['uri_segment'] = 3;
-	$config['full_tag_open'] = '<ul class="pagination">';
-	$config['full_tag_close'] = '</ul>';
-  $config['prev_link'] = '&laquo;';
-  $config['prev_tag_open'] = '<li>';
-  $config['prev_tag_close'] = '</li>';
-  $config['next_link'] = '&raquo;';
-  $config['next_tag_open'] = '<li>';
-  $config['next_tag_close'] = '</li>';
-  $config['cur_tag_open'] = '<li class="active"><a href="#">';
-  $config['cur_tag_close'] = '</a></li>';
-  $config['num_tag_open'] = '<li>';
-  $config['num_tag_close'] = '</li>';
-  $config["num_links"] = round($config["total_rows"] / $config["per_page"]);
-
-	$this->pagination->initialize($config);
+	$purl = base_url('pessoas/consulta'.$categoria);
+	$ptotalrec = $data[$categoria];
+  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec);
+	$this->pagination->initialize($pdata);
 	$data['paginacao'] = $this->pagination->create_links();
 
-	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $totalrec, $inicio, $conteudo);
+	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $ptotalrec, $inicio, $conteudo);
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vpessoas', $data);
