@@ -27,7 +27,7 @@
       <div class="row">
 
         <div class="col-md-2">
-          <h5><a href="#">Todos <span class="badge">0</span></a></h5>
+          <h5><a href="<?=base_url('processos/consultatodos');?>">Todos <span class="badge"><?=$todos;?></span></a></h5>
           <h5><a href="#">Abertos <span class="badge">0</span></a></h5>
           <h5><a href="#">Ativos <span class="badge">0</span></a></h5>
           <h5><a href="#">Apensados <span class="badge">0</span></a></h5>
@@ -69,7 +69,7 @@
             </table>
           </div>
 
-          <!-- <nav><?=$paginacao?></nav> -->
+          <nav><?=$paginacao?></nav>
 
         </div>
       </div>

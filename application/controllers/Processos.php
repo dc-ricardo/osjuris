@@ -7,9 +7,26 @@ public function index()	{
 	$this->consultapaginada('todos', '');
 }
 
+public function consultatodos() {
+	$this->consultapaginada('todos', '');
+}
+
 public function consultapaginada($categoria, $conteudo) {
+	// select
 	$this->load->model('mprocessos');
-	$data['processos'] = $this->mprocessos->seleciona($conteudo);
+	$data['todos'] = $this->mprocessos->processostodos();
+
+	// paginação
+	$this->load->library('pagination');
+	$inicio = ($this->uri->segment("3") != '') ? $this->uri->segment("3") : 0;
+	$purl = base_url('processos/consulta'.$categoria);
+	$ptotalrec = $data[$categoria];
+  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec);
+	$this->pagination->initialize($pdata);
+	$data['paginacao'] = $this->pagination->create_links();
+
+	$data['processos'] = $this->mprocessos->seleciona($categoria, $ptotalrec, $inicio, $conteudo);
+
 	$this->load->view('includes/vheader');
 	$this->load->view('vprocessos', $data);
 	$this->load->view('includes/vfooter');

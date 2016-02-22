@@ -9,9 +9,8 @@ function insere($registro) {
   $this->db->insert('processos', $registro);
 }
 
-function seleciona($conteudo) {
+function seleciona($categoria, $maximo, $inicio, $conteudo) {
   $this->db->select('processos.*, localizacoes.descricao localizacao');
-  $this->db->from('processos');
   $this->db->join('localizacoes', 'processos.id_localizacoes = localizacoes.id_localizacoes');
 
   // filtra conteúdo
@@ -21,7 +20,7 @@ function seleciona($conteudo) {
   }
 
   $this->db->order_by('id_processos', 'DESC');
-  $query = $this->db->get();
+  $query = $this->db->get('processos', $maximo, $inicio);
   return $query->result();
 }
 
@@ -115,6 +114,11 @@ function pessoanoprocesso($processo, $pessoa, $tipoparte) {
 function removeparte($idparte) {
   $this->db->where('id_partes', $idparte);
   $this->db->delete('partes');
+}
+
+function processostodos() {
+  $total = $this->db->count_all('processos');
+  return $total;
 }
 
 }
