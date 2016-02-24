@@ -1,5 +1,5 @@
 <?php
-Class Musuario extends CI_Model {
+Class Musuarios extends CI_Model {
 
 public function __construct() {
   parent::__construct();
@@ -20,6 +20,20 @@ function login($email, $senha) {
   else {
     return false;
   }
+}
+
+function seleciona($id) {
+  $this->db->select('*');
+  $this->db->from('usuarios');
+  $this->db->where('id_usuarios', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function atualizasenha($id, $novasenha) {
+  $this->db->set('senha', MD5($novasenha . CSALT));
+  $this->db->where('id_usuarios', $id);
+  $this->db->update('usuarios');
 }
 
 }

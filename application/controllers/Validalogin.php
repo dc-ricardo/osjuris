@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Validalogin extends CI_Controller {
 
 public function index()	{
-  $this->load->model('musuario');
+  $this->load->model('musuarios');
   $this->load->library('form_validation');
 
   $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
@@ -20,8 +20,8 @@ public function index()	{
 
 function check_database($senha) {
   $email = $this->input->post('email');
-  $this->load->model('musuario');
-  $result = $this->musuario->login($email, $senha);
+  $this->load->model('musuarios');
+  $result = $this->musuarios->login($email, $senha);
 
   if ($result) {
     $sess_array = array();
