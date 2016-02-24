@@ -22,7 +22,7 @@ function login($email, $senha) {
   }
 }
 
-function seleciona($id) {
+function consulta($id) {
   $this->db->select('*');
   $this->db->from('usuarios');
   $this->db->where('id_usuarios', $id);
@@ -34,6 +34,39 @@ function atualizasenha($id, $novasenha) {
   $this->db->set('senha', MD5($novasenha . CSALT));
   $this->db->where('id_usuarios', $id);
   $this->db->update('usuarios');
+}
+
+function seleciona($categoria, $maximo, $inicio, $conteudo) {
+  $this->db->select('id_usuarios, nome, email, habilitado, nivel');
+
+  // filtra por categoria
+  if ($categoria == 'habilitados') {
+    $condcol = 'habilitado =';
+    $condval = '1';
+  }
+  if ($categoria != 'todos') {
+    $this->db->where($condcol, $condval);
+  }
+
+  // filtra conteúdo
+  if ($conteudo <> '') {
+    $this->db->like('lower(nome)', strtolower($conteudo));
+    $this->db->or_like('lower(email)', strtolower($conteudo));
+  }
+
+  // ordenação
+  $this->db->order_by('id_usuarios', 'DESC');
+
+  // obtém registros
+  $query = $this->db->get('usuarios', $maximo, $inicio);
+  return $query->result();
+}
+
+function contahabilitados() {
+  $this->db->where('habilitado', 1);
+  $this->db->from('usuarios');
+  $total = $this->db->count_all_results();
+  return $total;
 }
 
 }

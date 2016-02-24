@@ -72,9 +72,9 @@
               <li><a href="<?=base_url()?>perfil">Perfil</a></li>
               <li><a href="<?=base_url()?>logon/logout">Sair</a></li>
               <?php
-                if ($this->session->userdata['logged_in']['nivel'] == '9') {
+                if ($this->session->userdata['logged_in']['nivel'] == CNIVELADMINISTRADOR) {
                   echo '<li role="separator" class="divider"></li>';
-                  echo '<li><a href="#">Usuários</a></li>';
+                  echo '<li><a href="usuarios">Usuários</a></li>';
                 }
               ?>
               <li role="separator" class="divider"></li>

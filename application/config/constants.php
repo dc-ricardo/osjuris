@@ -94,7 +94,7 @@ define('CTIPOJURIDICA', '1');
 define('CTIPOADVOGADO', '2');
 define('CPESSOASTIPO', serialize(array('Física', 'Jurídica', 'Advogado')));
 
-define('COSJVERSAO', '0.4.2');
+define('COSJVERSAO', '0.5.1');
 
 define('CPARTEAUTOR', '0');
 define('CPARTEREU', '1');
@@ -104,3 +104,10 @@ define('CPARTEINTERESSADO', '3');
 define('CINTERESSEPUBLICO', '0');
 define('CINTERESSEPRIVADO', '1');
 define('CINTERESSE', serialize(array('Público', 'Privado')));
+
+define('CNIVELOPERADOR', '0');
+define('CNIVELADVOGADO', '1');
+define('CNIVELCLIENTE', '2');
+define('CNIVELINTERESSADO', '3');
+define('CNIVELADMINISTRADOR', '4');
+define('CNIVELUSUARIO', serialize(array('Operador', 'Advogado', 'Cliente', 'Interessado', 'Administrador')));

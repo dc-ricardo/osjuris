@@ -7,7 +7,7 @@ public function index()	{
   $id = $this->session->userdata['logged_in']['id_usuarios'];
 
   $this->load->model('musuarios');
-	$data['usuario'] = $this->musuarios->seleciona($id);
+	$data['usuario'] = $this->musuarios->consulta($id);
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vperfil', $data);
@@ -16,7 +16,7 @@ public function index()	{
 
 public function trocasenha($id) {
   $this->load->model('musuarios');
-	$data['usuario'] = $this->musuarios->seleciona($id);
+	$data['usuario'] = $this->musuarios->consulta($id);
 
   $this->load->view('includes/vheader');
 	$this->load->view('vtrocasenha', $data);
