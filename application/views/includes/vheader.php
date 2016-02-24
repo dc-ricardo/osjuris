@@ -71,10 +71,14 @@
             <ul class="dropdown-menu">
               <li><a href="<?=base_url()?>perfil">Perfil</a></li>
               <li><a href="<?=base_url()?>logon/logout">Sair</a></li>
+              <?php
+                if ($this->session->userdata['logged_in']['nivel'] == '9') {
+                  echo '<li role="separator" class="divider"></li>';
+                  echo '<li><a href="#">Usuários</a></li>';
+                }
+              ?>
               <li role="separator" class="divider"></li>
-              <li><a href="#">Configurações</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="#">Ajuda</a></li>
+              <li><a href="http://osjuris.com.br/blog">Blog</a></li>
             </ul>
           </li>
 

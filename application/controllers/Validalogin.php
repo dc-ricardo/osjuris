@@ -24,21 +24,17 @@ function check_database($senha) {
   $result = $this->musuarios->login($email, $senha);
 
   if ($result) {
-    $sess_array = array();
-    foreach ($result as $row) {
-      $sess_array = array(
-        'id_usuarios' => $row->id_usuarios,
-        'email' => $row->email,
-        'nome' => $row->nome,
-        'nivel' => $row->nivel
-      );
-      $this->session->set_userdata('logged_in', $sess_array);
-    }
-    return true;
+    $sess_array = array(
+      'id_usuarios' => $result[0]->id_usuarios,
+      'email' => $result[0]->email,
+      'nome' => $result[0]->nome,
+      'nivel' => $result[0]->nivel);
+    $this->session->set_userdata('logged_in', $sess_array);
+    return TRUE;
   }
   else {
     $this->form_validation->set_message('check_database', 'E-mail/Senha inválidos.');
-    return false;
+    return FALSE;
   }
 }
 
