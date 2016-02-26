@@ -29,6 +29,52 @@ public function consultapaginada($categoria, $conteudo) {
 }
 
 public function novo()	{
+	$this->load->view('includes/vheader');
+	$this->load->view('vusuariosnovo');
+	$this->load->view('includes/vfooter');
+}
+
+function vpostados() {
+	$data =	array(
+		'nome' => $this->input->post('nome'),
+		'email' => $this->input->post('email'),
+		'nivel' => $this->input->post('nivel'),
+		'habilitado' => ($this->input->post('habilitado') == 1) ? 1 : 0,
+		'senha' => rand(100000, 999999)
+	);
+	return $data;
+}
+
+function regras() {
+  $vrules = array(
+		array(
+			'field' => 'nome',
+			'label' => 'Nome',
+			'rules' => 'required|max_length[80]|trim'
+		),
+		array(
+			'field' => 'email',
+			'label' => 'E-mail',
+			'rules' => 'required|max_length[80]|trim|valid_email|is_unique[usuarios.email]'
+		)
+	);
+	return $vrules;
+}
+
+public function insere()	{
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regras());
+
+	if ($this->form_validation->run() == TRUE) {
+	  $data = $this->vpostados();
+
+		$this->load->model('musuarios');
+		$this->musuarios->insere($data);
+		redirect('/usuarios');
+	}
+	else {
+		$this->novo();
+	}
 }
 
 }

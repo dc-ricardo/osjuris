@@ -69,4 +69,8 @@ function contahabilitados() {
   return $total;
 }
 
+function insere($registro) {
+  $this->db->insert('usuarios', $registro);
+}
+
 }
