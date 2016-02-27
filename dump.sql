@@ -335,7 +335,8 @@ CREATE TABLE usuarios (
     email character varying(80) NOT NULL,
     nome character varying(80) NOT NULL,
     senha character(40) NOT NULL,
-    nivel smallint NOT NULL
+    nivel smallint DEFAULT 1::smallint NOT NULL,
+    habilitado smallint DEFAULT 0::smallint NOT NULL
 );
 
 

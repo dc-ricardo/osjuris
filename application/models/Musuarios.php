@@ -44,6 +44,10 @@ function seleciona($categoria, $maximo, $inicio, $conteudo) {
     $condcol = 'habilitado =';
     $condval = '1';
   }
+  if ($categoria == 'desabilitados') {
+    $condcol = 'habilitado =';
+    $condval = '0';
+  }
   if ($categoria != 'todos') {
     $this->db->where($condcol, $condval);
   }
@@ -64,6 +68,13 @@ function seleciona($categoria, $maximo, $inicio, $conteudo) {
 
 function contahabilitados() {
   $this->db->where('habilitado', 1);
+  $this->db->from('usuarios');
+  $total = $this->db->count_all_results();
+  return $total;
+}
+
+function contadesabilitados() {
+  $this->db->where('habilitado', 0);
   $this->db->from('usuarios');
   $total = $this->db->count_all_results();
   return $total;
