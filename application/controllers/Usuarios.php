@@ -91,4 +91,9 @@ public function insere()	{
 	}
 }
 
+public function localiza() {
+  $conteudo = $this->input->post('conteudo');
+	$this->consultapaginada('todos', $conteudo);
+}
+
 }
