@@ -28,9 +28,9 @@
 
       <div class="row">
         <div class="col-md-2">
-          <h5><a href="<?=base_url('usuarios/habilitados');?>">Habilitados <span class="badge"><?=$habilitados;?></span></a></h5>
-          <h5><a href="<?=base_url('usuarios/desabilitados');?>">Desabilitados <span class="badge"><?=$desabilitados;?></span></a></h5>
-          <h5><a href="#">Todos <span class="badge">0</span></a></h5>
+          <h5><a href="<?=base_url('usuarios/consultahabilitados');?>">Habilitados <span class="badge"><?=$habilitados;?></span></a></h5>
+          <h5><a href="<?=base_url('usuarios/consultadesabilitados');?>">Desabilitados <span class="badge"><?=$desabilitados;?></span></a></h5>
+          <h5><a href="<?=base_url('usuarios/consultatodos');?>">Todos <span class="badge"><?=$todos;?></span></a></h5>
         </div>
         <div class="col-md-10">
           <div class="table-responsive">
@@ -50,8 +50,7 @@
                     <td><?=$usuario->nome;?></td>
                     <td><?=$usuario->email;?></td>
                     <td><?=$niveis[$usuario->nivel];?></td>
-                    <td><?=$usuario->habilitado;?></td>
-                    <!-- <td><?=$usuario->habilitado=1?'S':'N';?></td> -->
+                    <td><?php if ($usuario->habilitado == 1) { echo "S"; } else { echo "N"; }?></td>
                     <td>
                       <a class="btn btn-default btn-xs" href="<?=base_url('usuarios/edita/'.$usuario->id_usuarios)?>">Editar</a>
                     </td>

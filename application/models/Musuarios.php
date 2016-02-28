@@ -80,6 +80,11 @@ function contadesabilitados() {
   return $total;
 }
 
+function contatodos() {
+  $total = $this->db->count_all_results('usuarios');
+  return $total;
+}
+
 function insere($registro) {
   $this->db->insert('usuarios', $registro);
 }

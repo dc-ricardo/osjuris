@@ -7,12 +7,16 @@ public function index()	{
 	$this->consultapaginada('habilitados', '');
 }
 
-public function habilitados()	{
+public function consultahabilitados()	{
 	$this->consultapaginada('habilitados', '');
 }
 
-public function desabilitados()	{
+public function consultadesabilitados()	{
 	$this->consultapaginada('desabilitados', '');
+}
+
+public function consultatodos()	{
+	$this->consultapaginada('todos', '');
 }
 
 public function consultapaginada($categoria, $conteudo) {
@@ -20,6 +24,7 @@ public function consultapaginada($categoria, $conteudo) {
 	$this->load->model('musuarios');
   $data['habilitados'] = $this->musuarios->contahabilitados();
   $data['desabilitados'] = $this->musuarios->contadesabilitados();
+  $data['todos'] = $this->musuarios->contatodos();
 
   // paginação
 	$this->load->library('pagination');
