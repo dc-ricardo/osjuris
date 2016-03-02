@@ -89,4 +89,29 @@ function insere($registro) {
   $this->db->insert('usuarios', $registro);
 }
 
+function altera($id, $data) {
+  $this->db->where('id_usuarios', $id);
+  $this->db->update('usuarios', $data);
+}
+
+// procura um usuário com o mesmo nome de outro id
+function consultachavenome($id, $nome) {
+  $this->db->select('id_usuarios');
+  $this->db->from('usuarios');
+  $this->db->where('nome =', $nome);
+  $this->db->where('id_usuarios !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
+// procura um usuário com o mesmo email de outro id
+function consultachaveemail($id, $email) {
+  $this->db->select('id_usuarios');
+  $this->db->from('usuarios');
+  $this->db->where('email =', $email);
+  $this->db->where('id_usuarios !=', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
 }

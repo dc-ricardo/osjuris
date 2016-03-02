@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
-      <h1 class="page-header">Novo Usuário</h1>
+      <h1 class="page-header">Editar Usuário</h1>
 
-      <form class="form-group" action="<?=base_url()?>usuarios/insere" method="post">
+      <form class="form-group" action="<?=base_url('usuarios/altera/'.$usuario[0]->id_usuarios)?>" method="post">
 
         <?php
           if (validation_errors() == TRUE) {
@@ -14,12 +14,18 @@
             echo '</div>';
             echo '</div>';
             echo '</div>';
-          }
 
-          $vdc['nome'] = set_value('nome');
-          $vdc['email'] = set_value('email');
-          $vdc['nivel'] = set_value('nivel');
-          $vdc['habilitado'] = set_value('habilitado');
+            $vdc['nome'] = set_value('nome');
+            $vdc['email'] = set_value('email');
+            $vdc['nivel'] = set_value('nivel');
+            $vdc['habilitado'] = set_value('habilitado');
+          }
+          else {
+            $vdc['nome'] = $usuario[0]->nome;
+            $vdc['email'] = $usuario[0]->email;
+            $vdc['nivel'] = $usuario[0]->nivel;
+            $vdc['habilitado'] = $usuario[0]->habilitado;
+          }
 
           $niveis = unserialize(CNIVELUSUARIO);
 
@@ -77,7 +83,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary" name="submit" value="gravar">Inserir</button>
+        <button type="submit" class="btn btn-primary" name="submit" value="gravar">Gravar</button>
 
       </form>
 

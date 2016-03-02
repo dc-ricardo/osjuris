@@ -53,14 +53,43 @@ function vpostados() {
 		'nome' => $this->input->post('nome'),
 		'email' => $this->input->post('email'),
 		'nivel' => $this->input->post('nivel'),
-		'habilitado' => ($this->input->post('habilitado') == 1) ? 1 : 0,
-		'senha' => rand(100000, 999999)
+		'habilitado' => ($this->input->post('habilitado') == 1) ? 1 : 0
 	);
 	return $data;
 }
 
-function regras() {
-  $vrules = array(
+function validachavenome($pnome) {
+	$this->load->model('musuarios');
+
+  $id = $this->uri->segment(3);
+	$data = $this->musuarios->consultachavenome($id, $pnome);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachavenome', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	}
+	else {
+		return TRUE;
+	}
+}
+
+function validachaveemail($pemail) {
+	$this->load->model('musuarios');
+
+  $id = $this->uri->segment(3);
+	$data = $this->musuarios->consultachavenome($id, $pemail);
+
+	if (!empty($data)) {
+		$this->form_validation->set_message('validachaveemail', 'O campo {field} deve conter um valor único.');
+		return FALSE;
+	}
+	else {
+		return TRUE;
+	}
+}
+
+function regras($operacao) {
+  $vrules['insercao'] = array(
 		array(
 			'field' => 'nome',
 			'label' => 'Nome',
@@ -72,15 +101,32 @@ function regras() {
 			'rules' => 'required|max_length[80]|trim|valid_email|is_unique[usuarios.email]'
 		)
 	);
+
+  $vrules['edicao'] = array(
+		array(
+			'field' => 'nome',
+			'label' => 'Nome',
+			'rules' => 'required|max_length[80]|trim|callback_validachavenome'
+		),
+		array(
+			'field' => 'email',
+			'label' => 'E-mail',
+			'rules' => 'required|max_length[80]|trim|valid_email|callback_validachaveemail'
+		)
+	);
+
+	$vrules = $vrules[$operacao];
+
 	return $vrules;
 }
 
 public function insere()	{
 	$this->load->library('form_validation');
-	$this->form_validation->set_rules($this->regras());
+	$this->form_validation->set_rules($this->regras('insercao'));
 
 	if ($this->form_validation->run() == TRUE) {
 	  $data = $this->vpostados();
+		$data['senha'] = rand(100000, 999999);
 
 		$this->load->model('musuarios');
 		$this->musuarios->insere($data);
@@ -94,6 +140,31 @@ public function insere()	{
 public function localiza() {
   $conteudo = $this->input->post('conteudo');
 	$this->consultapaginada('todos', $conteudo);
+}
+
+public function edita($id) {
+	$this->load->model('musuarios');
+	$data['usuario'] = $this->musuarios->consulta($id);
+
+	$this->load->view('includes/vheader');
+	$this->load->view('vusuariosedita', $data);
+	$this->load->view('includes/vfooter');
+}
+
+public function altera($id) {
+	$this->load->library('form_validation');
+	$this->form_validation->set_rules($this->regras('edicao'));
+
+	if ($this->form_validation->run() == TRUE) {
+	  $data = $this->vpostados();
+
+		$this->load->model('musuarios');
+		$this->musuarios->altera($id, $data);
+		redirect('/usuarios');
+	}
+	else {
+		$this->edita($id);
+	}
 }
 
 }

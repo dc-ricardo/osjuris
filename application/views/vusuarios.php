@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6">
           <div class="btn-group pull-right" role="group">
-            <a class="btn btn-primary" href="<?=base_url()?>usuarios/novo" role="button">Novo</a>
+            <a class="btn btn-primary" href="<?=base_url('usuarios/novo')?>" role="button">Novo</a>
           </div>
         </div>
       </div>

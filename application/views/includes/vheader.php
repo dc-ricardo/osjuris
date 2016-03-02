@@ -49,9 +49,9 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="<?=base_url()?>dashboard"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
-          <li><a href="<?=base_url()?>processos"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
-          <li><a href="<?=base_url()?>pessoas"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
+          <li><a href="<?=base_url('dashboard')?>"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
+          <li><a href="<?=base_url('processos')?>"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
+          <li><a href="<?=base_url('pessoas')?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle"
               data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -59,7 +59,7 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<?=base_url()?>localizacoes">Localizações</a></li>
+              <li><a href="<?=base_url('localizacoes')?>">Localizações</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -69,12 +69,12 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="<?=base_url()?>perfil">Perfil</a></li>
-              <li><a href="<?=base_url()?>logon/logout">Sair</a></li>
+              <li><a href="<?=base_url('perfil')?>">Perfil</a></li>
+              <li><a href="<?=base_url('logon/logout')?>">Sair</a></li>
               <?php
                 if ($this->session->userdata['logged_in']['nivel'] == CNIVELADMINISTRADOR) {
                   echo '<li role="separator" class="divider"></li>';
-                  echo '<li><a href="usuarios">Usuários</a></li>';
+                  echo '<li><a href="'.base_url('usuarios').'">Usuários</a></li>';
                 }
               ?>
               <li role="separator" class="divider"></li>
