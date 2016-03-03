@@ -19,17 +19,8 @@
           $vdc['nome'] = set_value('nome');
           $vdc['email'] = set_value('email');
           $vdc['nivel'] = set_value('nivel');
-          $vdc['habilitado'] = set_value('habilitado');
 
           $niveis = unserialize(CNIVELUSUARIO);
-
-          // seta a marca do campo habilitado
-          if ($vdc['habilitado'] == 1) {
-            $habilitado = 'checked';
-          }
-          else {
-            $habilitado = 'unchecked';
-          }
         ?>
 
         <div class="row">
@@ -61,18 +52,6 @@
                 <option value="<?=CNIVELINTERESSADO?>" <?=set_select('nivel', '<?=CNIVELINTERESSADO?>')?> <?=$vdc['nivel']==CNIVELINTERESSADO?'selected':'';?>><?=$niveis[CNIVELINTERESSADO]?></option>
                 <option value="<?=CNIVELADMINISTRADOR?>" <?=set_select('nivel', '<?=CNIVELADMINISTRADOR?>')?> <?=$vdc['nivel']==CNIVELADMINISTRADOR?'selected':'';?>><?=$niveis[CNIVELADMINISTRADOR]?></option>
               </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
-            <div class="form-group">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" id="habilitado" name="habilitado" <?=$habilitado;?> value="1"> Habilitado
-                </label>
-              </div>
             </div>
           </div>
         </div>

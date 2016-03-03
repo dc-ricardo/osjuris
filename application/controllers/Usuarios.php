@@ -126,10 +126,13 @@ public function insere()	{
 
 	if ($this->form_validation->run() == TRUE) {
 	  $data = $this->vpostados();
-		$data['senha'] = rand(100000, 999999);
+		$data['habilitado'] = '1';
+		$senha = rand(100000, 999999);
+		$data['senha'] = MD5($senha.CSALT);
 
 		$this->load->model('musuarios');
 		$this->musuarios->insere($data);
+		$this->enviaemailsenha($data['email'], $senha);
 		redirect('/usuarios');
 	}
 	else {
@@ -165,6 +168,27 @@ public function altera($id) {
 	else {
 		$this->edita($id);
 	}
+}
+
+public function enviaemailsenha($email, $senha) {
+	$this->load->library('email');
+	$this->email->set_mailtype('html');
+
+	$this->email->from($this->session->userdata['logged_in']['email'], $this->session->userdata['logged_in']['nome']);
+	$this->email->to($email);
+	$this->email->subject('Novo Usuário OSJuris');
+
+	$url = base_url();
+	$msg = '<p>Olá.<p>Um novo usuário no sistema OSJuris foi criado para este endereço de '.
+	  'E-mail com a senha temporária '.$senha.'.'.
+		'<p>Siga o link abaixo para trocar sua senha.'.
+		'<p><a href="'.$url.'">'.$url.'</a>'.
+		'<p> Atenciosamente,'.
+		'<br>'.$this->session->userdata['logged_in']['nome']
+		;
+	$this->email->message($msg);
+
+	$this->email->send();
 }
 
 }
