@@ -9,20 +9,6 @@ SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -336,7 +322,8 @@ CREATE TABLE usuarios (
     nome character varying(80) NOT NULL,
     senha character(40) NOT NULL,
     nivel smallint DEFAULT 1::smallint NOT NULL,
-    habilitado smallint DEFAULT 0::smallint NOT NULL
+    habilitado smallint DEFAULT 0::smallint NOT NULL,
+    stemp smallint DEFAULT 1::smallint NOT NULL
 );
 
 
