@@ -6,7 +6,7 @@ public function __construct() {
 }
 
 function login($email, $senha) {
-  $this->db->select('id_usuarios, email, senha, nome, nivel');
+  $this->db->select('*');
   $this->db->from('usuarios');
   $this->db->where('email', $email);
   $this->db->where('senha', MD5($senha . CSALT));
@@ -31,7 +31,8 @@ function consulta($id) {
 }
 
 function atualizasenha($id, $novasenha) {
-  $this->db->set('senha', MD5($novasenha . CSALT));
+  $this->db->set('senha', MD5($novasenha.CSALT));
+  $this->db->set('stemp', '0');
   $this->db->where('id_usuarios', $id);
   $this->db->update('usuarios');
 }
@@ -112,6 +113,13 @@ function consultachaveemail($id, $email) {
   $this->db->where('id_usuarios !=', $id);
   $query = $this->db->get();
   return $query->result();
+}
+
+function alterasenha($data) {
+  $this->db->set('senha', $data['senha']);
+  $this->db->set('stemp', '1');
+  $this->db->where('email', $data['email']);
+  $this->db->update('usuarios');
 }
 
 }

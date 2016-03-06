@@ -7,7 +7,7 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="<?=base_url();?>assets/img/favicon.ico">
+  <link rel="icon" href="<?= base_url();?>assets/img/favicon.ico">
 
   <title>OSJuris</title>
 
@@ -39,36 +39,11 @@
 			<div class="panel panel-primary">
 				<div class="panel-heading">OSJuris - Logon</div>
 				<div class="panel-body">
-
-					<form class="form-group" method="post" action="<?=base_url('validalogin')?>">
-
-            <?=validation_errors();?>
-
-					  <div class="form-group">
-					    <label for="exampleInputEmail1">Email</label>
-					    <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?=set_value('email')?>">
-					  </div>
-
-					  <div class="form-group">
-					    <label for="exampleInputPassword1">Senha</label>
-					    <input type="password" class="form-control" id="senha" name="senha" placeholder="">
-					  </div>
-
-					  <button type="submit" class="btn btn-primary">Entrar</button>
-
-            <?php
-              if (strpos(validation_errors(), 'E-mail/Senha inválidos.') == TRUE) {
-                $email = set_value('email');
-                $this->session->set_flashdata('emailrecsenha', $email);
-                echo '<h5><a href="'.base_url('/validalogin/recuperasenha/').'">esqueci minha senha</a></h5>';
-              }
-            ?>
-
-					</form>
-
+          Uma senha temporária foi enviada para o email <?=$email;?>.
+          Verifique o recebimento da mensagem nessa conta dentro de alguns minutos e siga as instruções contidas nela.
+          É possível que a mensagem caia na pasta de SPAM.
 				</div>
 			</div>
-
 		</div>
 
 		<div class="col-md-4"></div>

@@ -42,17 +42,17 @@ function regras() {
 		array(
 			'field' => 'senhaatual',
 			'label' => 'Senha Atual',
-			'rules' => 'required|max_length[40]|alpha_numeric|trim|callback_senhavalida'
+			'rules' => 'required|min_length[6]|max_length[40]|alpha_numeric|trim|callback_senhavalida'
 		),
 		array(
 			'field' => 'novasenha',
 			'label' => 'Nova Senha',
-			'rules' => 'required|max_length[40]|alpha_numeric|trim|differs[senhaatual]'
+			'rules' => 'required|min_length[6]|max_length[40]|alpha_numeric|trim|differs[senhaatual]'
 		),
 		array(
 			'field' => 'senhaconfirmada',
 			'label' => 'Nova Senha (confirmação)',
-			'rules' => 'required|max_length[40]|alpha_numeric|trim|matches[novasenha]'
+			'rules' => 'required|min_length[6]|max_length[40]|alpha_numeric|trim|matches[novasenha]'
 		)
   );
 	return $vrules;

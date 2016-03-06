@@ -1,3 +1,4 @@
+<!-- helper para recuperar logradouro de um cep -->
 <?php
 if (!function_exists('buscar_endereco')) {
 	function buscar_endereco($cep) {
@@ -17,8 +18,9 @@ if (!function_exists('buscar_endereco')) {
     $resultado = curl_exec($ch);
     curl_close($ch);
 
-    if (!$resultado)
-      $resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";
+    if (!$resultado) {
+			$resultado = "&resultado=0&resultado_txt=erro+ao+buscar+cep";
+		}
 
     $resultado = urldecode($resultado);
     $resultado = utf8_encode($resultado);
