@@ -3,9 +3,11 @@
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
       <div class="row">
+
         <div class="col-md-2">
           <h1 class="page-header">Processos</h1>
         </div>
+
         <div class="col-md-4">
           <form class="form-group" action="<?=base_url('processos/localiza');?>" method="post">
             <div class="input-group">
@@ -17,11 +19,13 @@
             </div>
           </form>
         </div>
+
         <div class="col-md-6">
           <div class="btn-group pull-right" role="group">
             <a class="btn btn-primary" href="<?=base_url()?>processos/novo" role="button">Novo</a>
           </div>
         </div>
+
       </div>
 
       <div class="row">

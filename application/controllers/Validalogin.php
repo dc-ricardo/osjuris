@@ -59,7 +59,6 @@ public function enviaemailnovasenha($email, $senha) {
 		'<p>Siga o link abaixo para redefinir esse valor.'.
 		'<p><a href="'.$url.'">'.$url.'</a>'.
 		'<p>--'.
-		'<p>Atenciosamente,'.
 		'<br>OSJuris'
 		;
 	$this->email->message($msg);

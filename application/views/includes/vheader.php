@@ -7,18 +7,18 @@
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="icon" href="<?= base_url();?>assets/img/favicon.ico">
+  <link rel="icon" href="<?=base_url();?>assets/img/favicon.ico">
 
   <title>OSJuris</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="<?= base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?=base_url();?>assets/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-  <link href="<?= base_url();?>assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+  <link href="<?=base_url();?>assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="<?= base_url();?>assets/css/dashboard.css" rel="stylesheet">
+  <link href="<?=base_url();?>assets/css/dashboard.css" rel="stylesheet">
 
   <!-- desabilita a tecla ENTER/RETRUN nos formulários -->
   <script type="text/javascript">
@@ -49,7 +49,7 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="<?=base_url('dashboard')?>"><span class="glyphicon glyphicon-blackboard" aria-hidden="true"></span> Dashboard</a></li>
+          <li><a href="<?=base_url('dashboard')?>"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
           <li><a href="<?=base_url('processos')?>"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
           <li><a href="<?=base_url('pessoas')?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
           <li class="dropdown">

@@ -174,17 +174,17 @@ public function enviaemailsenha($email, $senha) {
 	$this->load->library('email');
 	$this->email->set_mailtype('html');
 
-	$this->email->from($this->session->userdata['logged_in']['email'], $this->session->userdata['logged_in']['nome']);
+	$this->email->from('noreply@osjuris.com.br', 'OSJuris');
 	$this->email->to($email);
 	$this->email->subject('Novo Usuário/Senha OSJuris');
 
 	$url = base_url();
-	$msg = '<p>Olá.<p>Um usuário/senha no sistema OSJuris foi criado/alterado para este endereço de '.
+	$msg = '<p>Olá.<p>Um usuário/senha no sistema OSJuris foi criado para este endereço de '.
 	  'E-mail com a senha temporária '.$senha.'.'.
 		'<p>Siga o link abaixo para trocar sua senha.'.
 		'<p><a href="'.$url.'">'.$url.'</a>'.
-		'<p> Atenciosamente,'.
-		'<br>'.$this->session->userdata['logged_in']['nome']
+		'<p>--'.
+		'<br>OSJuris'
 		;
 	$this->email->message($msg);
 

@@ -26,8 +26,16 @@
           $vdc['email'] = set_value('email');
           $vdc['observacoes'] = set_value('observacoes');
 
+          $focanome = 'autofocus';
+          $focacodigo = '';
+          $focacep = '';
+
           if (isset($codigogerado)) {
             $vdc['codigo'] = $codigogerado[0]->codigo;
+
+            $focanome = '';
+            $focacodigo = 'autofocus';
+            $focacep = '';
           }
           else {
             $vdc['codigo'] = set_value('codigo');
@@ -38,6 +46,10 @@
             $vdc['bairro'] = $ceplocalizado['bairro'];
             $vdc['cidade'] = $ceplocalizado['cidade'];
             $vdc['estado'] = $ceplocalizado['uf'];
+
+            $focanome = '';
+            $focacodigo = '';
+            $focacep = 'autofocus';
           }
           else {
             $vdc['endereco'] = set_value('endereco');
@@ -50,14 +62,14 @@
 
         <div class="form-group">
           <label for="nome_razao">Nome/Razão Social</label>
-          <input type="text" class="form-control" id="nome_razao" name="nome_razao" value="<?=$vdc['nome_razao'];?>" autofocus>
+          <input type="text" class="form-control" id="nome_razao" name="nome_razao" value="<?=$vdc['nome_razao'];?>" <?=$focanome;?>>
         </div>
 
         <div class="row">
           <div class="col-md-3">
             <label for="codigo">Código</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="codigo" name="codigo" value="<?=$vdc['codigo'];?>">
+              <input type="text" class="form-control" id="codigo" name="codigo" value="<?=$vdc['codigo'];?>" <?=$focacodigo;?>>
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-default" name="submit" value="gerar">
                   <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
@@ -94,7 +106,7 @@
           <div class="col-md-3">
             <label for="cep">CEP</label>
             <div class="input-group">
-              <input type="text" class="form-control" id="cep" name="cep" value="<?=$vdc['cep'];?>">
+              <input type="text" class="form-control" id="cep" name="cep" value="<?=$vdc['cep'];?>" <?=$focacep;?>>
               <span class="input-group-btn">
                 <button type="submit" class="btn btn-default" name="submit" value="buscarcep">
                   <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
