@@ -27,10 +27,8 @@
       <div class="row">
         <div class="col-md-2">
           <h5><a href="<?=base_url('pessoas/consultacadastradas');?>">Cadastradas <span class="badge"><?=$cadastradas;?></span></a></h5>
-          <h5><a href="#">Sem Processo <span class="badge">0</span></a></h5>
-          <h5><a href="#">Réus <span class="badge">0</span></a></h5>
-          <h5><a href="#">Autores <span class="badge">0</span></a></h5>
-          <h5><a href="#">Interessados <span class="badge">0</span></a></h5>
+          <h5><a href="<?=base_url('pessoas/consultafisicas');?>">Físicas <span class="badge"><?=$fisicas;?></span></a></h5>
+          <h5><a href="<?=base_url('pessoas/consultajuridicas');?>">Jurídicas <span class="badge"><?=$juridicas;?></span></a></h5>
           <h5><a href="<?=base_url('pessoas/consultaadvogados');?>">Advogados <span class="badge"><?=$advogados;?></span></a></h5>
         </div>
         <div class="col-md-10">

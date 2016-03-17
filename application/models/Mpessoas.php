@@ -17,6 +17,14 @@ function seleciona($categoria, $maximo, $inicio, $conteudo) {
     $condcol = 'tipo =';
     $condval = CTIPOADVOGADO;
   }
+  if ($categoria == 'fisicas') {
+    $condcol = 'tipo =';
+    $condval = CTIPOFISICA;
+  }
+  if ($categoria == 'juridicas') {
+    $condcol = 'tipo =';
+    $condval = CTIPOJURIDICA;
+  }
   if ($categoria != 'cadastradas') {
     $this->db->where($condcol, $condval);
   }
@@ -105,7 +113,21 @@ function consultachavecpf($id, $cpf) {
 }
 
 function contaadvogados() {
-  $this->db->where('tipo', 2);
+  $this->db->where('tipo', CTIPOADVOGADO);
+  $this->db->from('pessoas');
+  $total = $this->db->count_all_results();
+  return $total;
+}
+
+function contafisicas() {
+  $this->db->where('tipo', CTIPOFISICA);
+  $this->db->from('pessoas');
+  $total = $this->db->count_all_results();
+  return $total;
+}
+
+function contajuridicas() {
+  $this->db->where('tipo', CTIPOJURIDICA);
   $this->db->from('pessoas');
   $total = $this->db->count_all_results();
   return $total;
