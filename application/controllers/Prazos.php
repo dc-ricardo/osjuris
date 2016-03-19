@@ -44,14 +44,6 @@ function validadata($pdata) {
   if (!$dvalida) {
     $this->form_validation->set_message('validadata', 'Data inválida.');
 	}
-  else {
-    $phoje = strtotime(date('Y-m-d'));
-    $pprazo = strtotime(nice_date($pdata, 'Y-m-d'));
-    if ($pprazo < $phoje) {
-      $this->form_validation->set_message('validadata', 'Data no passado.');
-      $dvalida = FALSE;
-    }
-  }
   return $dvalida;
 }
 
