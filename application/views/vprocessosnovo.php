@@ -60,6 +60,16 @@
         </div>
 
         <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="valor_causa">Valor da Causa</label>
+              <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa"
+                value="<?=set_value('valor_causa');?>">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-8">
             <div class="form-group">
               <label for="descricao">Descrição</label>

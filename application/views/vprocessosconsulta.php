@@ -22,13 +22,17 @@
           <h5 class="text-muted">Número Interno</label>
           <h4><?=$processo[0]->numero_interno;?></h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <h5 class="text-muted">Data (dd/mm/aaaa)</label>
           <h4><?=nice_date($processo[0]->data_abertura, 'd/m/Y');?></h4>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <h5 class="text-muted">Localização</h5>
           <h4><?=$processo[0]->localizacao;?></h4>
+        </div>
+        <div class="col-md-2">
+          <h5 class="text-muted">Valor da Causa</label>
+          <h4><?=number_format($processo[0]->valor_causa, 2, ',', '.');?></h4>
         </div>
       </div>
 

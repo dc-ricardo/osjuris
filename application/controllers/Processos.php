@@ -52,6 +52,7 @@ function vpostados() {
 		'numero_interno' => $this->input->post('numero_interno'),
 		'data_abertura' => $this->input->post('data_abertura'),
 		'id_localizacoes' => $this->input->post('localizacao'),
+		'valor_causa' => $this->input->post('valor_causa'),
 		'descricao' => $this->input->post('descricao')
 	);
 	return $data;
@@ -102,6 +103,11 @@ function regras($operacao) {
 			'field' => 'data_abertura',
 			'label' => 'Data',
 			'rules' => 'required|callback_validadata'
+		),
+		array(
+			'field' => 'valor_causa',
+			'label' => 'Valor da Causa',
+			'rules' => 'required|numeric|greater_than[0]'
 		)
 	);
 
@@ -273,6 +279,7 @@ public function insereparte($id) {
 	$this->load->library('form_validation');
 	$this->form_validation->set_rules($tipo, $titulo,
 	  'required|trim|max_length[80]|callback_validapessoa');
+
 	if ($this->form_validation->run() == TRUE) {
 		$this->load->model('mprocessos');
 		$parte = $this->input->post($tipo);
