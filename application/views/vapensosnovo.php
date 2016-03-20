@@ -29,9 +29,6 @@
                 value="<?=set_value('numero_apenso');?>">
             </div>
           </div>
-        </div>
-
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="data_apenso">Data (dd/mm/aaaa)</label>
@@ -39,6 +36,9 @@
                 value="<?=set_value('data_apenso');?>">
             </div>
           </div>
+        </div>
+
+        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="localizacao">Localização</label>
@@ -51,6 +51,13 @@
                 }
               ?>
               </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="valor_causa">Valor da Causa</label>
+              <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa"
+                value="<?=set_value('valor_causa');?>">
             </div>
           </div>
         </div>

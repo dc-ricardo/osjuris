@@ -45,6 +45,7 @@ function vpostados($idprocesso) {
 		'numero_apenso' => $this->input->post('numero_apenso'),
 		'data_apenso' => $this->input->post('data_apenso'),
 		'id_localizacoes' => $this->input->post('localizacao'),
+		'valor_causa' => $this->input->post('valor_causa'),
 		'descricao' => $this->input->post('descricao')
 	);
 	return $data;
@@ -80,6 +81,11 @@ function regras($operacao) {
 			'field' => 'data_apenso',
 			'label' => 'Data',
 			'rules' => 'required|callback_validadata'
+		),
+    array(
+			'field' => 'valor_causa',
+			'label' => 'Valor da Causa',
+			'rules' => 'required|numeric|greater_than[-1]'
 		)
 	);
 

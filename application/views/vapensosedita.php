@@ -12,6 +12,7 @@
           $vdc['numero_apenso'] = $apenso[0]->numero_apenso;
           $vdc['data_apenso'] = $apenso[0]->data_apenso;
           $vdc['localizacao'] = $apenso[0]->id_localizacoes;
+          $vdc['valor_causa'] = $apenso[0]->valor_causa;
           $vdc['descricao'] = $apenso[0]->descricao;
 
           if (validation_errors() == TRUE) {
@@ -27,6 +28,7 @@
             $vdc['numero_apenso'] = set_value('numero_processo');
             $vdc['data_apenso'] = set_value('numero_interno');
             $vdc['localizacao'] = set_value('localizacao');
+            $vdc['valor_causa'] = set_value('valor_causa');
             $vdc['descricao'] = set_value('descricao');
           }
         ?>
@@ -39,9 +41,6 @@
                 value="<?=$vdc['numero_apenso'];?>">
             </div>
           </div>
-        </div>
-
-        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="data_apenso">Data (dd/mm/aaaa)</label>
@@ -49,7 +48,9 @@
                 value="<?=nice_date($vdc['data_apenso'], 'd/m/Y');?>">
             </div>
           </div>
+        </div>
 
+        <div class="row">
           <div class="col-md-4">
             <div class="form-group">
               <label for="localizacao">Localização</label>
@@ -62,6 +63,13 @@
                   }
                 ?>
               </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="valor_causa">Valor da Causa</label>
+              <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa"
+                value="<?=$vdc['valor_causa'];?>">
             </div>
           </div>
         </div>
