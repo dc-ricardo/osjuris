@@ -45,12 +45,12 @@
             <?=validation_errors();?>
 
 					  <div class="form-group">
-					    <label for="exampleInputEmail1">Email</label>
+					    <label for="email">Email</label>
 					    <input type="email" class="form-control" id="email" name="email" placeholder="" value="<?=set_value('email')?>">
 					  </div>
 
 					  <div class="form-group">
-					    <label for="exampleInputPassword1">Senha</label>
+					    <label for="senha">Senha</label>
 					    <input type="password" class="form-control" id="senha" name="senha" placeholder="">
 					  </div>
 

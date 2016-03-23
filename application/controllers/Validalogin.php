@@ -21,6 +21,7 @@ public function index()	{
 function check_database($senha) {
   $email = $this->input->post('email');
   $this->load->model('musuarios');
+
   $result = $this->musuarios->login($email, $senha);
 
   if ($result) {
