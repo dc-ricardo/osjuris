@@ -143,7 +143,7 @@ function regras($operacao) {
 		array(
 			'field' => 'codigo',
 			'label' => 'Código',
-			'rules' => 'required|integer|is_unique[pessoas.codigo]|min_length[2]'
+			'rules' => 'required|is_unique[pessoas.codigo]|min_length[2]|max_length[20]'
 		),
 		array(
 			'field' => 'cpf_cnpj',
@@ -161,7 +161,7 @@ function regras($operacao) {
 		array(
 			'field' => 'codigo',
 			'label' => 'Código',
-			'rules' => 'required|integer|min_length[2]|callback_validachavecodigo'
+			'rules' => 'required|min_length[2]|max_length[20]|callback_validachavecodigo'
 		),
 		array(
 			'field' => 'cpf_cnpj',
