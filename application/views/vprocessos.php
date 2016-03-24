@@ -53,14 +53,12 @@
               <tbody>
                 <?php foreach($processos as $row): ?>
                   <tr>
-                    <td><?=$row->numero_processo;?></td>
+                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>"><?=$row->numero_processo;?></a></td>
                     <td><?=$row->numero_interno;?></td>
                     <td><?=nice_date($row->data_abertura, 'd/m/Y');?></td>
                     <td><?=$row->localizacao;?></td>
 
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/consulta/'.$row->id_processos);?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">Editar</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Partes</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">Andamentos</a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('prazos/consulta/'.$row->id_processos);?>">Prazos</a>
