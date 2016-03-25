@@ -84,30 +84,41 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
-/*
-Constantes do projeto
-*/
-define('CSALT', 'nF3Jf8'); // salt para o hash md5
+// Constantes do projeto
 
+// salt para o hash md5
+define('CSALT', 'nF3Jf8');
+
+// tipo da pessoa
 define('CTIPOFISICA', '0');
 define('CTIPOJURIDICA', '1');
 define('CTIPOADVOGADO', '2');
 define('CPESSOASTIPO', serialize(array('Física', 'Jurídica', 'Advogado')));
 
-define('COSJVERSAO', '0.7.3');
-
+// parte nos processos
 define('CPARTEAUTOR', '0');
 define('CPARTEREU', '1');
 define('CPARTEADVOGADO', '2');
 define('CPARTEINTERESSADO', '3');
 
+// posição dos processos
+define('CPOSPROABERTO', '0');
+define('CPOSPROATIVO', '1');
+define('CPOSPROAPENSADO', '2');
+define('CPOSPROENCERRADO', '3');
+
+// interesse do andamento
 define('CINTERESSEPUBLICO', '0');
 define('CINTERESSEPRIVADO', '1');
 define('CINTERESSE', serialize(array('Público', 'Privado')));
 
+// nível do usuário
 define('CNIVELOPERADOR', '0');
 define('CNIVELADVOGADO', '1');
 define('CNIVELCLIENTE', '2');
 define('CNIVELINTERESSADO', '3');
 define('CNIVELADMINISTRADOR', '4');
 define('CNIVELUSUARIO', serialize(array('Operador', 'Advogado', 'Cliente', 'Interessado', 'Administrador')));
+
+// versão do aplicativo
+define('COSJVERSAO', '0.7.3');

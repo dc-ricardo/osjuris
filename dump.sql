@@ -61,7 +61,8 @@ CREATE TABLE apensos (
     numero_apenso character varying(80) NOT NULL,
     data_apenso date NOT NULL,
     descricao text NOT NULL,
-    id_localizacoes integer NOT NULL
+    id_localizacoes integer NOT NULL,
+    valor_causa numeric(15,2) DEFAULT 0::numeric NOT NULL
 );
 
 
@@ -177,7 +178,7 @@ ALTER TABLE partes OWNER TO postgres;
 
 CREATE TABLE pessoas (
     id_pessoas integer NOT NULL,
-    codigo character(6) NOT NULL,
+    codigo character varying(20) NOT NULL,
     cpf_cnpj character varying(20) NOT NULL,
     rg_ie character varying,
     nome_razao character varying(80) NOT NULL,
@@ -192,7 +193,7 @@ CREATE TABLE pessoas (
     celular character varying(20),
     email character varying(60),
     observacoes text,
-    tipo smallint DEFAULT 1::smallint NOT NULL
+    tipo smallint DEFAULT (1)::smallint NOT NULL
 );
 
 
@@ -264,7 +265,9 @@ CREATE TABLE processos (
     numero_interno character varying(80) NOT NULL,
     data_abertura date NOT NULL,
     id_localizacoes integer NOT NULL,
-    descricao text
+    descricao text,
+    valor_causa numeric(15,2) DEFAULT 0::numeric NOT NULL,
+    posicao smallint DEFAULT 0::smallint NOT NULL
 );
 
 
@@ -321,9 +324,9 @@ CREATE TABLE usuarios (
     email character varying(80) NOT NULL,
     nome character varying(80) NOT NULL,
     senha character(40) NOT NULL,
-    nivel smallint DEFAULT 1::smallint NOT NULL,
-    habilitado smallint DEFAULT 0::smallint NOT NULL,
-    stemp smallint DEFAULT 1::smallint NOT NULL
+    nivel smallint DEFAULT (1)::smallint NOT NULL,
+    habilitado smallint DEFAULT (0)::smallint NOT NULL,
+    stemp smallint DEFAULT (1)::smallint NOT NULL
 );
 
 

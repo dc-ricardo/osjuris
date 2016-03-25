@@ -13,6 +13,27 @@ function seleciona($categoria, $maximo, $inicio, $conteudo) {
   $this->db->select('processos.*, localizacoes.descricao localizacao');
   $this->db->join('localizacoes', 'processos.id_localizacoes = localizacoes.id_localizacoes');
 
+  // filtra por categoria
+  if ($categoria == 'abertos') {
+    $condcol = 'posicao =';
+    $condval = CPOSPROABERTO;
+  }
+  if ($categoria == 'ativos') {
+    $condcol = 'posicao =';
+    $condval = CPOSPROATIVO;
+  }
+  if ($categoria == 'apensados') {
+    $condcol = 'posicao =';
+    $condval = CPOSPROAPENSADO;
+  }
+  if ($categoria == 'encerrados') {
+    $condcol = 'posicao =';
+    $condval = CPOSPROENCERRADO;
+  }
+  if ($categoria != 'todos') {
+    $this->db->where($condcol, $condval);
+  }
+
   // filtra conteúdo
   if ($conteudo <> '') {
     $this->db->like('lower(numero_processo)', strtolower($conteudo));
@@ -118,6 +139,13 @@ function removeparte($idparte) {
 
 function processostodos() {
   $total = $this->db->count_all('processos');
+  return $total;
+}
+
+function contaprocessos($posicao) {
+  $this->db->where('posicao', $posicao);
+  $this->db->from('processos');
+  $total = $this->db->count_all_results();
   return $total;
 }
 

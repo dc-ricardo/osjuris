@@ -11,10 +11,30 @@ public function consultatodos() {
 	$this->consultapaginada('todos', '');
 }
 
+public function consultaabertos() {
+	$this->consultapaginada('abertos', '');
+}
+
+public function consultaativos() {
+	$this->consultapaginada('ativos', '');
+}
+
+public function consultaapensados() {
+	$this->consultapaginada('apensados', '');
+}
+
+public function consultaencerrados() {
+	$this->consultapaginada('encerrados', '');
+}
+
 public function consultapaginada($categoria, $conteudo) {
 	// select
 	$this->load->model('mprocessos');
 	$data['todos'] = $this->mprocessos->processostodos();
+	$data['abertos'] = $this->mprocessos->contaprocessos(CPOSPROABERTO);
+	$data['ativos'] = $this->mprocessos->contaprocessos(CPOSPROATIVO);
+	$data['apensados'] = $this->mprocessos->contaprocessos(CPOSPROAPENSADO);
+	$data['encerrados'] = $this->mprocessos->contaprocessos(CPOSPROENCERRADO);
 
 	// paginação
 	$this->load->library('pagination');
