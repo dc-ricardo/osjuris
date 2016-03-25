@@ -112,29 +112,15 @@ function consultachavecpf($id, $cpf) {
   return $query->result();
 }
 
-function contaadvogados() {
-  $this->db->where('tipo', CTIPOADVOGADO);
-  $this->db->from('pessoas');
-  $total = $this->db->count_all_results();
-  return $total;
-}
-
-function contafisicas() {
-  $this->db->where('tipo', CTIPOFISICA);
-  $this->db->from('pessoas');
-  $total = $this->db->count_all_results();
-  return $total;
-}
-
-function contajuridicas() {
-  $this->db->where('tipo', CTIPOJURIDICA);
-  $this->db->from('pessoas');
-  $total = $this->db->count_all_results();
-  return $total;
-}
-
 function contacadastradas() {
   $total = $this->db->count_all('pessoas');
+  return $total;
+}
+
+function contapessoas($tipo) {
+  $this->db->where('tipo', $tipo);
+  $this->db->from('pessoas');
+  $total = $this->db->count_all_results();
   return $total;
 }
 

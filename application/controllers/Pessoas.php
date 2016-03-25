@@ -27,9 +27,9 @@ public function consultapaginada($categoria, $conteudo) {
 	// select
 	$this->load->model('mpessoas');
 	$data['cadastradas'] = $this->mpessoas->contacadastradas();
-	$data['advogados'] = $this->mpessoas->contaadvogados();
-	$data['fisicas'] = $this->mpessoas->contafisicas();
-	$data['juridicas'] = $this->mpessoas->contajuridicas();
+	$data['advogados'] = $this->mpessoas->contapessoas(CTIPOADVOGADO);
+	$data['fisicas'] = $this->mpessoas->contapessoas(CTIPOFISICA);
+	$data['juridicas'] = $this->mpessoas->contapessoas(CTIPOJURIDICA);
 
   // paginação
 	$this->load->library('pagination');

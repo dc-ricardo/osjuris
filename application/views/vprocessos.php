@@ -32,10 +32,10 @@
 
         <div class="col-md-2">
           <h5><a href="<?=base_url('processos/consultatodos');?>">Todos <span class="badge"><?=$todos;?></span></a></h5>
-          <h5><a href="<?=base_url('processos/consultaabertos');?>">Abertos <span class="badge">0</span></a></h5>
-          <h5><a href="<?=base_url('processos/consultaativos');?>">Ativos <span class="badge">0</span></a></h5>
-          <h5><a href="<?=base_url('processos/consultaapensados');?>">Apensados <span class="badge">0</span></a></h5>
-          <h5><a href="<?=base_url('processos/consultaencerrados');?>">Encerrados <span class="badge">0</span></a></h5>
+          <h5><a href="<?=base_url('processos/consultaabertos');?>">Abertos <span class="badge"><?=$abertos;?></span></a></h5>
+          <h5><a href="<?=base_url('processos/consultaativos');?>">Ativos <span class="badge"><?=$ativos;?></span></a></h5>
+          <h5><a href="<?=base_url('processos/consultaapensados');?>">Apensados <span class="badge"><?=$apensados;?></span></a></h5>
+          <h5><a href="<?=base_url('processos/consultaencerrados');?>">Encerrados <span class="badge"><?=$encerrados;?></span></a></h5>
         </div>
 
         <div class="col-md-10">
