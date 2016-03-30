@@ -251,11 +251,11 @@ public function insere() {
 	}
 	else {
 		if ($this->input->post('submit') == 'gerar') {
-				$this->load->model('mpessoas');
-				$data['codigogerado'] = $this->mpessoas->geracodigo();
-				$this->load->view('includes/vheader');
-		  	$this->load->view('vpessoasnovo', $data);
-				$this->load->view('includes/vfooter');
+			$this->load->model('mpessoas');
+			$data['codigogerado'] = $this->mpessoas->geracodigo();
+			$this->load->view('includes/vheader');
+	  	$this->load->view('vpessoasnovo', $data);
+			$this->load->view('includes/vfooter');
 		}
 		else {
 			if ($this->input->post('submit') == 'buscarcep') {

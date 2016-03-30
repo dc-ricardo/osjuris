@@ -33,6 +33,7 @@
         ?>
 
         <div class="row">
+
           <div class="col-md-4">
             <div class="form-group">
               <label for="numero_processo">Número do Processo</label>
@@ -40,6 +41,7 @@
                 value="<?=$vdc['numero_processo'];?>">
             </div>
           </div>
+
           <div class="col-md-4">
             <div class="form-group">
               <label for="numero_interno">Número Interno</label>
@@ -47,11 +49,32 @@
                 value="<?=$vdc['numero_interno'];?>">
             </div>
           </div>
+
         </div>
 
         <div class="row">
 
           <div class="col-md-4">
+            <label for="localizacao">Localização</label>
+            <div class="input-group">
+              <select class="form-control" id='localizacao' name='localizacao'>
+                <?php
+                foreach($localizacoes as $row) {
+                  echo "<option value='$row->id_localizacoes'";
+                  echo $vdc['localizacao']==$row->id_localizacoes?'selected':'';
+                  echo ">".$row->descricao."</option>";
+                }
+                ?>
+              </select>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" name="submit" value="atualizarlocalizacoes">
+                  <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-2">
             <div class="form-group">
               <label for="data_abertura">Data (dd/mm/aaaa)</label>
                 <input type="date" class="form-control" id="data_abertura" name="data_abertura"
@@ -59,30 +82,14 @@
             </div>
           </div>
 
-          <div class="col-md-4">
-            <div class="form-group">
-              <label for="localizacao">Localização</label>
-              <select class="form-control" id='localizacao' name='localizacao'>
-                <?php
-                  foreach($localizacoes as $row) {
-                    echo "<option value='$row->id_localizacoes'";
-                    echo $vdc['localizacao']==$row->id_localizacoes?'selected':'';
-                    echo ">".$row->descricao."</option>";
-                  }
-                ?>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-4">
+          <div class="col-md-2">
             <div class="form-group">
               <label for="valor_causa">Valor da Causa</label>
               <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa"
-                value="<?=$vdc['valor_causa'];?>">
+              value="<?=$vdc['valor_causa'];?>">
             </div>
           </div>
+
         </div>
 
         <div class="row">
@@ -94,7 +101,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Gravar</button>
+        <button type="submit" class="btn btn-primary" name="submit" value="gravar">Gravar</button>
 
       </form>
     </div>

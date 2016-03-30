@@ -163,18 +163,25 @@ function regras($operacao) {
 }
 
 public function insere() {
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules($this->regras('insercao'));
+	if ($this->input->post('submit') == 'inserir') {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules($this->regras('insercao'));
 
-  if ($this->form_validation->run() == TRUE) {
-	  $data = $this->vpostados();
+	  if ($this->form_validation->run() == TRUE) {
+		  $data = $this->vpostados();
 
-		$this->load->model('mprocessos');
-	  $this->mprocessos->insere($data);
-		redirect('/processos');
+			$this->load->model('mprocessos');
+		  $this->mprocessos->insere($data);
+			redirect('/processos');
+		}
 	}
 	else {
-		$this->novo();
+		if ($this->input->post('submit') == 'atualizarlocalizacoes') {
+			$data['localizacoes'] = $this->lelocalizacoes();
+			$this->load->view('includes/vheader');
+			$this->load->view('vprocessosnovo', $data);
+			$this->load->view('includes/vfooter');
+		}
 	}
 }
 
@@ -200,17 +207,26 @@ public function edita($id) {
 }
 
 public function altera($id) {
-	$this->load->library('form_validation');
-	$this->form_validation->set_rules($this->regras('alteracao'));
+	if ($this->input->post('submit') == 'gravar') {
+		$this->load->library('form_validation');
+		$this->form_validation->set_rules($this->regras('alteracao'));
 
-  if ($this->form_validation->run() == TRUE) {
-		$data = $this->vpostados();
-		$this->load->model('mprocessos');
-	  $this->mprocessos->atualiza($id, $data);
-		redirect('/processos');
+	  if ($this->form_validation->run() == TRUE) {
+			$data = $this->vpostados();
+			$this->load->model('mprocessos');
+		  $this->mprocessos->atualiza($id, $data);
+			redirect('/processos');
+		}
 	}
 	else {
-		$this->edita($id);
+		if ($this->input->post('submit') == 'atualizarlocalizacoes') {
+			$this->load->model('mprocessos');
+			$data['processo'] = $this->mprocessos->consulta($id);
+			$data['localizacoes'] = $this->lelocalizacoes();
+			$this->load->view('includes/vheader');
+			$this->load->view('vprocessosedita', $data);
+			$this->load->view('includes/vfooter');
+		}
 	}
 }
 
