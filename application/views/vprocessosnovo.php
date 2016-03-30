@@ -68,8 +68,7 @@
           <div class="col-md-2">
             <div class="form-group">
               <label for="valor_causa">Valor da Causa</label>
-              <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa"
-                value="<?=set_value('valor_causa');?>">
+              <input type="number" step="0.01" class="form-control" id="valor_causa" name="valor_causa" value="0">
             </div>
           </div>
 

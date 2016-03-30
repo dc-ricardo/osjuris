@@ -127,7 +127,7 @@ function regras($operacao) {
 		array(
 			'field' => 'valor_causa',
 			'label' => 'Valor da Causa',
-			'rules' => 'required|numeric|greater_than[0]'
+			'rules' => 'required|numeric|greater_than_equal_to[0]'
 		)
 	);
 
@@ -174,6 +174,11 @@ public function insere() {
 		  $this->mprocessos->insere($data);
 			redirect('/processos');
 		}
+		else {
+			$this->load->view('includes/vheader');
+			$this->load->view('vprocessosnovo');
+			$this->load->view('includes/vfooter');
+		}
 	}
 	else {
 		if ($this->input->post('submit') == 'atualizarlocalizacoes') {
@@ -216,6 +221,9 @@ public function altera($id) {
 			$this->load->model('mprocessos');
 		  $this->mprocessos->atualiza($id, $data);
 			redirect('/processos');
+		}
+		else {
+			$this->edita($id);
 		}
 	}
 	else {
