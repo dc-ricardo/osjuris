@@ -2,6 +2,8 @@
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
+      <?php $posicoes = unserialize(CPOSPRO);?>
+
       <div class="row">
 
         <div class="col-md-2">
@@ -47,6 +49,7 @@
                   <th>N. Interno</th>
                   <th>Data de Abertura</th>
                   <th>Localização</th>
+                  <th>Posição</th>
                   <th></th>
                 </tr>
               </thead>
@@ -57,12 +60,19 @@
                     <td><?=$row->numero_interno;?></td>
                     <td><?=nice_date($row->data_abertura, 'd/m/Y');?></td>
                     <td><?=$row->localizacao;?></td>
+                    <td><?=$posicoes[$row->posicao];?></td>
 
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">Partes</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">Andamentos</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('prazos/consulta/'.$row->id_processos);?>">Prazos</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consulta/'.$row->id_processos);?>">Apensos</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true" title="Partes"></span></a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">
+                        <span class="glyphicon glyphicon-tag" aria-hidden="true" title="Andamentos"></span></a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('prazos/consulta/'.$row->id_processos);?>">
+                        <span class="glyphicon glyphicon-calendar" aria-hidden="true" title="Prazos"></span></a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consulta/'.$row->id_processos);?>">
+                        <span class="glyphicon glyphicon-tags" aria-hidden="true" title="Apensos"></span></a>
                     </td>
 
                   </tr>

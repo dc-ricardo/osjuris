@@ -106,6 +106,7 @@ define('CPOSPROABERTO', '0');
 define('CPOSPROATIVO', '1');
 define('CPOSPROAPENSADO', '2');
 define('CPOSPROENCERRADO', '3');
+define('CPOSPRO', serialize(array('Aberto','Ativo','Apensado','Encerrado')));
 
 // interesse do andamento
 define('CINTERESSEPUBLICO', '0');
