@@ -9,7 +9,7 @@ function login($email, $senha) {
   $this->db->select('*');
   $this->db->from('usuarios');
   $this->db->where('email', $email);
-  $this->db->where('senha', MD5($senha . CSALT));
+  $this->db->where('senha', MD5($senha . config_item('salt')));
   $this->db->limit(1);
 
   $query = $this->db->get();
@@ -31,7 +31,7 @@ function consulta($id) {
 }
 
 function atualizasenha($id, $novasenha) {
-  $this->db->set('senha', MD5($novasenha.CSALT));
+  $this->db->set('senha', MD5($novasenha.config_item('salt')));
   $this->db->set('stemp', '0');
   $this->db->where('id_usuarios', $id);
   $this->db->update('usuarios');

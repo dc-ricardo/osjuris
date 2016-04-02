@@ -73,7 +73,7 @@ public function recuperasenha() {
     $senha = rand(100000, 999999);
 
 		$data['email'] = $email;
-    $data['senha'] = MD5($senha.CSALT);
+    $data['senha'] = MD5($senha.config_item('salt'));
 
     $this->load->model('musuarios');
     $this->musuarios->alterasenha($data);

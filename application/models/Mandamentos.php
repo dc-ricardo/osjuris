@@ -16,11 +16,14 @@ function seleciona($idprocesso) {
 
 function insere($registro) {
   $this->db->insert('andamentos', $registro);
+
+  $this->ativaprocesso();
 }
 
 function remove($id) {
   $this->db->where('id_andamentos', $id);
   $this->db->delete('andamentos');
+  $this->ativaprocesso();
 }
 
 function consulta($id) {
@@ -34,6 +37,10 @@ function consulta($id) {
 function altera($id, $registro) {
   $this->db->where('id_andamentos', $id);
   $this->db->update('andamentos', $registro);
+}
+
+function ativaprocesso() {
+update processos set posicao = 0 where id_processos not in (select id_processos)
 }
 
 }

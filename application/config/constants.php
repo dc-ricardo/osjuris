@@ -86,9 +86,6 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 // Constantes do projeto
 
-// salt para o hash md5
-define('CSALT', 'nF3Jf8');
-
 // tipo da pessoa
 define('CTIPOFISICA', '0');
 define('CTIPOJURIDICA', '1');
@@ -122,4 +119,4 @@ define('CNIVELADMINISTRADOR', '4');
 define('CNIVELUSUARIO', serialize(array('Operador', 'Advogado', 'Cliente', 'Interessado', 'Administrador')));
 
 // versão do aplicativo
-define('COSJVERSAO', '0.7.5');
+define('COSJVERSAO', '0.7.6');

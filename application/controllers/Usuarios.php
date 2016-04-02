@@ -128,7 +128,7 @@ public function insere()	{
 	  $data = $this->vpostados();
 		$data['habilitado'] = '1';
 		$senha = rand(100000, 999999);
-		$data['senha'] = MD5($senha.CSALT);
+		$data['senha'] = MD5($senha.config_item('salt'));
 
 		$this->load->model('musuarios');
 		$this->musuarios->insere($data);

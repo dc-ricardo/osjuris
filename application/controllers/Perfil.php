@@ -42,7 +42,7 @@ function regras() {
 		array(
 			'field' => 'senhaatual',
 			'label' => 'Senha Atual',
-			'rules' => 'required|min_length[6]|max_length[40]|alpha_numeric|trim|callback_senhavalida'
+			'rules' => 'required|alpha_numeric|trim|callback_senhavalida'
 		),
 		array(
 			'field' => 'novasenha',
