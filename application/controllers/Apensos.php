@@ -165,7 +165,7 @@ public function consultaap($idprocesso, $idapenso) {
   $this->load->model('mapensos');
   $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
-  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['apenso'] = $this->mapensos->consulta($idapenso);
 
   $this->load->view('includes/vheader');
 	$this->load->view('vapensosconsulta', $dataview);
@@ -181,7 +181,7 @@ public function andamentos($idprocesso, $idapenso) {
   $this->load->model('mapensos');
   $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
-  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['andamentos'] = $this->mapensos->andamentos($idapenso);
 
   $this->load->view('includes/vheader');
@@ -198,7 +198,7 @@ public function novoandamento($idprocesso, $idapenso) {
   $this->load->model('mapensos');
   $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
-  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['apenso'] = $this->mapensos->consulta($idapenso);
 
   $this->load->view('includes/vheader');
 	$this->load->view('vapensosnovoandamento', $dataview);
@@ -256,7 +256,7 @@ public function editaandamento($idprocesso, $idapenso, $idandamento) {
   $this->load->model('mapensos');
   $datainclude['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['dadosdoapenso'] = $this->load->view('vdadosdoapenso', $datainclude, TRUE);
-  $dataview['apenso'] = $this->mapensos->consulta($idprocesso);
+  $dataview['apenso'] = $this->mapensos->consulta($idapenso);
   $dataview['andamento'] = $this->mapensos->consultaandamento($idandamento);
 
   $this->load->view('includes/vheader');

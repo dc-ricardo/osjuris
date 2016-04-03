@@ -14,13 +14,13 @@
 
       <div class="row">
 
-        <div class="col-md-1">
+        <div class="col-md-2">
           <h5><a href="#">Públicos <span class="badge">0</span></a></h5>
           <h5><a href="#">Privados <span class="badge">0</span></a></h5>
           <h5><a href="#">Todos <span class="badge">0</span></a></h5>
         </div>
 
-        <div class="col-md-11">
+        <div class="col-md-10">
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
