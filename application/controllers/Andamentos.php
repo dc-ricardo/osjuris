@@ -96,7 +96,7 @@ public function edita($idprocesso, $idandamento) {
 
 public function exclui($idprocesso, $idandamento) {
   $this->load->model('mandamentos');
-	$this->mandamentos->remove($idandamento);
+	$this->mandamentos->remove($idandamento, $idprocesso);
 
   redirect('/andamentos/consulta/'.$idprocesso);
 }

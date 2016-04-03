@@ -282,7 +282,7 @@ public function alteraandamento($idprocesso, $idapenso, $idandamento) {
 
 public function excluiandamento($idprocesso, $idapenso, $idandamento) {
   $this->load->model('mapensos');
-  $this->mapensos->excluiandamento($idandamento);
+  $this->mapensos->excluiandamento($idandamento, $idprocesso);
   redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
 }
 
