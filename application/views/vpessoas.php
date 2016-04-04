@@ -45,12 +45,14 @@
               <tbody>
                 <?php foreach($pessoas as $pessoa): ?>
                   <tr>
-                    <td><?= $pessoa->nome_razao; ?></td>
-                    <td><?= $pessoa->codigo; ?></td>
-                    <td><?= $pessoa->cpf_cnpj; ?></td>
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/consulta/'.$pessoa->id_pessoas)?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/edita/'.$pessoa->id_pessoas)?>">Editar</a>
+                      <a href="<?=base_url('pessoas/consulta/'.$pessoa->id_pessoas)?>"><?=$pessoa->nome_razao;?></a>
+                    </td>
+                    <td><?=$pessoa->codigo;?></td>
+                    <td><?=$pessoa->cpf_cnpj;?></td>
+                    <td>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('pessoas/edita/'.$pessoa->id_pessoas)?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
                     </td>
                   </tr>
                 <?php endforeach; ?>

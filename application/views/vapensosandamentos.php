@@ -41,10 +41,12 @@
 
                     <td style="white-space:nowrap">
                       <a class="btn btn-default btn-xs"
-                        href="<?=base_url('apensos/editaandamento/'.$processo[0]->id_processos.'/'.$row->id_apensos.'/'.$row->id_apensosand);?>">Editar</a>
+                        href="<?=base_url('apensos/editaandamento/'.$processo[0]->id_processos.'/'.$row->id_apensos.'/'.$row->id_apensosand);?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
                       <a class="btn btn-default btn-xs"
                         href="<?=base_url('apensos/excluiandamento/'.$processo[0]->id_processos.'/'.$row->id_apensos.'/'.$row->id_apensosand);?>"
-                        onclick="return confirm('Confirma exclusão desse Andamento?')">Excluir</a>
+                        onclick="return confirm('Confirma exclusão desse Andamento?')">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Excluir"></span></a>
                     </td>
 
                   </tr>

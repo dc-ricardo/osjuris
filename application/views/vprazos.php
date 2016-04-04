@@ -39,10 +39,12 @@
 
                     <td style="white-space:nowrap">
                       <a class="btn btn-default btn-xs"
-                        href="<?=base_url('prazos/edita/'.$row->id_processos.'/'.$row->id_prazos);?>">Editar</a>
+                        href="<?=base_url('prazos/edita/'.$row->id_processos.'/'.$row->id_prazos);?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
                       <a class="btn btn-default btn-xs"
                         href="<?=base_url('prazos/exclui/'.$row->id_processos.'/'.$row->id_prazos);?>"
-                        onclick="return confirm('Confirma exclusão desse Prazo?')">Excluir</a>
+                        onclick="return confirm('Confirma exclusão desse Prazo?')">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" title="Excluir"></span></a>
                     </td>
 
                   </tr>

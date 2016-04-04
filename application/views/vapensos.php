@@ -32,14 +32,20 @@
               <tbody>
                 <?php foreach($apensos as $row): ?>
                   <tr>
-                    <td><?=$row->numero_apenso;?></td>
+                    <td>
+                      <a href="<?=base_url('apensos/consultaap/'.$row->id_processos.'/'.$row->id_apensos);?>">
+                        <?=$row->numero_apenso;?></a>
+                    </td>
                     <td><?=nice_date($row->data_apenso, 'd/m/Y');?></td>
                     <td><?=$row->localizacao;?></td>
 
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consultaap/'.$row->id_processos.'/'.$row->id_apensos);?>">Consultar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/edita/'.$row->id_processos.'/'.$row->id_apensos);?>">Editar</a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('apensos/andamentos/'.$row->id_processos.'/'.$row->id_apensos);?>">Andamentos</a>
+                      <a class="btn btn-default btn-xs"
+                        href="<?=base_url('apensos/edita/'.$row->id_processos.'/'.$row->id_apensos);?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
+                      <a class="btn btn-default btn-xs"
+                        href="<?=base_url('apensos/andamentos/'.$row->id_processos.'/'.$row->id_apensos);?>">
+                        <span class="glyphicon glyphicon-tag" aria-hidden="true" title="Andamentos"></span></a>
                     </td>
 
                   </tr>
