@@ -52,7 +52,9 @@
                     <td><?=$niveis[$usuario->nivel];?></td>
                     <td><?php if ($usuario->habilitado == 1) { echo "S"; } else { echo "N"; }?></td>
                     <td>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('usuarios/edita/'.$usuario->id_usuarios)?>">Editar</a>
+                      <a class="btn btn-default btn-xs" href="<?=base_url('usuarios/edita/'.$usuario->id_usuarios)?>">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span>
+                      </a>
                     </td>
                   </tr>
                 <?php endforeach; ?>
