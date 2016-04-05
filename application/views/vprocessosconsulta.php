@@ -106,8 +106,11 @@
 
       <div class="row">
         <div class="col-md-12">
+          <hr>
           <?php if ($processo[0]->posicao != CPOSPROENCERRADO) { ?>
             <a class="btn btn-warning" href="<?=base_url("processos/encerra/".$processo[0]->id_processos);?>" role="button">Encerrar</a>
+          <?php } else { ?>
+            <a href="<?=base_url("processos/reposiciona/".$processo[0]->id_processos);?>" role="button">Estornar Encerramento</a>
           <?php } ?>
         </div>
       </div>

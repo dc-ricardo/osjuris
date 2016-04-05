@@ -351,4 +351,10 @@ public function encerra($id) {
 	$this->consulta($id);
 }
 
+public function reposiciona($id) {
+	$this->load->model('mprocessos');
+	$this->mprocessos->reposiciona($id);
+	$this->consulta($id);
+}
+
 }
