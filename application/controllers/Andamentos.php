@@ -74,6 +74,8 @@ public function insere($idprocesso) {
 
 		$this->load->model('mandamentos');
 	  $this->mandamentos->insere($data);
+		$this->load->model('mprocessos');
+	  $this->mprocessos->reposiciona($idprocesso);
 		redirect('/andamentos/consulta/'.$idprocesso);
 	}
 	else {
@@ -97,6 +99,8 @@ public function edita($idprocesso, $idandamento) {
 public function exclui($idprocesso, $idandamento) {
   $this->load->model('mandamentos');
 	$this->mandamentos->remove($idandamento, $idprocesso);
+  $this->load->model('mprocessos');
+  $this->mprocessos->reposiciona($idprocesso);
 
   redirect('/andamentos/consulta/'.$idprocesso);
 }
