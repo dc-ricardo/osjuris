@@ -345,4 +345,10 @@ public function localiza() {
 	$this->consultapaginada('todos', $conteudo);
 }
 
+public function encerra($id) {
+	$this->load->model('mprocessos');
+	$this->mprocessos->encerraprocesso($id);
+	$this->consulta($id);
+}
+
 }

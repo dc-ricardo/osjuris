@@ -149,4 +149,10 @@ function contaprocessos($posicao) {
   return $total;
 }
 
+function encerraprocesso($id) {
+  $this->db->set('posicao', CPOSPROENCERRADO);
+  $this->db->where('id_processos', $id);
+  $this->db->update('processos');
+}
+
 }
