@@ -10,7 +10,9 @@ public function index()	{
 	$data['parados'] = $this->mprocessos->dashprocessosparados();
 
 	$this->load->view('includes/vheader');
-	$this->load->view('vdashboard', $data);
+	if (ENVIRONMENT == 'development') {
+		$this->load->view('vdashboard', $data);
+	}
 	$this->load->view('includes/vfooter');
 }
 

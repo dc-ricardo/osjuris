@@ -97,6 +97,7 @@ define('CPARTEAUTOR', '0');
 define('CPARTEREU', '1');
 define('CPARTEADVOGADO', '2');
 define('CPARTEINTERESSADO', '3');
+define('CPARTES', serialize(array('Autor','Réu','Advogado','Interessado')));
 
 // posição dos processos
 define('CPOSPROABERTO', '0');

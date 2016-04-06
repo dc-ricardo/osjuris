@@ -273,6 +273,7 @@ public function insere() {
 public function consulta($id) {
 	$this->load->model('mpessoas');
 	$data['pessoa'] = $this->mpessoas->consulta($id);
+	$data['processos'] = $this->mpessoas->processoscomoparte($id);
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vpessoasconsulta', $data);

@@ -132,4 +132,13 @@ function localiza($conteudo) {
   return $query->result();
 }
 
+function processoscomoparte($id) {
+  $this->db->select('processos.id_processos, numero_processo, numero_interno, data_abertura, descricao, tipo_parte');
+  $this->db->from('processos');
+  $this->db->join('partes', 'processos.id_processos = partes.id_processos');
+  $this->db->where('partes.id_pessoas', $id);
+  $query = $this->db->get();
+  return $query->result();
+}
+
 }
