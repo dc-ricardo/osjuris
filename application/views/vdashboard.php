@@ -5,33 +5,92 @@
 
       <div class="row">
 
-        <div class="col-md-2">
-          <h5><a href="#">Processos <span class="badge">0</span></a></h5>
-          <h5><a href="#">Prazos <span class="badge">0</span></a></h5>
-        </div>
+        <div class="col-md-12">
 
-        <div class="col-md-10">
-          <div class="table-responsive">
-            <table class="table table-striped">
+          <!-- Prazos -->
+          <div class="panel panel-danger">
+            <div class="panel-heading">Prazos</div>
+            <!-- <div class="panel-body"> -->
+            <!-- </div> -->
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                  <th>Processo</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($prazos as $row): ?>
+                  <tr>
+                    <td><?=nice_date($row->data_prazo, 'd-m-Y');?></td>
+                    <td><?=$row->prazos_descricao;?></td>
+                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>"><?=$row->numero_interno;?></a></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Processos -->
+          <div class="panel panel-primary">
+            <div class="panel-heading">Processos</div>
+            <!-- <div class="panel-body">
+            </div> -->
+
+            <table class="table">
               <thead>
                 <tr>
                   <th>N. Processo</th>
                   <th>N. Interno</th>
                   <th>Data de Abertura</th>
-                  <th>Localização</th>
+                  <th>Descrição</th>
                 </tr>
               </thead>
               <tbody>
+                <?php foreach($processos as $row): ?>
                   <tr>
-                    <td>111111</td>
-                    <td>222222</td>
-                    <td>12/12/12</td>
-                    <td>aaaa</td>
+                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>"><?=$row->numero_processo;?></a></td>
+                    <td><?=$row->numero_interno;?></td>
+                    <td><?=nice_date($row->data_abertura, 'd/m/Y');?></td>
+                    <td><?=$row->descricao;?></td>
                   </tr>
+                <?php endforeach; ?>
               </tbody>
             </table>
           </div>
+
+          <!-- Processos Parados -->
+          <div class="panel panel-warning">
+            <div class="panel-heading">Processos Parados</div>
+            <div class="panel-body">
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>N. Processo</th>
+                  <th>N. Interno</th>
+                  <th>Data de Abertura</th>
+                  <th>Descrição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach($parados as $row): ?>
+                  <tr>
+                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>"><?=$row->numero_processo;?></a></td>
+                    <td><?=$row->numero_interno;?></td>
+                    <td><?=nice_date($row->data_abertura, 'd/m/Y');?></td>
+                    <td><?=$row->descricao;?></td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+          </div>
+
         </div>
+
       </div>
     </div>
   </div>

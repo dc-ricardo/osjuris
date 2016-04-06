@@ -187,4 +187,32 @@ function reposiciona($id) {
   $this->db->update('processos');
 }
 
+function dashprocessoscomalertas() {
+  $this->db->select('*');
+  $this->db->from('processos');
+  $this->db->where('posicao !=', CPOSPROENCERRADO);
+  $this->db->limit('6');
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function dashprazos() {
+  $this->db->select('processos.id_processos, data_prazo, prazos.descricao prazos_descricao, numero_interno');
+  $this->db->from('prazos');
+  $this->db->join('processos', 'prazos.id_processos = processos.id_processos');
+  $this->db->where('posicao !=', CPOSPROENCERRADO);
+  $this->db->limit('6');
+  $query = $this->db->get();
+  return $query->result();
+}
+
+function dashprocessosparados() {
+  $this->db->select('*');
+  $this->db->from('processos');
+  $this->db->where('posicao !=', CPOSPROENCERRADO);
+  $this->db->limit('6');
+  $query = $this->db->get();
+  return $query->result();
+}
+
 }
