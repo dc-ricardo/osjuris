@@ -34,7 +34,7 @@
           </div>
 
           <!-- Processos -->
-          <div class="panel panel-primary">
+          <div class="panel panel-info">
             <div class="panel-heading">Processos</div>
             <!-- <div class="panel-body">
             </div> -->
@@ -64,8 +64,8 @@
           <!-- Processos Parados -->
           <div class="panel panel-warning">
             <div class="panel-heading">Processos Parados</div>
-            <div class="panel-body">
-            </div>
+            <!-- <div class="panel-body">
+            </div> -->
 
             <table class="table">
               <thead>

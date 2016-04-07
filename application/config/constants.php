@@ -106,6 +106,12 @@ define('CPOSPROAPENSADO', '2');
 define('CPOSPROENCERRADO', '3');
 define('CPOSPRO', serialize(array('Aberto','Ativo','Apensado','Encerrado')));
 
+// posição dos apensos
+define('CPOSAPEABERTO', '0');
+define('CPOSAPEATIVO', '1');
+define('CPOSAPEENCERRADO', '2');
+define('CPOSAPE', serialize(array('Aberto','Ativo','Encerrado')));
+
 // interesse do andamento
 define('CINTERESSEPUBLICO', '0');
 define('CINTERESSEPRIVADO', '1');

@@ -13,9 +13,9 @@
       <div class="row">
 
         <div class="col-md-2">
-          <h5><a href="#">Abertos <span class="badge">0</span></a></h5>
-          <h5><a href="#">Ativos <span class="badge">0</span></a></h5>
-          <h5><a href="#">Encerrados <span class="badge">0</span></a></h5>
+          <h5><a href="#">Abertos <span class="badge"><?=$abertos;?></span></a></h5>
+          <h5><a href="#">Ativos <span class="badge"><?=$ativos;?></span></a></h5>
+          <h5><a href="#">Encerrados <span class="badge"><?=$encerrados;?></span></a></h5>
         </div>
 
         <div class="col-md-10">

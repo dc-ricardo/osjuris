@@ -79,4 +79,12 @@ function excluiandamento($idandamento, $idprocesso) {
   $this->db->delete('apensosand');
 }
 
+function contaapensos($idprocesso, $posicao) {
+  $this->db->where('posicao', $posicao);
+  $this->db->from('apensos');
+  $this->db->where('id_processos', $idprocesso);
+  $total = $this->db->count_all_results();
+  return $total;
+}
+
 }
