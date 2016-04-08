@@ -80,11 +80,36 @@ function excluiandamento($idandamento, $idprocesso) {
 }
 
 function contaapensos($idprocesso, $posicao) {
-  $this->db->where('posicao', $posicao);
   $this->db->from('apensos');
+  $this->db->where('posicao', $posicao);
   $this->db->where('id_processos', $idprocesso);
   $total = $this->db->count_all_results();
   return $total;
+}
+
+function encerra($idapenso) {
+  $this->db->set('posicao', CPOSAPEENCERRADO);
+  $this->db->where('id_apensos', $idapenso);
+  $this->db->update('apensos');
+}
+
+function reposiciona($idapenso) {
+  // apenso com andamento(s) será Ativado
+  $this->db->select('id_apensos');
+  $this->db->from('apensosand');
+  $this->db->where('id_apensos', $idapenso);
+  $andamentos = $this->db->get_compiled_select();
+
+  // abre apenso
+  $this->db->set('posicao', '0');
+  $this->db->where('id_apensos', $idapenso);
+  $this->db->update('apensos');
+
+  // ativa apenso
+  $this->db->set('posicao', '1');
+  $this->db->where('id_apensos', $idapenso);
+  $this->db->where_in('id_apensos', $andamentos, FALSE);
+  $this->db->update('apensos');
 }
 
 }

@@ -12,9 +12,12 @@
         <div class="col-md-12">
           <hr>
           <?php if ($apenso[0]->posicao != CPOSAPEENCERRADO) { ?>
-            <a class="btn btn-warning" href="<?=base_url("apensos/encerra/".$apenso[0]->id_apensos);?>" role="button">Encerrar</a>
+            <a class="btn btn-warning"
+              href="<?=base_url("apensos/encerra/".$apenso[0]->id_processos.'/'.$apenso[0]->id_apensos);?>"
+              role="button">Encerrar</a>
           <?php } else { ?>
-            <a href="<?=base_url("apensos/reposiciona/".$apenso[0]->id_apensos);?>" role="button">Estornar Encerramento</a>
+            <a href="<?=base_url("apensos/reposiciona/".$apenso[0]->id_processos.'/'.$apenso[0]->id_apensos);?>"
+              role="button">Estornar Encerramento</a>
           <?php } ?>
         </div>
       </div>

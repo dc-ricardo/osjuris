@@ -244,8 +244,11 @@ public function insereandamento($idprocesso, $idapenso) {
 
 		$this->load->model('mapensos');
 	  $this->mapensos->insereandamento($data);
+
     $this->load->model('mprocessos');
-	  $this->mprocessos->reposiciona($idprocesso);
+	  $this->mprocessos->reposiciona($idprocesso, $idapenso);
+    $this->load->model('mapensos');
+	  $this->mapensos->reposiciona($idapenso);
 
 		redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
 	}
@@ -290,10 +293,25 @@ public function alteraandamento($idprocesso, $idapenso, $idandamento) {
 public function excluiandamento($idprocesso, $idapenso, $idandamento) {
   $this->load->model('mapensos');
   $this->mapensos->excluiandamento($idandamento, $idprocesso);
+
   $this->load->model('mprocessos');
-  $this->mprocessos->reposiciona($idprocesso);
+  $this->mprocessos->reposiciona($idprocesso, $idapenso);
+  $this->load->model('mapensos');
+  $this->mapensos->reposiciona($idapenso);
 
   redirect('/apensos/andamentos/'.$idprocesso.'/'.$idapenso);
+}
+
+public function encerra($idprocesso, $idapenso) {
+  $this->load->model('mapensos');
+  $this->mapensos->encerra($idapenso);
+  $this->consultaap($idprocesso, $idapenso);
+}
+
+public function reposiciona($idprocesso, $idapenso) {
+	$this->load->model('mapensos');
+	$this->mapensos->reposiciona($idapenso);
+	$this->consulta($idprocesso, $idapenso);
 }
 
 }

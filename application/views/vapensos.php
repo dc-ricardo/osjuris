@@ -2,6 +2,8 @@
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
+      <?php $posicoes = unserialize(CPOSAPE);?>
+
       <h1 class="page-header">Apensos
         <div class="btn-group pull-right" role="group">
           <a class="btn btn-primary" href="<?=base_url()?>apensos/novo/<?=$processo[0]->id_processos;?>" role="button">Novo</a>
@@ -26,6 +28,7 @@
                   <th>Número</th>
                   <th>Data</th>
                   <th>Localização</th>
+                  <th>Posição</th>
                   <th></th>
                 </tr>
               </thead>
@@ -38,6 +41,7 @@
                     </td>
                     <td><?=nice_date($row->data_apenso, 'd/m/Y');?></td>
                     <td><?=$row->localizacao;?></td>
+                    <td><?=$posicoes[$row->posicao];?></td>
 
                     <td>
                       <a class="btn btn-default btn-xs"
