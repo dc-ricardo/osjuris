@@ -345,16 +345,34 @@ public function localiza() {
 	$this->consultapaginada('todos', $conteudo);
 }
 
-public function encerra($id) {
+public function encerra($idprocesso) {
 	$this->load->model('mprocessos');
-	$this->mprocessos->encerraprocesso($id);
-	$this->consulta($id);
+	$this->mprocessos->encerraprocesso($idprocesso);
+	$this->consulta($idprocesso);
 }
 
-public function reposiciona($id) {
+public function reposiciona($idprocesso) {
 	$this->load->model('mprocessos');
-	$this->mprocessos->reposiciona($id);
-	$this->consulta($id);
+	$this->mprocessos->reposiciona($idprocesso);
+	$this->consulta($idprocesso);
+}
+
+public function imprime($idprocesso) {
+	$this->load->model('mprocessos');
+	$data['processo'] = $this->mprocessos->consulta($idprocesso);
+	$data['autores'] = $this->mprocessos->consultapartes($idprocesso, CPARTEAUTOR);
+	$data['reus'] = $this->mprocessos->consultapartes($idprocesso, CPARTEREU);
+	$data['advogados'] = $this->mprocessos->consultapartes($idprocesso, CPARTEADVOGADO);
+	$data['interessados'] = $this->mprocessos->consultapartes($idprocesso, CPARTEINTERESSADO);
+
+	$this->load->model('mandamentos');
+	$data['andamentos'] = $this->mandamentos->seleciona($idprocesso);
+
+	$this->load->model('mapensos');
+	$data['apensos'] = $this->mapensos->seleciona($idprocesso);
+	$data['apensosand'] = $this->mapensos->andamentos($data['apensos'][0]->id_apensos);
+
+	$this->load->view('vprocessoimpressao', $data);
 }
 
 }

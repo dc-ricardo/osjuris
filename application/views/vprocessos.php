@@ -62,7 +62,7 @@
                     <td><?=$row->localizacao;?></td>
                     <td><?=$posicoes[$row->posicao];?></td>
 
-                    <td>
+                    <td width="155px">
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/edita/'.$row->id_processos);?>">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true" title="Editar"></span></a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('processos/partes/'.$row->id_processos);?>">
