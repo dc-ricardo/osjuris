@@ -5,11 +5,11 @@ public function __construct() {
   parent::__construct();
 }
 
-function seleciona($idprocesso) {
+function seleciona($idprocesso, $ordem) {
   $this->db->select('andamentos.*');
   $this->db->from('andamentos');
   $this->db->where('id_processos =', $idprocesso);
-  $this->db->order_by('data_andamento, id_andamentos', 'DESC');
+  $this->db->order_by('data_andamento, id_andamentos', $ordem);
   $query = $this->db->get();
   return $query->result();
 }

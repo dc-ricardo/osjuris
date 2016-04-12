@@ -111,7 +111,7 @@ function insereparte($processo, $tipo, $parte) {
 }
 
 function consultapartes($id, $tparte) {
-  $this->db->select('partes.*, pessoas.nome_razao');
+  $this->db->select('partes.*, pessoas.nome_razao, pessoas.cpf_cnpj');
   $this->db->from('partes');
   $this->db->join('pessoas', 'partes.id_pessoas = pessoas.id_pessoas');
   $this->db->where('partes.id_processos =', $id);

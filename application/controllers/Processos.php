@@ -366,10 +366,10 @@ public function imprime($idprocesso) {
 	$data['interessados'] = $this->mprocessos->consultapartes($idprocesso, CPARTEINTERESSADO);
 
 	$this->load->model('mandamentos');
-	$data['andamentos'] = $this->mandamentos->seleciona($idprocesso);
+	$data['andamentos'] = $this->mandamentos->seleciona($idprocesso, 'ASC');
 
 	$this->load->model('mapensos');
-	$data['apensos'] = $this->mapensos->seleciona($idprocesso);
+	$data['apensos'] = $this->mapensos->seleciona($idprocesso, 'ASC');
 	if (isset($data['apensos'][0])) {
 		$data['apensosand'] = $this->mapensos->andamentos($data['apensos'][0]->id_apensos);
 	}

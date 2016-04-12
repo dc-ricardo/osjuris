@@ -26,22 +26,22 @@
 
   <h3>Autores</h3>
   <?php foreach($autores as $row): ?>
-    <p><?=$row->nome_razao;?>
+    <p><?=$row->nome_razao.' - '.$row->cpf_cnpj;?>
   <?php endforeach; ?>
 
   <h3>Réus</h3>
   <?php foreach($reus as $row): ?>
-    <p><?=$row->nome_razao;?>
+    <p><?=$row->nome_razao.' - '.$row->cpf_cnpj;?>
   <?php endforeach; ?>
 
   <h3>Advogados</h3>
   <?php foreach($advogados as $row): ?>
-    <p><?=$row->nome_razao;?>
+    <p><?=$row->nome_razao.' - '.$row->cpf_cnpj;?>
   <?php endforeach; ?>
 
   <h3>Interessados</h3>
   <?php foreach($interessados as $row): ?>
-    <p><?=$row->nome_razao;?>
+    <p><?=$row->nome_razao.' - '.$row->cpf_cnpj;?>
   <?php endforeach; ?>
 
   <h2>Andamentos</h2>

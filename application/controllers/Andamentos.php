@@ -12,7 +12,7 @@ public function consulta($idprocesso)	{
   $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
 
   $this->load->model('mandamentos');
-	$dataview['andamentos'] = $this->mandamentos->seleciona($idprocesso);
+	$dataview['andamentos'] = $this->mandamentos->seleciona($idprocesso, 'DESC');
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vandamentos', $dataview);

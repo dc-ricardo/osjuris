@@ -12,7 +12,7 @@ public function consulta($idprocesso)	{
   $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
 
   $this->load->model('mapensos');
-	$dataview['apensos'] = $this->mapensos->seleciona($idprocesso);
+	$dataview['apensos'] = $this->mapensos->seleciona($idprocesso, 'DESC');
 
   $dataview['abertos'] = $this->mapensos->contaapensos($idprocesso, CPOSAPEABERTO);
   $dataview['ativos'] = $this->mapensos->contaapensos($idprocesso, CPOSAPEATIVO);
