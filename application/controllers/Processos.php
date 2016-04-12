@@ -370,7 +370,9 @@ public function imprime($idprocesso) {
 
 	$this->load->model('mapensos');
 	$data['apensos'] = $this->mapensos->seleciona($idprocesso);
-	$data['apensosand'] = $this->mapensos->andamentos($data['apensos'][0]->id_apensos);
+	if (isset($data['apensos'][0])) {
+		$data['apensosand'] = $this->mapensos->andamentos($data['apensos'][0]->id_apensos);
+	}
 
 	$this->load->view('vprocessoimpressao', $data);
 }
