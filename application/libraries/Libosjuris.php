@@ -11,11 +11,12 @@ public function fvalidadata($pdata) {
   return $dvalida;
 }
 
-public function fpaginacao($purl, $ptotalrec) {
+public function fpaginacao($purl, $ptotalrec, $perpage) {
   $data['base_url'] = $purl;
 	$data['total_rows'] = $ptotalrec;
-	$data['per_page'] = 4;
-	$data['uri_segment'] = 3;
+  $data['uri_segment'] = 3;
+	$data['per_page'] = $perpage;
+  $data["num_links"] = 12;
 	$data['full_tag_open'] = '<ul class="pagination">';
 	$data['full_tag_close'] = '</ul>';
   $data['prev_link'] = '&laquo;';
@@ -28,7 +29,7 @@ public function fpaginacao($purl, $ptotalrec) {
   $data['cur_tag_close'] = '</a></li>';
   $data['num_tag_open'] = '<li>';
   $data['num_tag_close'] = '</li>';
-  $data["num_links"] = round($data["total_rows"] / $data["per_page"]);
+  // $data["num_links"] = round($data["total_rows"] / $data["per_page"]);
   return $data;
 }
 

@@ -8,6 +8,9 @@
         <div class="btn-group pull-right" role="group">
           <a class="btn btn-primary" href="<?=base_url()?>pessoas/novo" role="button">Novo</a>
           <a class="btn btn-primary" href="<?=base_url('pessoas/edita/'.$pessoa[0]->id_pessoas);?>" role="button">Editar</a>
+          <a class="btn btn-primary" href="<?=base_url('pessoas/imprime/'.$pessoa[0]->id_pessoas);?>" role="button">
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          </a>
         </div>
       </h1>
 

@@ -4,7 +4,7 @@
       <h1 class="page-header">Troca de Senha</h1>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <div class="panel panel-default">
             <div class="panel-heading">Nome</div>
             <div class="panel-body">
@@ -15,7 +15,7 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <div class="panel panel-default">
             <div class="panel-heading">E-mail/Login</div>
             <div class="panel-body">
@@ -39,7 +39,7 @@
 
       <form class="form-group" action="<?=base_url('perfil/atualizasenha/'.$usuario[0]->id_usuarios);?>" method="post">
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-5">
             <div class="form-group">
               <input type="password" class="form-control" id="senhaatual" name="senhaatual" placeholder="senha atual">
             </div>

@@ -31,11 +31,12 @@ public function consultapaginada($categoria, $conteudo) {
 	$inicio = ($this->uri->segment("3") != '') ? $this->uri->segment("3") : 0;
 	$purl = base_url('usuarios/consulta'.$categoria);
 	$ptotalrec = $data[$categoria];
-  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec);
+	$perpage = $this->session->userdata['logged_in']['registros_pagina'];
+  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec, $perpage);
 	$this->pagination->initialize($pdata);
-	$data['paginacao'] = $this->pagination->create_links();
 
-	$data['usuarios'] = $this->musuarios->seleciona($categoria, $ptotalrec, $inicio, $conteudo);
+	$data['paginacao'] = $this->pagination->create_links();
+	$data['usuarios'] = $this->musuarios->seleciona($categoria, $perpage, $inicio, $conteudo);
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vusuarios', $data);

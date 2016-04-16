@@ -36,11 +36,12 @@ public function consultapaginada($categoria, $conteudo) {
 	$inicio = ($this->uri->segment("3") != '') ? $this->uri->segment("3") : 0;
 	$purl = base_url('pessoas/consulta'.$categoria);
 	$ptotalrec = $data[$categoria];
-  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec);
+	$perpage = $this->session->userdata['logged_in']['registros_pagina'];
+  $pdata = $this->libosjuris->fpaginacao($purl, $ptotalrec, $perpage);
 	$this->pagination->initialize($pdata);
-	$data['paginacao'] = $this->pagination->create_links();
 
-	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $ptotalrec, $inicio, $conteudo);
+	$data['paginacao'] = $this->pagination->create_links();
+	$data['pessoas'] = $this->mpessoas->seleciona($categoria, $perpage, $inicio, $conteudo);
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vpessoas', $data);
@@ -334,6 +335,14 @@ public function atualiza($id) {
 public function localiza() {
   $conteudo = $this->input->post('conteudo');
 	$this->consultapaginada('cadastradas', $conteudo);
+}
+
+public function imprime($idpessoa) {
+	$this->load->model('mpessoas');
+	$data['pessoa'] = $this->mpessoas->consulta($idpessoa);
+	$data['processos'] = $this->mpessoas->processoscomoparte($idpessoa);
+
+	$this->load->view('vpessoasimpressao', $data);
 }
 
 }

@@ -29,12 +29,13 @@ function check_database($senha) {
       $this->form_validation->set_message('check_database', 'Usuário desabilitado.');
       return FALSE;
     }
-    else {
+    else { // define dados da sessão do usuário
       $sess_array = array(
         'id_usuarios' => $result[0]->id_usuarios,
         'email' => $result[0]->email,
         'nome' => $result[0]->nome,
-        'nivel' => $result[0]->nivel);
+        'nivel' => $result[0]->nivel,
+        'registros_pagina' => $result[0]->registros_pagina);
         $this->session->set_userdata('logged_in', $sess_array);
         $this->session->set_userdata('stemp', ($result[0]->stemp == 1));
         return TRUE;

@@ -4,7 +4,7 @@
       <h1 class="page-header">Perfil</h1>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <div class="panel panel-default">
             <div class="panel-heading">Nome</div>
             <div class="panel-body">
@@ -15,11 +15,25 @@
       </div>
 
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-5">
           <div class="panel panel-default">
             <div class="panel-heading">E-mail/Login</div>
             <div class="panel-body">
               <?=$usuario[0]->email;?>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-5">
+          <div class="panel panel-default">
+            <div class="panel-heading">Quantidade de registros consultados por página</div>
+            <div class="panel-body">
+              <?=$usuario[0]->registros_pagina;?>
+              <a href="#">
+                <span class="glyphicon glyphicon-edit pull-right" title="Alterar quantidade" aria-hidden="true"></span>
+              </a>
             </div>
           </div>
         </div>
@@ -35,7 +49,7 @@
         }
       ?>
 
-      <a class="btn btn-default" href="<?=base_url('perfil/trocasenha/'.$usuario[0]->id_usuarios)?>" role="button">Trocar Senha</a>
+      <a class="btn btn-primary" href="<?=base_url('perfil/trocasenha/'.$usuario[0]->id_usuarios)?>" role="button">Trocar Senha</a>
 
     </div>
   </div>
