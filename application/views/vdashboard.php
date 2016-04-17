@@ -7,6 +7,27 @@
 
         <div class="col-md-12">
 
+          <div class="row">
+            <div class="col-md-4">
+              <div class="jumbotron">
+                <h4 align="center">Prazos</h4>
+                <h2 align="center">12</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="jumbotron">
+                <h4 align="center">Alertas</h4>
+                <h2 align="center">12</h2>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="jumbotron">
+                <h4 align="center">Parados</h4>
+                <h2 align="center">12</h2>
+              </div>
+            </div>
+          </div>
+
           <!-- Prazos -->
           <div class="panel panel-danger">
             <div class="panel-heading">Prazos</div>
@@ -35,7 +56,7 @@
 
           <!-- Processos -->
           <div class="panel panel-info">
-            <div class="panel-heading">Processos</div>
+            <div class="panel-heading">Processos com alertas</div>
             <!-- <div class="panel-body">
             </div> -->
 
@@ -63,7 +84,7 @@
 
           <!-- Processos Parados -->
           <div class="panel panel-warning">
-            <div class="panel-heading">Processos Parados</div>
+            <div class="panel-heading">Processos parados</div>
             <!-- <div class="panel-body">
             </div> -->
 
