@@ -49,7 +49,7 @@
 
         <ul class="nav navbar-nav navbar-right">
 
-          <li><a href="<?=base_url('dashboard')?>"><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span> Dashboard</a></li>
+          <li><a href="<?=base_url('inicio')?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Início</a></li>
           <li><a href="<?=base_url('processos')?>"><span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span> Processos</a></li>
           <li><a href="<?=base_url('pessoas')?>"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Pessoas</a></li>
           <li class="dropdown">

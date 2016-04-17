@@ -11,7 +11,7 @@ public function index()	{
   $this->form_validation->set_rules('senha', 'Senha', 'required|trim|callback_check_database');
 
   if ($this->form_validation->run() == TRUE) {
-    redirect('dashboard', 'auto');
+    redirect('inicio', 'auto');
   }
   else {
     $this->load->view('vlogon');

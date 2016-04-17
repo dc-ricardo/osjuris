@@ -126,4 +126,4 @@ define('CNIVELADMINISTRADOR', '4');
 define('CNIVELUSUARIO', serialize(array('Operador', 'Advogado', 'Cliente', 'Interessado', 'Administrador')));
 
 // versão do aplicativo
-define('COSJVERSAO', '0.8.3');
+define('COSJVERSAO', '0.8.4');

@@ -187,7 +187,7 @@ function reposiciona($id) {
   $this->db->update('processos');
 }
 
-function dashprocessoscomalertas() {
+function processoscomalertas() {
   $this->db->select('*');
   $this->db->from('processos');
   $this->db->where('posicao !=', CPOSPROENCERRADO);
@@ -196,7 +196,7 @@ function dashprocessoscomalertas() {
   return $query->result();
 }
 
-function dashprazos() {
+function prazos() {
   $this->db->select('processos.id_processos, data_prazo, prazos.descricao prazos_descricao, numero_interno');
   $this->db->from('prazos');
   $this->db->join('processos', 'prazos.id_processos = processos.id_processos');
@@ -206,7 +206,7 @@ function dashprazos() {
   return $query->result();
 }
 
-function dashprocessosparados() {
+function processosparados() {
   $this->db->select('*');
   $this->db->from('processos');
   $this->db->where('posicao !=', CPOSPROENCERRADO);

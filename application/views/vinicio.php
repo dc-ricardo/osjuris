@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
-      <h1 class="page-header">Dashboard</h1>
+      <h1 class="page-header">Início</h1>
 
       <div class="row">
 
