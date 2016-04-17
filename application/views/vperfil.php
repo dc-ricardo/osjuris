@@ -34,10 +34,19 @@
           <div class="panel panel-default">
             <div class="panel-heading">Quantidade de registros consultados por página</div>
             <div class="panel-body">
-              <?=$usuario[0]->registros_pagina;?>
-              <a href="#">
-                <span class="glyphicon glyphicon-edit pull-right" title="Alterar quantidade" aria-hidden="true"></span>
-              </a>
+
+              <div class="btn-group pull-left" role="group" aria-label="">
+                <button type="button" class="btn btn-success"><?=$usuario[0]->registros_pagina;?></button>
+              </div>
+
+              <div class="btn-group pull-right" role="group" aria-label="" title="Opções">
+                <a class="btn btn-default" role="button" href="<?=base_url('perfil/alterapaginacao/10');?>">10</a>
+                <a class="btn btn-default" role="button" href="<?=base_url('perfil/alterapaginacao/20');?>">20</a>
+                <a class="btn btn-default" role="button" href="<?=base_url('perfil/alterapaginacao/50');?>">50</a>
+                <a class="btn btn-default" role="button" href="<?=base_url('perfil/alterapaginacao/100');?>">100</a>
+                <a class="btn btn-default" role="button" href="<?=base_url('perfil/alterapaginacao/200');?>">200</a>
+              </div>
+
             </div>
           </div>
 

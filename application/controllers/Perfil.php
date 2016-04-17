@@ -24,7 +24,7 @@ public function trocasenha($id) {
 }
 
 function senhavalida($senha) {
-  $email = $this->session->userdata['logged_in']['email'];;
+  $email = $this->session->userdata['logged_in']['email'];
   $this->load->model('musuarios');
   $result = $this->musuarios->login($email, $senha);
 
@@ -81,6 +81,16 @@ public function atualizasenha($id) {
 	else {
 		$this->trocasenha($id);
 	}
+}
+
+public function alterapaginacao($qtd) {
+  $qtdvalidas = array("10","20","50","100","200");
+  if (in_array($qtd, $qtdvalidas)) {
+    $this->load->model('musuarios');
+    $this->musuarios->alterapaginacao($qtd);
+    $this->session->userdata['logged_in']['registros_pagina'] = $qtd;
+  }
+  redirect('/perfil');
 }
 
 }

@@ -122,4 +122,10 @@ function alterasenha($data) {
   $this->db->update('usuarios');
 }
 
+function alterapaginacao($qtd) {
+  $this->db->set('registros_pagina', $qtd);
+  $this->db->where('id_usuarios', $this->session->userdata['logged_in']['id_usuarios']);
+  $this->db->update('usuarios');
+}
+
 }
