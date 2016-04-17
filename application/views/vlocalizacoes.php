@@ -6,7 +6,39 @@
 
       <div class="row">
 
+        <!-- coluna vazia -->
+        <div class="col-md-3"></div>
+
+        <!-- coluna do conteúdo centralizado -->
         <div class="col-md-6">
+
+          <form class="form-group" action="<?=base_url('localizacoes/insere');?>" method="post">
+            <?php
+              if (validation_errors() == TRUE) {
+                echo '<div class="alert alert-danger" role="alert">';
+                echo validation_errors();
+                echo '</div>';
+              }
+            ?>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h3 class="panel-title">Nova</h3>
+              </div>
+
+              <div class="panel-body">
+                <div class="input-group">
+                  <input type="text" class="form-control" id="descricao" name="descricao" autofocus>
+                  <span class="input-group-btn">
+                    <button type="submit" class="btn btn-primary" name="submit">
+                      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </form>
 
           <div class="panel panel-default">
             <div class="panel-body">
@@ -27,41 +59,9 @@
 
             </div>
           </div>
-        </div>
 
-        <div class="col-md-6">
-
-          <form class="form-group" action="<?=base_url('localizacoes/insere');?>" method="post">
-
-            <?php
-              if (validation_errors() == TRUE) {
-                echo '<div class="alert alert-danger" role="alert">';
-                echo validation_errors();
-                echo '</div>';
-              }
-            ?>
-
-            <div class="panel panel-default">
-
-              <div class="panel-heading">
-                <h3 class="panel-title">Nova</h3>
-              </div>
-
-              <div class="panel-body">
-                <div class="input-group">
-                  <input type="text" class="form-control" id="descricao" name="descricao" autofocus>
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-primary" name="submit">
-                      <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </form>
-
-        </div>
+        <!-- coluna vazia -->
+        <div class="col-md-3"></div>
 
       </div>
     </div>
