@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Prazos extends MY_Controller {
 
-public function index()	{
+public function index($idprocesso)	{
 }
 
-public function consulta($idprocesso)	{
+public function doprocesso($idprocesso)	{
   $this->load->model('mprocessos');
   $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
   $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
@@ -16,6 +16,19 @@ public function consulta($idprocesso)	{
 
 	$this->load->view('includes/vheader');
 	$this->load->view('vprazos', $dataview);
+	$this->load->view('includes/vfooter');
+}
+
+public function consulta($idprocesso, $idprazo)	{
+  $this->load->model('mprocessos');
+  $datainclude['processo'] = $this->mprocessos->consulta($idprocesso);
+  $dataview['dadosdoprocesso'] = $this->load->view('vdadosdoprocesso', $datainclude, TRUE);
+
+  $this->load->model('mprazos');
+	$dataview['prazo'] = $this->mprazos->consulta($idprazo);
+
+	$this->load->view('includes/vheader');
+	$this->load->view('vprazosconsulta', $dataview);
 	$this->load->view('includes/vfooter');
 }
 

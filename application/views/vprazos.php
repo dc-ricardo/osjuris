@@ -2,9 +2,7 @@
   <div class="row">
     <div class="col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 main">
 
-      <!-- <?php $interesse = unserialize(CINTERESSE);?> -->
-
-      <h1 class="page-header">Prazos
+      <h1 class="page-header">Prazos do Processo
         <div class="btn-group pull-right" role="group">
           <a class="btn btn-primary" href="<?=base_url()?>prazos/novo/<?=$processo[0]->id_processos;?>" role="button">Novo</a>
         </div>
@@ -34,7 +32,8 @@
               <tbody>
                 <?php foreach($prazos as $row): ?>
                   <tr>
-                    <td><?=nice_date($row->data_prazo, 'd/m/Y');?></td>
+                    <td><a href="<?=base_url('prazos/consulta/'.$row->id_processos.'/'.$row->id_prazos);?>">
+                      <?=nice_date($row->data_prazo, 'd/m/Y');?></a></td>
                     <td><?=$row->descricao;?></td>
 
                     <td style="white-space:nowrap">

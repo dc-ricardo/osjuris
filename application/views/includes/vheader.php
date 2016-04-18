@@ -78,7 +78,7 @@
                 }
               ?>
               <li role="separator" class="divider"></li>
-              <li><a href="http://osjuris.com.br/docs">Docs</a></li>
+              <li><a href="http://osjuris.com.br/docs" target="_blank">Docs</a></li>
             </ul>
           </li>
 

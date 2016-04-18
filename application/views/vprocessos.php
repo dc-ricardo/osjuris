@@ -69,7 +69,7 @@
                         <span class="glyphicon glyphicon-user" aria-hidden="true" title="Partes"></span></a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('andamentos/consulta/'.$row->id_processos);?>">
                         <span class="glyphicon glyphicon-tag" aria-hidden="true" title="Andamentos"></span></a>
-                      <a class="btn btn-default btn-xs" href="<?=base_url('prazos/consulta/'.$row->id_processos);?>">
+                      <a class="btn btn-default btn-xs" href="<?=base_url('prazos/doprocesso/'.$row->id_processos);?>">
                         <span class="glyphicon glyphicon-calendar" aria-hidden="true" title="Prazos"></span></a>
                       <a class="btn btn-default btn-xs" href="<?=base_url('apensos/consulta/'.$row->id_processos);?>">
                         <span class="glyphicon glyphicon-tags" aria-hidden="true" title="Apensos"></span></a>

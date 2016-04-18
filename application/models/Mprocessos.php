@@ -197,7 +197,7 @@ function processoscomalertas() {
 }
 
 function prazos() {
-  $this->db->select('processos.id_processos, data_prazo, prazos.descricao prazos_descricao, numero_interno');
+  $this->db->select('processos.id_processos, prazos.id_prazos, data_prazo, prazos.descricao prazos_descricao, numero_interno');
   $this->db->from('prazos');
   $this->db->join('processos', 'prazos.id_processos = processos.id_processos');
   $this->db->where('posicao !=', CPOSPROENCERRADO);

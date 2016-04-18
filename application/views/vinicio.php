@@ -30,9 +30,8 @@
 
           <!-- Prazos -->
           <div class="panel panel-danger">
+
             <div class="panel-heading">Prazos</div>
-            <!-- <div class="panel-body"> -->
-            <!-- </div> -->
 
             <table class="table">
               <thead>
@@ -45,9 +44,11 @@
               <tbody>
                 <?php foreach($prazos as $row): ?>
                   <tr>
-                    <td><?=nice_date($row->data_prazo, 'd-m-Y');?></td>
+                    <td><a href="<?=base_url('prazos/consulta/'.$row->id_processos.'/'.$row->id_prazos);?>">
+                      <?=nice_date($row->data_prazo, 'd/m/Y');?></td>
                     <td><?=$row->prazos_descricao;?></td>
-                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>"><?=$row->numero_interno;?></a></td>
+                    <td><a href="<?=base_url('processos/consulta/'.$row->id_processos);?>">
+                      <?=$row->numero_interno;?></a></td>
                   </tr>
                 <?php endforeach; ?>
               </tbody>
@@ -57,8 +58,6 @@
           <!-- Processos -->
           <div class="panel panel-info">
             <div class="panel-heading">Processos com alertas</div>
-            <!-- <div class="panel-body">
-            </div> -->
 
             <table class="table">
               <thead>
@@ -85,8 +84,6 @@
           <!-- Processos Parados -->
           <div class="panel panel-warning">
             <div class="panel-heading">Processos parados</div>
-            <!-- <div class="panel-body">
-            </div> -->
 
             <table class="table">
               <thead>
